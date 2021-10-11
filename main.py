@@ -20,10 +20,15 @@ canvas.grid(columnspan=5, rowspan=10)
 instructions = tk.Label(root, text="Login", font=("Raleway", 18))
 instructions.grid(column=0, row=0)
 
+response = tk.Label(root)
+
 def login():
+    global response
     username = username_entry.get()
     password = password_entry.get()
     login_success = False
+    response.destroy()
+
     for cred in login_database['credentials']:
         if cred['username'] == username:
             if cred['password'] == password:
