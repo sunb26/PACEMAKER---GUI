@@ -22,6 +22,8 @@ instructions.grid(column=0, row=0)
 
 response = tk.Label(root)
 
+# Function for button click. Checks database for login credentials and outputs
+# success or failure if login is correct or not
 def login():
     global response
     username = username_entry.get()
@@ -34,10 +36,14 @@ def login():
             if cred['password'] == password:
                 response = tk.Label(root, text="Login Successful")
                 response.grid(column=1, row=4)
+                username_entry.delete(0, 'end')
+                password_entry.delete(0, 'end')
                 return 0
 
     response = tk.Label(root, text="Login Failed")
     response.grid(column=1, row=4)
+    username_entry.delete(0, 'end')
+    password_entry.delete(0, 'end')
     return 0
 
 # Input Box
