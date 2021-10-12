@@ -16,6 +16,7 @@ except:
 
 # Define the start of the Window Object
 root = tk.Tk()
+root.title("Welcome Page")
 
 # Defines the size of the window
 canvas = tk.Canvas(root, width=600, height=300)
