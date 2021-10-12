@@ -11,6 +11,7 @@ try:
 except:
     print("Database is empty or does not exist. Please register.")
     login_database = {"credentials": []}
+    pass
 
 
 # Define the start of the Window Object
