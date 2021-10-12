@@ -82,6 +82,7 @@ def register_window():
         username = new_username_entry.get()
         password = new_password_entry.get()
 
+        # Checks if fields are empty
         if len(username) == 0 or len(password) == 0:
             create_user_response = tk.Label(register_window, text="Please fill in all the required fields")
             create_user_response.grid(column=1, row=4)
