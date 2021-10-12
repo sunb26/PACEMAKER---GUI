@@ -47,13 +47,13 @@ def login():
                 login_response.grid(column=1, row=4)
                 username_entry.delete(0, 'end')
                 password_entry.delete(0, 'end')
-                return 0
+                return
 
     login_response = tk.Label(root, text="Login Failed")
     login_response.grid(column=1, row=4)
     username_entry.delete(0, 'end')
     password_entry.delete(0, 'end')
-    return 0
+    return
 
 
 # Username and Password Input Box
