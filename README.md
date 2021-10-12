@@ -3,6 +3,7 @@ Assignment 1: DCM
 Libraries
 - tkinter
 - PIL (Later Patch)
+- JSON
 
 
 Notes
