@@ -1,5 +1,6 @@
 import tkinter as tk
 import json
+import time
 
 
 # Import login database
@@ -20,28 +21,29 @@ canvas.grid(columnspan=5, rowspan=10)
 instructions = tk.Label(root, text="Login", font=("Raleway", 18))
 instructions.grid(column=0, row=0)
 
-response = tk.Label(root)
+login_response = tk.Label(root)
+
 
 # Function for button click. Checks database for login credentials and outputs
 # success or failure if login is correct or not
 def login():
-    global response
+    global login_response
     username = username_entry.get()
     password = password_entry.get()
     login_success = False
-    response.destroy()
+    login_response.destroy()
 
     for cred in login_database['credentials']:
         if cred['username'] == username:
             if cred['password'] == password:
-                response = tk.Label(root, text="Login Successful")
-                response.grid(column=1, row=4)
+                login_response = tk.Label(root, text="Login Successful")
+                login_response.grid(column=1, row=4)
                 username_entry.delete(0, 'end')
                 password_entry.delete(0, 'end')
                 return 0
 
-    response = tk.Label(root, text="Login Failed")
-    response.grid(column=1, row=4)
+    login_response = tk.Label(root, text="Login Failed")
+    login_response.grid(column=1, row=4)
     username_entry.delete(0, 'end')
     password_entry.delete(0, 'end')
     return 0
@@ -58,11 +60,67 @@ password_label.grid(column=0, row=2)
 
 
 # Button
-btn_text = tk.StringVar()
-login_btn = tk.Button(root, textvariable=btn_text, command=lambda:login(), font="Raleway", bg="#20bebe", fg="white", height=2, width=15)
-btn_text.set("Login")
+login_btn_text = tk.StringVar()
+login_btn = tk.Button(root, textvariable=login_btn_text, command=lambda:login(), font="Raleway", bg="#20bebe", fg="white", height=2, width=15)
+login_btn_text.set("Login")
 login_btn.grid(column=1, row=3)
 
+# Opens new window for registration
+def register_window():
+
+    register_window = tk.Toplevel(root)
+    register_window.title("Register")
+    reg_canvas = tk.Canvas(register_window, width=600, height=300)
+    reg_canvas.grid(columnspan=5, rowspan=10)
+
+    register_label = tk.Label(root, text="Register", font=("Raleway", 18))
+    register_label.grid(column=0, row=0)
+
+
+
+    def create_user():
+        username = new_username_entry.get()
+        password = new_password_entry.get()
+
+        # Checks if the username already exists
+        for cred in login_database['credentials']:
+            if cred['username'] == username:
+                create_user_response = tk.Label(register_window, text=f"{username} is already taken")
+                create_user_response.grid(column=1, row=4)
+                username_entry.delete(0, 'end')
+                password_entry.delete(0, 'end')
+                return
+
+        # Updates credentials database
+        login_database['credentials'].append({"username": f"{username}", "password": f"{password}"})
+        with open("login_data.json", "w") as database:
+            json.dump(login_database, database)
+
+        # Closes registration window
+        register_window.destroy()
+
+    create_creds_btn_text = tk.StringVar()
+    create_creds_btn = tk.Button(register_window, textvariable=create_creds_btn_text, command=create_user, font="Raleway", bg="#20bebe",
+                          fg="white", height=2, width=15)
+    create_creds_btn_text.set("Create User")
+    create_creds_btn.grid(column=1, row=3)
+
+    new_username_entry = tk.Entry(register_window)
+    new_username_label = tk.Label(register_window, text="New Username:")
+    new_username_entry.grid(column=1, row=1)
+    new_username_entry.grid(column=1, row=1)
+    new_username_label.grid(column=0, row=1)
+    new_password_entry = tk.Entry(register_window)
+    new_password_label = tk.Label(register_window, text="Password:")
+    new_password_entry.grid(column=1, row=2)
+    new_password_label.grid(column=0, row=2)
+
+
+
+register_btn_text = tk.StringVar()
+register_btn = tk.Button(root, textvariable=register_btn_text, command=register_window, font="Raleway", bg="#20bebe", fg="white", height=2, width=15)
+register_btn_text.set("Sign-up")
+register_btn.grid(column=2, row=3)
 
 
 
