@@ -102,6 +102,8 @@ def register_window():
         with open("login_data.json", "w") as database:
             json.dump(login_database, database)
 
+        if len(login_database["credentials"]) >= 10:
+            register_btn.destroy()
         # Closes registration window
         register_window.destroy()
 
@@ -128,6 +130,8 @@ register_btn = tk.Button(root, textvariable=register_btn_text, command=register_
 register_btn_text.set("Sign-up")
 register_btn.grid(column=2, row=3)
 
+if len(login_database["credentials"]) >= 10:
+    register_btn.destroy()
 
 
 root.mainloop() # All code after this line will not display in the window object
