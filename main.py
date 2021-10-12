@@ -82,6 +82,11 @@ def register_window():
         username = new_username_entry.get()
         password = new_password_entry.get()
 
+        if len(username) == 0 or len(password) == 0:
+            create_user_response = tk.Label(register_window, text="Please fill in all the required fields")
+            create_user_response.grid(column=1, row=4)
+            return
+
         # Checks if the username already exists
         for cred in login_database['credentials']:
             if cred['username'] == username:
