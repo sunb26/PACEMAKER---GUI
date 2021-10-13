@@ -1,7 +1,8 @@
 import tkinter as tk
 from windows.register import register_window
+from windows.parameters import parameter_page
 
-def welcome_page(root, login_database):
+def welcome_page(root, login_database, parameter_database):
     root.title("Welcome Page")
 
     # Defines the size of the window
@@ -27,8 +28,9 @@ def welcome_page(root, login_database):
         for cred in login_database['credentials']:
             if cred['username'] == username:
                 if cred['password'] == password:
-                    login_response["text"] = "Login Successful"
-                    login_response.grid(column=1, row=4)
+                    # login_response["text"] = "Login Successful"
+                    # login_response.grid(column=1, row=4)
+                    parameter_page(root, username, parameter_database)
                     username_entry.delete(0, 'end')
                     password_entry.delete(0, 'end')
                     return

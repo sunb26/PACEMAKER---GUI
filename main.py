@@ -1,13 +1,14 @@
 import tkinter as tk
 import json
 from windows.welcome import welcome_page
+from windows.parameters import parameter_page
 
 
 
 
 # Import login database
 try:
-    with open("login_data.json") as database:
+    with open("database/login_data.json") as database:
         login_database = json.load(database)
 
 except:
@@ -15,9 +16,17 @@ except:
     login_database = {"credentials": []}
     pass
 
+try:
+    with open("database/parameters.json") as database2:
+        parameter_database = json.load(database2)
+except:
+    print("No Previous Inputs")
+    parameter_database = {}
 
 # Define the start of the Window Object
 root = tk.Tk()
-welcome = welcome_page(root, login_database)
+
+welcome = welcome_page(root, login_database, parameter_database)
+
 
 root.mainloop()  # All code after this line will not display in the window object

@@ -34,7 +34,7 @@ def register_window(root, login_database):
 
         # Updates credentials database
         login_database['credentials'].append({"username": f"{username}", "password": f"{password}"})
-        with open("login_data.json", "w") as database:
+        with open("/database/login_data.json", "w") as database:
             json.dump(login_database, database)
 
         # if len(login_database["credentials"]) >= 10:
