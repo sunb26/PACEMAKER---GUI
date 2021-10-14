@@ -1,7 +1,6 @@
 import tkinter as tk
 import json
 from windows.welcome import welcome_page
-from windows.parameters import parameter_page
 
 
 
