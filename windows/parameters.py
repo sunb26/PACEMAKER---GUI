@@ -173,6 +173,16 @@ class parameter_page:
                         self.check_apw(self.apw.get()), self.check_vpw(self.vpw.get()),
                         self.check_atrial_refractory_period(self.ARP.get()), self.check_ventricle_refractory_period(self.VRP.get())]
 
+        input_params = {
+            "lrl": self.lrl.get(),
+            "url": self.url.get(),
+            "aa": self.aa.get(),
+            "apw": self.apw.get(),
+            "va": self.va.get(),
+            "vpw": self.vpw.get(),
+            "VRP": self.VRP.get(),
+            "ARP": self.ARP.get()
+        }
         # Checking lrl separately due to increment differences
 
         if False in valid_params:
