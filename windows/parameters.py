@@ -96,7 +96,14 @@ class parameter_page:
         self.ARP_label.grid(column=4, row=4)
 
         # Intialize "invalid" label
-        self.invalid_label = tk.Label(self.window, text="Invalid", font=("Raleway", 6))
+        self.invalid_label_lrl = tk.Label(self.window, text="Invalid", font=("Raleway", 12))
+        self.invalid_label_url = tk.Label(self.window, text="Invalid", font=("Raleway", 12))
+        self.invalid_label_aa = tk.Label(self.window, text="Invalid", font=("Raleway", 12))
+        self.invalid_label_apw = tk.Label(self.window, text="Invalid", font=("Raleway", 12))
+        self.invalid_label_va = tk.Label(self.window, text="Invalid", font=("Raleway", 12))
+        self.invalid_label_vpw = tk.Label(self.window, text="Invalid", font=("Raleway", 12))
+        self.invalid_label_VRP = tk.Label(self.window, text="Invalid", font=("Raleway", 12))
+        self.invalid_label_ARP = tk.Label(self.window, text="Invalid", font=("Raleway", 12))
 
         # Initialize Save Button
         save_btn_text = tk.StringVar()
@@ -112,7 +119,7 @@ class parameter_page:
         elif 90 <= lrl_input <= 175 and lrl_input % 5 == 0:
             return True
         else:
-            self.invalid_label.grid(column=self.limits["lrl"]["column"], row=self.limits["lrl"]["row"])
+            self.invalid_label_lrl.grid(column=self.limits["lrl"]["column"], row=self.limits["lrl"]["row"])
             return False
 
 
@@ -121,7 +128,7 @@ class parameter_page:
         if 50 <= url_input <= 175 and url_input % 5 == 0:
             return True
         else:
-            self.invalid_label.grid(column=self.limits["url"]["column"], row=self.limits["url"]["row"])
+            self.invalid_label_url.grid(column=self.limits["url"]["column"], row=self.limits["url"]["row"])
             return False
 
 
@@ -129,45 +136,57 @@ class parameter_page:
         if 0.0 <= amplitude_input <= 5.0 and round(amplitude_input,1) == amplitude_input:
             return True
         else:
-            self.invalid_label.grid(column=self.limits["aa"]["column"], row=self.limits["aa"]["row"])
+            self.invalid_label_aa.grid(column=self.limits["aa"]["column"], row=self.limits["aa"]["row"])
             return False
 
     def check_ventrical_amplitude(self, amplitude_input):
         if 0.0 <= amplitude_input <= 5.0 and round(amplitude_input,1) == amplitude_input:
             return True
         else:
-            self.invalid_label.grid(column=self.limits["va"]["column"], row=self.limits["va"]["row"])
+            self.invalid_label_va.grid(column=self.limits["va"]["column"], row=self.limits["va"]["row"])
             return False
 
     def check_apw(self, pw_input):
         if pw_input == 1 or pw_input == 2:
             return True
         else:
-            self.invalid_label.grid(column=self.limits["apw"]["column"], row=self.limits["apw"]["row"])
+            self.invalid_label_apw.grid(column=self.limits["apw"]["column"], row=self.limits["apw"]["row"])
             return False
 
     def check_vpw(self, pw_input):
         if pw_input == 1 or pw_input == 2:
             return True
         else:
-            self.invalid_label.grid(column=self.limits["vpw"]["column"], row=self.limits["vpw"]["row"])
+            self.invalid_label_vpw.grid(column=self.limits["vpw"]["column"], row=self.limits["vpw"]["row"])
             return False
 
     def check_atrial_refractory_period(self, RP_input):
         if 150 <= RP_input <= 500 and RP_input % 10 == 0:
             return True
         else:
-            self.invalid_label.grid(column=self.limits["ARP"]["column"], row=self.limits["ARP"]["row"])
+            self.invalid_label_ARP.grid(column=self.limits["ARP"]["column"], row=self.limits["ARP"]["row"])
             return False
 
     def check_ventricle_refractory_period(self, RP_input):
         if 150 <= RP_input <= 500 and RP_input % 10 == 0:
             return True
         else:
-            self.invalid_label.grid(column=self.limits["VRP"]["column"], row=self.limits["VRP"]["row"])
+            self.invalid_label_VRP.grid(column=self.limits["VRP"]["column"], row=self.limits["VRP"]["row"])
             return False
 
     def check_validity(self):
+        # Remove previous invalid labels
+        self.invalid_label_lrl.grid_remove()
+        self.invalid_label_url.grid_remove()
+        self.invalid_label_aa.grid_remove()
+        self.invalid_label_apw.grid_remove()
+        self.invalid_label_va.grid_remove()
+        self.invalid_label_vpw.grid_remove()
+        self.invalid_label_VRP.grid_remove()
+        self.invalid_label_ARP.grid_remove()
+
+
+
         input_params = {
             "lrl": self.lrl.get(),
             "url": self.url.get(),
