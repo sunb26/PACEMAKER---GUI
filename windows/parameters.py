@@ -13,50 +13,34 @@ class parameter_page:
         # Intialize parameter limits
         self.limits = {
             "lrl": {
-                "UL": 0,
-                "LL": 0,
                 "column": 2,
                 "row": 1
             },
             "url": {
-                "UL": 0,
-                "LL": 0,
                 "column": 2,
                 "row": 2
             },
             "aa": {
-                "UL": 0,
-                "LL": 0,
                 "column": 2,
                 "row": 3
             },
             "apw": {
-                "UL": 0,
-                "LL": 0,
                 "column": 2,
                 "row": 4
             },
             "va": {
-                "UL": 0,
-                "LL": 0,
                 "column": 6,
                 "row": 1
             },
             "vpw": {
-                "UL": 0,
-                "LL": 0,
                 "column": 6,
                 "row": 2
             },
             "VRP": {
-                "UL": 0,
-                "LL": 0,
                 "column": 6,
                 "row": 3
             },
             "ARP": {
-                "UL": 0,
-                "LL": 0,
                 "column": 6,
                 "row": 4
             }
@@ -121,29 +105,80 @@ class parameter_page:
         save_btn_text.set("Save")
         self.save_btn.grid(columnspan=4, column=1, row=6)
 
+    def check_lrl(self, lrl_input):
+        # Check which range the lrl input falls in
+        if 30 <= lrl_input <= 50 and lrl_input % 5 == 0:
+            return True
+        elif 90 <= lrl_input <= 175 and lrl_input % 5 == 0:
+            return True
+        else:
+            self.invalid_label.grid(column=self.limits["lrl"]["column"], row=self.limits["lrl"]["row"])
+            return False
+
+
+    def check_url(self, url_input):
+        # Check which range the lrl input falls in
+        if 50 <= url_input <= 175 and lrl_input % 5 == 0:
+            return True
+        else:
+            self.invalid_label.grid(column=self.limits["url"]["column"], row=self.limits["url"]["row"])
+            return False
+
+
+    def check_atrial_amplitude(self, amplitude_input):
+        if 0.0 <= amplitude_input <= 5.0 and round(amplitude_input,1) == amplitude_input:
+            return True
+        else:
+            self.invalid_label.grid(column=self.limits["aa"]["column"], row=self.limits["aa"]["row"])
+            return False
+
+    def check_ventrical_amplitude(self, amplitude_input):
+        if 0.0 <= amplitude_input <= 5.0 and round(amplitude_input,1) == amplitude_input:
+            return True
+        else:
+            self.invalid_label.grid(column=self.limits["va"]["column"], row=self.limits["va"]["row"])
+            return False
+
+    def check_apw(self, pw_input):
+        if pw_input == 1 or pw_input == 2:
+            return True
+        else:
+            self.invalid_label.grid(column=self.limits["apw"]["column"], row=self.limits["apw"]["row"])
+            return False
+
+    def check_vpw(self, pw_input):
+        if pw_input == 1 or pw_input == 2:
+            return True
+        else:
+            self.invalid_label.grid(column=self.limits["vpw"]["column"], row=self.limits["vpw"]["row"])
+            return False
+
+    def check_atrial_refractory_period(self, RP_input):
+        if 150 <= RP_input <= 500 and RP_input % 10 == 0:
+            return True
+        else:
+            self.invalid_label.grid(column=self.limits["ARP"]["column"], row=self.limits["ARP"]["row"])
+            return False
+
+    def check_ventricle_refractory_period(self, RP_input):
+        if 150 <= RP_input <= 500 and RP_input % 10 == 0:
+            return True
+        else:
+            self.invalid_label.grid(column=self.limits["VRP"]["column"], row=self.limits["VRP"]["row"])
+            return False
 
     def check_validity(self):
-        valid = True
-        input_params = {
-            "lrl": self.lrl.get(),
-            "url": self.url.get(),
-            "aa": self.aa.get(),
-            "apw": self.apw.get(),
-            "va": self.va.get(),
-            "vpw": self.vpw.get(),
-            "VRP": self.VRP.get(),
-            "ARP": self.ARP.get()
-        }
+        valid_params = [self.check_lrl(self.lrl.get()), self.check_url(self.url.get()),
+                        self.check_atrial_amplitude(self.aa.get()), self.check_ventrical_amplitude(self.va.get()),
+                        self.check_apw(self.apw.get()), self.check_vpw(self.vpw.get()),
+                        self.check_atrial_refractory_period(self.ARP.get()), self.check_ventricle_refractory_period(self.VRP.get())]
 
-        for param in input_params.keys():
-            if input_params[param] < self.limits[param]["LL"] or input_params[param] > self.limits[param]["UL"]:
-                self.invalid_label.grid(column=self.limits["column"], row=self.limites["row"])
-                valid = False
+        # Checking lrl separately due to increment differences
 
-        if valid:
-            self.save_parameters(input_params)
-        else:
+        if False in valid_params:
             return
+        else: self.save_parameters(input_params)
+
 
     def save_parameters(self, inputs):
         self.DB[self.user] = inputs

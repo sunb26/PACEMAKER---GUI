@@ -19,8 +19,8 @@ try:
     with open("database/parameters.json") as database2:
         parameter_database = json.load(database2)
 except:
-    print("No Previous Inputs")
-    parameter_database = {}
+    print("No Parameter Inputs Found")
+
 
 # Define the start of the Window Object
 root = tk.Tk()
