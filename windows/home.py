@@ -33,31 +33,31 @@ class home_page:
 
         # Mode label 
         self.mode_label = tk.Label(self.window, text = "Mode", font = ("Raleway", 18))
-        self.mode_label.grid(column = 0, row = 5)
+        self.mode_label.grid(column = 0, row = 3)
 
 
 
         # Parameters label
         self.parameter_label = tk.Label(self.window, text = "Parameters", font = ("Raleway", 18))
-        self.parameter_label.grid(column = 4, row = 5)
+        self.parameter_label.grid(column = 4, row = 3)
 
         # Initializing parameters
         self.lrl_label = tk.Label(self.window, text="Lower Rate Limit", font=("Raleway", 12))
-        self.lrl_label.grid(column=4, row=6)
+        self.lrl_label.grid(column=4, row=4)
         self.url_label = tk.Label(self.window, text="Upper Rate Limit", font=("Raleway", 12))
-        self.url_label.grid(column=4, row=7)
+        self.url_label.grid(column=4, row=5)
         self.aa_label = tk.Label(self.window, text="Atrial Amplitude", font=("Raleway", 12))
-        self.aa_label.grid(column=4, row=8)
+        self.aa_label.grid(column=4, row=6)
         self.apw_label = tk.Label(self.window, text="Atrial Pulse Width", font=("Raleway", 12))
-        self.apw_label.grid(column=4, row=9)
+        self.apw_label.grid(column=4, row=7)
         self.va_label = tk.Label(self.window, text="Ventricular Amplitude", font=("Raleway", 12))
-        self.va_label.grid(column=4, row=10)
+        self.va_label.grid(column=4, row=8)
         self.vpw_label = tk.Label(self.window, text="Ventricular Pulse Width", font=("Raleway", 12))
-        self.vpw_label.grid(column=4, row=11)
+        self.vpw_label.grid(column=4, row=9)
         self.VRP_label = tk.Label(self.window, text="VRP", font=("Raleway", 12))
-        self.VRP_label.grid(column=4, row=12)
+        self.VRP_label.grid(column=4, row=10)
         self.ARP_label = tk.Label(self.window, text="ARP", font=("Raleway", 12))
-        self.ARP_label.grid(column=4, row=13)
+        self.ARP_label.grid(column=4, row=11)
 
 
 
