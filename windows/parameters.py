@@ -118,7 +118,7 @@ class parameter_page:
 
     def check_url(self, url_input):
         # Check which range the lrl input falls in
-        if 50 <= url_input <= 175 and lrl_input % 5 == 0:
+        if 50 <= url_input <= 175 and url_input % 5 == 0:
             return True
         else:
             self.invalid_label.grid(column=self.limits["url"]["column"], row=self.limits["url"]["row"])
@@ -168,11 +168,6 @@ class parameter_page:
             return False
 
     def check_validity(self):
-        valid_params = [self.check_lrl(self.lrl.get()), self.check_url(self.url.get()),
-                        self.check_atrial_amplitude(self.aa.get()), self.check_ventrical_amplitude(self.va.get()),
-                        self.check_apw(self.apw.get()), self.check_vpw(self.vpw.get()),
-                        self.check_atrial_refractory_period(self.ARP.get()), self.check_ventricle_refractory_period(self.VRP.get())]
-
         input_params = {
             "lrl": self.lrl.get(),
             "url": self.url.get(),
@@ -183,11 +178,23 @@ class parameter_page:
             "VRP": self.VRP.get(),
             "ARP": self.ARP.get()
         }
+
+        # Checking if any entries are empty
+        for param in input_params.keys():
+            if input_params[param] == "":
+                return
+
+
+        valid_params = [self.check_lrl(int(self.lrl.get())), self.check_url(int(self.url.get())),
+                        self.check_atrial_amplitude(float(self.aa.get())), self.check_ventrical_amplitude(float(self.va.get())),
+                        self.check_apw(int(self.apw.get())), self.check_vpw(int(self.vpw.get())),
+                        self.check_atrial_refractory_period(int(self.ARP.get())), self.check_ventricle_refractory_period(int(self.VRP.get()))]
+
+
         # Checking lrl separately due to increment differences
 
-        if False in valid_params:
-            return
-        else: self.save_parameters(input_params)
+        if False not in valid_params:
+            self.save_parameters(input_params)
 
 
     def save_parameters(self, inputs):

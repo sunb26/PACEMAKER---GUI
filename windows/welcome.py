@@ -31,8 +31,6 @@ def welcome_page(root, login_database, parameter_database):
                     # login_response["text"] = "Login Successful"
                     # login_response.grid(column=1, row=4)
                     parameter_page(root, username, parameter_database)
-                    username_entry.delete(0, 'end')
-                    password_entry.delete(0, 'end')
                     return
 
         login_response["text"] = "Login Failed"
