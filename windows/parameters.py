@@ -240,12 +240,12 @@ class AOO:
                 "row": 2
             },
             "aa": {
-                "column": 2,
-                "row": 3
+                "column": 6,
+                "row": 1
             },
             "apw": {
-                "column": 2,
-                "row": 4
+                "column": 6,
+                "row": 2
             }
         }
 
@@ -268,9 +268,9 @@ class AOO:
         self.url = tk.Entry(self.window)
         self.url.grid(column=1, row=2)
         self.aa = tk.Entry(self.window)
-        self.aa.grid(column=1, row=3)
+        self.aa.grid(column=5, row=1)
         self.apw = tk.Entry(self.window)
-        self.apw.grid(column=1, row=4)
+        self.apw.grid(column=5, row=2)
 
         # Initialize Labels
         self.lrl_label = tk.Label(self.window, text="Lower Rate Limit", font=("Raleway", 12))
@@ -278,9 +278,9 @@ class AOO:
         self.url_label = tk.Label(self.window, text="Upper Rate Limit", font=("Raleway", 12))
         self.url_label.grid(column=0, row=2)
         self.aa_label = tk.Label(self.window, text="Atrial Amplitude", font=("Raleway", 12))
-        self.aa_label.grid(column=0, row=3)
+        self.aa_label.grid(column=4, row=1)
         self.apw_label = tk.Label(self.window, text="Atrial Pulse Width", font=("Raleway", 12))
-        self.apw_label.grid(column=0, row=4)
+        self.apw_label.grid(column=4, row=2)
 
         # Intialize "invalid" label
         self.invalid_label_lrl = tk.Label(self.window, text="Invalid", font=("Raleway", 12))
@@ -389,12 +389,12 @@ class AII:
                 "row": 3
             },
             "apw": {
-                "column": 2,
-                "row": 4
+                "column": 6,
+                "row": 1
             },
             "ARP": {
                 "column": 6,
-                "row": 1
+                "row": 2
             }
         }
 
@@ -419,9 +419,9 @@ class AII:
         self.aa = tk.Entry(self.window)
         self.aa.grid(column=1, row=3)
         self.apw = tk.Entry(self.window)
-        self.apw.grid(column=1, row=4)
+        self.apw.grid(column=5, row=1)
         self.ARP = tk.Entry(self.window)
-        self.ARP.grid(column=5, row=1)
+        self.ARP.grid(column=5, row=2)
 
         # Initialize Labels
         self.lrl_label = tk.Label(self.window, text="Lower Rate Limit", font=("Raleway", 12))
@@ -431,9 +431,9 @@ class AII:
         self.aa_label = tk.Label(self.window, text="Atrial Amplitude", font=("Raleway", 12))
         self.aa_label.grid(column=0, row=3)
         self.apw_label = tk.Label(self.window, text="Atrial Pulse Width", font=("Raleway", 12))
-        self.apw_label.grid(column=0, row=4)
+        self.apw_label.grid(column=4, row=1)
         self.ARP_label = tk.Label(self.window, text="ARP", font=("Raleway", 12))
-        self.ARP_label.grid(column=4, row=1)
+        self.ARP_label.grid(column=4, row=2)
 
         # Intialize "invalid" label
         self.invalid_label_lrl = tk.Label(self.window, text="Invalid", font=("Raleway", 12))
@@ -694,16 +694,16 @@ class VII:
                 "row": 2
             },
             "va": {
-                "column": 6,
-                "row": 1
+                "column": 2,
+                "row": 3
             },
             "vpw": {
                 "column": 6,
-                "row": 2
+                "row": 1
             },
             "VRP": {
                 "column": 6,
-                "row": 3
+                "row": 2
             },
         }
 
@@ -726,11 +726,11 @@ class VII:
         self.url = tk.Entry(self.window)
         self.url.grid(column=1, row=2)
         self.va = tk.Entry(self.window)
-        self.va.grid(column=5, row=1)
+        self.va.grid(column=1, row=3)
         self.vpw = tk.Entry(self.window)
-        self.vpw.grid(column=5, row=2)
+        self.vpw.grid(column=5, row=1)
         self.VRP = tk.Entry(self.window)
-        self.VRP.grid(column=5, row=3)
+        self.VRP.grid(column=5, row=2)
 
 
         # Initialize Labels
@@ -739,11 +739,11 @@ class VII:
         self.url_label = tk.Label(self.window, text="Upper Rate Limit", font=("Raleway", 12))
         self.url_label.grid(column=0, row=2)
         self.va_label = tk.Label(self.window, text="Ventricular Amplitude", font=("Raleway", 12))
-        self.va_label.grid(column=4, row=1)
+        self.va_label.grid(column=0, row=3)
         self.vpw_label = tk.Label(self.window, text="Ventricular Pulse Width", font=("Raleway", 12))
-        self.vpw_label.grid(column=4, row=2)
+        self.vpw_label.grid(column=4, row=1)
         self.VRP_label = tk.Label(self.window, text="VRP", font=("Raleway", 12))
-        self.VRP_label.grid(column=4, row=3)
+        self.VRP_label.grid(column=4, row=2)
 
 
         # Intialize "invalid" label
