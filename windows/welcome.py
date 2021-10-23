@@ -1,6 +1,7 @@
 import tkinter as tk
 from windows.register import register_window
 from windows.home import home_page
+from windows.parameters import *
 
 def welcome_page(root, login_database, parameter_database):
     root.title("Welcome Page")
@@ -30,7 +31,7 @@ def welcome_page(root, login_database, parameter_database):
                 if cred['password'] == password:
                     # login_response["text"] = "Login Successful"
                     # login_response.grid(column=1, row=4)
-                    home_page(root, username, parameter_database)
+                    VOO(root, username, parameter_database)
                     return
 
         login_response["text"] = "Login Failed"
