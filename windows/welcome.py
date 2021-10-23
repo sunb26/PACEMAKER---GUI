@@ -31,7 +31,7 @@ def welcome_page(root, login_database, parameter_database):
                 if cred['password'] == password:
                     # login_response["text"] = "Login Successful"
                     # login_response.grid(column=1, row=4)
-                    VII(root, username, parameter_database)
+                    home_page(root, username, parameter_database)
                     return
 
         login_response["text"] = "Login Failed"
