@@ -47,7 +47,7 @@ def welcome_page(root, login_database, parameter_database):
     username_entry.grid(column=1, row=1)
     username_label.grid(column=0, row=1)
 
-    password_entry = tk.Entry(root)
+    password_entry = tk.Entry(root, show="*")
     password_label = tk.Label(root, text="Password:")
     password_entry.grid(column=1, row=2)
     password_label.grid(column=0, row=2)

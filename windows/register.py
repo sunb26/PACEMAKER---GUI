@@ -54,7 +54,7 @@ def register_window(root, login_database):
     new_username_entry.grid(column=1, row=1)
     new_username_label.grid(column=0, row=1)
 
-    new_password_entry = tk.Entry(register_window)
+    new_password_entry = tk.Entry(register_window, show="*")
     new_password_label = tk.Label(register_window, text="Password:")
     new_password_entry.grid(column=1, row=2)
     new_password_label.grid(column=0, row=2)
