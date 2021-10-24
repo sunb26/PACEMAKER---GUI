@@ -53,9 +53,13 @@ class home_page:
         self.logo_label.grid(rowspan = 3, columnspan = 2, column=3, row=0)
 
         # Username label
-
-        # Username identifier
-
+        self.username_label = tk.Label(self.window, text = "User: " + user, font = ("Raleway", 14))
+        
+        # Placing username label far enough away from edge so doesn't distort page
+        if len(self.username_label["text"]) < 15:
+            self.username_label.grid(column = 7, row = 0)
+        else:
+            self.username_label.grid(columnspan = 2, column = 6, row = 0)
 
         # Background (Ugly)
         # self.background_img = Image.open("utils/background.png")
@@ -65,11 +69,9 @@ class home_page:
         # self.background.place(x=0, y=0, relwidth=1, relheight=1)
 
 
-
-
         # Logout button
         self.logout_button = tk.Button(self.window, text = "Logout", bg="#20bebe", font = "Raleway",
-                                       command = lambda: self.function1(), fg = "white", height = 1, width = 8)
+                                       command = lambda: self.logout(), fg = "white", height = 1, width = 8)
         self.logout_button.grid(column = 7, row = 1)
 
         # Mode dropdown
@@ -85,36 +87,123 @@ class home_page:
         self.default_mode.set(self.mode_options[0])
 
         self.opt = tk.OptionMenu(self.window, self.default_mode, *self.mode_options)
-        tk.Label(self.window, text = "Choose a mode:", font = ("Raleway", 14)).grid(column = 0, row = 5)
+        tk.Label(self.window, text = "Choose Mode:", font = ("Raleway", 14)).grid(columnspan = 2, column = 0, row = 5)
         self.opt.config(width = 10, font = ("Raleway", 14))
-        self.opt.grid(column = 0, row = 6)
+        self.opt.grid(columnspan = 2, column = 0, row = 6)
+
+        # Button to change parameters
+        self.mode_button = tk.Button(self.window, text = "View Parameters", width = 15, height = 1, 
+                                     font = "Raleway", fg = "white", bg = "#20bebe", 
+                                     command = lambda: self.change_param())
+        self.mode_button.grid(columnspan = 2, row = 7, column = 0)
 
         # Parameters label
         self.parameter_label = tk.Label(self.window, text = "Parameters", font = ("Raleway", 18))
         self.parameter_label.grid(column = 4, row = 3)
 
         # Initializing parameters
+ 
         self.lrl_label = tk.Label(self.window, text="Lower Rate Limit", font=("Raleway", 12))
-        self.lrl_label.grid(column=4, row=4)
+        #self.lrl_label.grid(column=4, row=4)
         self.url_label = tk.Label(self.window, text="Upper Rate Limit", font=("Raleway", 12))
-        self.url_label.grid(column=4, row=5)
+        #self.url_label.grid(column=4, row=5)
         self.aa_label = tk.Label(self.window, text="Atrial Amplitude", font=("Raleway", 12))
-        self.aa_label.grid(column=4, row=6)
+        #self.aa_label.grid(column=4, row=6)
         self.apw_label = tk.Label(self.window, text="Atrial Pulse Width", font=("Raleway", 12))
-        self.apw_label.grid(column=4, row=7)
+        #self.apw_label.grid(column=4, row=7)
         self.va_label = tk.Label(self.window, text="Ventricular Amplitude", font=("Raleway", 12))
-        self.va_label.grid(column=4, row=8)
+        #self.va_label.grid(column=4, row=8)
         self.vpw_label = tk.Label(self.window, text="Ventricular Pulse Width", font=("Raleway", 12))
-        self.vpw_label.grid(column=4, row=9)
+        #self.vpw_label.grid(column=4, row=9)
         self.VRP_label = tk.Label(self.window, text="VRP", font=("Raleway", 12))
-        self.VRP_label.grid(column=4, row=10)
+        #self.VRP_label.grid(column=4, row=10)
         self.ARP_label = tk.Label(self.window, text="ARP", font=("Raleway", 12))
-        self.ARP_label.grid(column=4, row=11)
-    
-    def function1(self):
+        #self.ARP_label.grid(column=4, row=11)
+
+
+            
+    def logout(self):
         self.window.destroy()
-        wel.welcome_page(tk.Tk(), self.login_DB, self.DB) # Have to re-instatiate a new TK() window to pass to welcome_page because the function doesn't make one itself
+        wel.welcome_page(tk.Tk(), self.login_DB, self.DB) # Have to re-instantiate a new TK() window to pass to welcome_page because the function doesn't make one itself
         
+    def change_param(self):
+        if self.default_mode.get() == "AOO":
+            self.lrl_label.destroy()
+            self.url_label.destroy()
+            self.aa_label.destroy()
+            self.apw_label.destroy()
+            self.va_label.destroy()
+            self.vpw_label.destroy()
+            self.VRP_label.destroy()
+            self.ARP_label.destroy()
+            self.lrl_label = tk.Label(self.window, text="Lower Rate Limit", font=("Raleway", 12))
+            self.lrl_label.grid(column=4, row=4)
+            self.url_label = tk.Label(self.window, text="Upper Rate Limit", font=("Raleway", 12))
+            self.url_label.grid(column=4, row=5)
+            self.aa_label = tk.Label(self.window, text="Atrial Amplitude", font=("Raleway", 12))
+            self.aa_label.grid(column=4, row=6)
+            self.apw_label = tk.Label(self.window, text="Atrial Pulse Width", font=("Raleway", 12))
+            self.apw_label.grid(column=4, row=7)
+            
+        elif self.default_mode.get() == "VOO":
+            self.lrl_label.destroy()
+            self.url_label.destroy()
+            self.aa_label.destroy()
+            self.apw_label.destroy()
+            self.va_label.destroy()
+            self.vpw_label.destroy()
+            self.VRP_label.destroy()
+            self.ARP_label.destroy()
+            self.lrl_label = tk.Label(self.window, text="Lower Rate Limit", font=("Raleway", 12))
+            self.lrl_label.grid(column=4, row=4)
+            self.url_label = tk.Label(self.window, text="Upper Rate Limit", font=("Raleway", 12))
+            self.url_label.grid(column=4, row=5)
+            self.va_label = tk.Label(self.window, text="Ventricular Amplitude", font=("Raleway", 12))
+            self.va_label.grid(column=4, row=6)
+            self.apw_label = tk.Label(self.window, text="Ventricular Pulse Width", font=("Raleway", 12))
+            self.apw_label.grid(column=4, row=7)
+            
+        elif self.default_mode.get() == "AAI":
+            self.lrl_label.destroy()
+            self.url_label.destroy()
+            self.aa_label.destroy()
+            self.apw_label.destroy()
+            self.va_label.destroy()
+            self.vpw_label.destroy()
+            self.VRP_label.destroy()
+            self.ARP_label.destroy()
+            self.lrl_label = tk.Label(self.window, text="Lower Rate Limit", font=("Raleway", 12))
+            self.lrl_label.grid(column=4, row=4)
+            self.url_label = tk.Label(self.window, text="Upper Rate Limit", font=("Raleway", 12))
+            self.url_label.grid(column=4, row=5)
+            self.aa_label = tk.Label(self.window, text="Atrial Amplitude", font=("Raleway", 12))
+            self.aa_label.grid(column=4, row=6)
+            self.apw_label = tk.Label(self.window, text="Atrial Pulse Width", font=("Raleway", 12))
+            self.apw_label.grid(column=4, row=7)
+            self.ARP_label = tk.Label(self.window, text="ARP", font=("Raleway", 12))
+            self.ARP_label.grid(column=4, row=8)
+        else: 
+            self.lrl_label.destroy()
+            self.url_label.destroy()
+            self.aa_label.destroy()
+            self.apw_label.destroy()
+            self.va_label.destroy()
+            self.vpw_label.destroy()
+            self.VRP_label.destroy()
+            self.ARP_label.destroy()
+            self.lrl_label = tk.Label(self.window, text="Lower Rate Limit", font=("Raleway", 12))
+            self.lrl_label.grid(column=4, row=4)
+            self.url_label = tk.Label(self.window, text="Upper Rate Limit", font=("Raleway", 12))
+            self.url_label.grid(column=4, row=5)
+            self.va_label = tk.Label(self.window, text="Ventricular Amplitude", font=("Raleway", 12))
+            self.va_label.grid(column=4, row=6)
+            self.apw_label = tk.Label(self.window, text="Ventricular Pulse Width", font=("Raleway", 12))
+            self.apw_label.grid(column=4, row=7)
+            self.VRP_label = tk.Label(self.window, text="VRP", font=("Raleway", 12))
+            self.VRP_label.grid(column=4, row=8)
+
+
+            
 
 
 
