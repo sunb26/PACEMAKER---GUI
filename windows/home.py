@@ -56,7 +56,17 @@ class home_page:
 
         # Username identifier
 
-        
+
+        # Background (Ugly)
+        # self.background_img = Image.open("utils/background.png")
+        # self.background_img = ImageTk.PhotoImage(self.background_img)
+        # self.background = tk.Label(image=self.background_img)
+        # self.background.image = self.background_img
+        # self.background.place(x=0, y=0, relwidth=1, relheight=1)
+
+
+
+
         # Logout button
         self.logout_button = tk.Button(self.window, text = "Logout", bg="#20bebe", font = "Raleway",
                                        command = lambda: self.function1(), fg = "white", height = 1, width = 8)
