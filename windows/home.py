@@ -18,11 +18,10 @@ class home_page:
 
         # Closing login page "root"
         self.root = root 
-        self.root.withdraw()
+        self.root.destroy()
 
         # Creating new window for home page 
-        #self.window = tk.Tk()
-        self.window = tk.Toplevel(self.root)
+        self.window = tk.Tk()
         self.window.title("Home Page")
 
         # Setting canvas size for home page 
@@ -104,7 +103,7 @@ class home_page:
     
     def function1(self):
         self.window.destroy()
-        self.root.deiconify()
+        wel.welcome_page(tk.Tk(), self.login_DB, self.DB) # Have to re-instatiate a new TK() window to pass to welcome_page because the function doesn't make one itself
         
 
 
