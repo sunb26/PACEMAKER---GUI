@@ -16,10 +16,6 @@ def welcome_page(root, login_database, parameter_database):
     # to place objects in our window with extra precision
     canvas.grid(columnspan=5, rowspan=10)
 
-    # Instructions/Text
-    instructions = tk.Label(root, text="Login", font=("Raleway", 18))
-    instructions.grid(column=0, row=1)
-
     login_response = tk.Label(root)
 
     # Function for button click. Checks database for login credentials and outputs
@@ -34,7 +30,7 @@ def welcome_page(root, login_database, parameter_database):
                 if cred['password'] == password:
                     # login_response["text"] = "Login Successful"
                     # login_response.grid(column=1, row=4)
-                    home_page(root, username, parameter_database)
+                    home_page(root, username, login_database, parameter_database)
                     return
 
         login_response["text"] = "Login Failed"
