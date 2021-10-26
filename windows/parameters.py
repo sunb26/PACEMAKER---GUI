@@ -287,6 +287,7 @@ class AOO:
         self.invalid_label_url = tk.Label(self.window, text="Invalid", font=("Raleway", 12))
         self.invalid_label_aa = tk.Label(self.window, text="Invalid", font=("Raleway", 12))
         self.invalid_label_apw = tk.Label(self.window, text="Invalid", font=("Raleway", 12))
+        self.blank_label = tk.Label(self.window, text="All fields must be filled in", font=("Raleway", 12))
 
         # Initialize Save Button
         save_btn_text = tk.StringVar()
@@ -295,7 +296,7 @@ class AOO:
         save_btn_text.set("Save")
         self.save_btn.grid(columnspan=4, column=1, row=6)
 
-        self.blank_label = tk.Label(self.window, text = "All fields mnust be filled in", font = ("Raleway",12))
+
 
     def check_lrl(self, lrl_input):
         # Check which range the lrl input falls in
@@ -353,9 +354,15 @@ class AOO:
                 self.blank_label.grid(columnspan = 1, column = 3, row = 4)
                 return
 
+
+        # Copy and paste Line 298 in other __init__, Copy and paste All fields myst be filled in
+        # try:
         valid_params = [self.check_lrl(int(self.lrl.get())), self.check_url(int(self.url.get())),
                         self.check_atrial_amplitude(float(self.aa.get())),
                         self.check_apw(int(self.apw.get()))]
+        # except:
+
+
 
         # Checking lrl separately due to increment differences
 
@@ -448,6 +455,7 @@ class AAI:
         self.invalid_label_aa = tk.Label(self.window, text="Invalid", font=("Raleway", 12))
         self.invalid_label_apw = tk.Label(self.window, text="Invalid", font=("Raleway", 12))
         self.invalid_label_ARP = tk.Label(self.window, text="Invalid", font=("Raleway", 12))
+        self.blank_label = tk.Label(self.window, text="All fields must be filled in", font=("Raleway", 12))
 
         # Initialize Save Button
         save_btn_text = tk.StringVar()
@@ -504,6 +512,7 @@ class AAI:
         self.invalid_label_aa.grid_remove()
         self.invalid_label_apw.grid_remove()
         self.invalid_label_ARP.grid_remove()
+        self.blank_label.grid_remove()
 
         input_params = {
             "lrl": self.lrl.get(),
@@ -516,6 +525,8 @@ class AAI:
         # Checking if any entries are empty
         for param in input_params.keys():
             if input_params[param] == "":
+                self.blank_label = tk.Label(self.window, text = "All fields must be filled in", font = ("Raleway",12), width = 18, height = 1)
+                self.blank_label.grid(columnspan = 1, column = 3, row = 4)
                 return
 
         valid_params = [self.check_lrl(int(self.lrl.get())), self.check_url(int(self.url.get())),
@@ -606,6 +617,7 @@ class VOO:
         self.invalid_label_url = tk.Label(self.window, text="Invalid", font=("Raleway", 12))
         self.invalid_label_va = tk.Label(self.window, text="Invalid", font=("Raleway", 12))
         self.invalid_label_vpw = tk.Label(self.window, text="Invalid", font=("Raleway", 12))
+        self.blank_label = tk.Label(self.window, text="All fields must be filled in", font=("Raleway", 12))
 
 
         # Initialize Save Button
@@ -655,6 +667,7 @@ class VOO:
         self.invalid_label_url.grid_remove()
         self.invalid_label_va.grid_remove()
         self.invalid_label_vpw.grid_remove()
+        self.blank_label.grid_remove()
 
         input_params = {
             "lrl": self.lrl.get(),
@@ -666,6 +679,8 @@ class VOO:
         # Checking if any entries are empty
         for param in input_params.keys():
             if input_params[param] == "":
+                self.blank_label = tk.Label(self.window, text = "All fields must be filled in", font = ("Raleway",12), width = 18, height = 1)
+                self.blank_label.grid(columnspan = 1, column = 3, row = 4)
                 return
 
         valid_params = [self.check_lrl(int(self.lrl.get())), self.check_url(int(self.url.get())),
@@ -763,6 +778,7 @@ class VVI:
         self.invalid_label_va = tk.Label(self.window, text="Invalid", font=("Raleway", 12))
         self.invalid_label_vpw = tk.Label(self.window, text="Invalid", font=("Raleway", 12))
         self.invalid_label_VRP = tk.Label(self.window, text="Invalid", font=("Raleway", 12))
+        self.blank_label = tk.Label(self.window, text="All fields must be filled in", font=("Raleway", 12))
 
 
         # Initialize Save Button
@@ -820,6 +836,7 @@ class VVI:
         self.invalid_label_va.grid_remove()
         self.invalid_label_vpw.grid_remove()
         self.invalid_label_VRP.grid_remove()
+        self.blank_label.grid_remove()
 
 
         input_params = {
@@ -833,6 +850,8 @@ class VVI:
         # Checking if any entries are empty
         for param in input_params.keys():
             if input_params[param] == "":
+                self.blank_label = tk.Label(self.window, text = "All fields must be filled in", font = ("Raleway",12), width = 18, height = 1)
+                self.blank_label.grid(columnspan = 1, column = 3, row = 4)
                 return
 
         valid_params = [self.check_lrl(int(self.lrl.get())), self.check_url(int(self.url.get())),
