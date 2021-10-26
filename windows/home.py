@@ -141,7 +141,7 @@ class home_page:
             self.vpw_label.destroy()
             self.VRP_label.destroy()
             self.ARP_label.destroy()
-            self.lrl_label = tk.Label(self.window, text="Lower Rate Limit: " + "\033[1mThis is coloured\033[0m" + str(self.param_DB["default"]["AOO"]["lrl"]) + "\033[0m", font=("Raleway", 12))
+            self.lrl_label = tk.Label(self.window, text="Lower Rate Limit: " + str(self.param_DB["default"]["AOO"]["lrl"]), font=("Raleway", 12))
             self.lrl_label.grid(column=4, row=4)
             self.url_label = tk.Label(self.window, text="Upper Rate Limit", font=("Raleway", 12))
             self.url_label.grid(column=4, row=5)
