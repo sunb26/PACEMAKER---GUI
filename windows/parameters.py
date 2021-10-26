@@ -349,8 +349,8 @@ class AOO:
         # Checking if any entries are empty
         for param in input_params.keys():
             if input_params[param] == "":
-                self.blank_label = tk.Label(self.window, text = "All fields must be filled in", font = ("Raleway",12))
-                self.blank_label.grid(columnspan = 2, column = 3, row = 4)
+                self.blank_label = tk.Label(self.window, text = "All fields must be filled in", font = ("Raleway",12), width = 18, height = 1)
+                self.blank_label.grid(columnspan = 1, column = 3, row = 4)
                 return
 
         valid_params = [self.check_lrl(int(self.lrl.get())), self.check_url(int(self.url.get())),
