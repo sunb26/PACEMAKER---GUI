@@ -295,6 +295,8 @@ class AOO:
         save_btn_text.set("Save")
         self.save_btn.grid(columnspan=4, column=1, row=6)
 
+        self.blank_label = tk.Label(self.window, text = "All fields mnust be filled in", font = ("Raleway",12))
+
     def check_lrl(self, lrl_input):
         # Check which range the lrl input falls in
         if 30 <= lrl_input <= 50 and lrl_input % 5 == 0:
@@ -335,6 +337,7 @@ class AOO:
         self.invalid_label_url.grid_remove()
         self.invalid_label_aa.grid_remove()
         self.invalid_label_apw.grid_remove()
+        self.blank_label.grid_remove()
 
         input_params = {
             "lrl": self.lrl.get(),
@@ -346,6 +349,8 @@ class AOO:
         # Checking if any entries are empty
         for param in input_params.keys():
             if input_params[param] == "":
+                self.blank_label = tk.Label(self.window, text = "All fields must be filled in", font = ("Raleway",12))
+                self.blank_label.grid(columnspan = 2, column = 3, row = 4)
                 return
 
         valid_params = [self.check_lrl(int(self.lrl.get())), self.check_url(int(self.url.get())),

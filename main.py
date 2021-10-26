@@ -2,9 +2,6 @@ import tkinter as tk
 import json
 from windows.welcome import welcome_page
 
-
-
-
 # Import login database
 try:
     with open("database/login_data.json") as database:

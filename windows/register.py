@@ -9,13 +9,18 @@ def register_window(root, login_database):
     reg_canvas = tk.Canvas(register_window, width=600, height=300)
     reg_canvas.grid(columnspan=5, rowspan=10)
 
-    register_label = tk.Label(root, text="Register", font=("Raleway", 18))
+    register_label = tk.Label(register_window, text="Register", font=("Raleway", 18))
     register_label.grid(column=0, row=0)
 
     create_user_response = tk.Label(register_window)
     def create_user():
         username = new_username_entry.get()
         password = new_password_entry.get()
+
+        if " " in username or " " in password:
+            create_user_response["text"] = "No spaces allowed in entries"
+            create_user_response.grid(column=1, row=4)
+            return 
 
         # Checks if fields are empty
         if len(username) == 0 or len(password) == 0:
