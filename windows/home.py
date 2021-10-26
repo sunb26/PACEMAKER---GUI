@@ -4,8 +4,15 @@
 import tkinter as tk
 from PIL import Image, ImageTk
 import json 
-#from windows.parameters import parameter_page # Will send to this page when want to edit the parameters 
+from windows.parameters import parameter_page 
 import windows.welcome as wel
+
+import os
+os.system("color")
+
+c = {
+    "Bold": "\u001b[1m"
+}
 
 class home_page:
     def __init__(self, root, user, login_database, parameter_database): # May need to alter these - need username to display it on homepage 
@@ -13,7 +20,7 @@ class home_page:
         self.user = user
 
         # Intialize databases
-        self.DB = parameter_database
+        self.param_DB = parameter_database
         self.login_DB = login_database
 
         # Closing login page "root"
@@ -68,7 +75,6 @@ class home_page:
         # self.background.image = self.background_img
         # self.background.place(x=0, y=0, relwidth=1, relheight=1)
 
-
         # Logout button
         self.logout_button = tk.Button(self.window, text = "Logout", bg="#20bebe", font = "Raleway",
                                        command = lambda: self.logout(), fg = "white", height = 1, width = 8)
@@ -102,30 +108,29 @@ class home_page:
         self.parameter_label.grid(column = 4, row = 3)
 
         # Initializing parameters
- 
         self.lrl_label = tk.Label(self.window, text="Lower Rate Limit", font=("Raleway", 12))
-        #self.lrl_label.grid(column=4, row=4)
         self.url_label = tk.Label(self.window, text="Upper Rate Limit", font=("Raleway", 12))
-        #self.url_label.grid(column=4, row=5)
         self.aa_label = tk.Label(self.window, text="Atrial Amplitude", font=("Raleway", 12))
-        #self.aa_label.grid(column=4, row=6)
         self.apw_label = tk.Label(self.window, text="Atrial Pulse Width", font=("Raleway", 12))
-        #self.apw_label.grid(column=4, row=7)
         self.va_label = tk.Label(self.window, text="Ventricular Amplitude", font=("Raleway", 12))
-        #self.va_label.grid(column=4, row=8)
         self.vpw_label = tk.Label(self.window, text="Ventricular Pulse Width", font=("Raleway", 12))
-        #self.vpw_label.grid(column=4, row=9)
         self.VRP_label = tk.Label(self.window, text="VRP", font=("Raleway", 12))
-        #self.VRP_label.grid(column=4, row=10)
         self.ARP_label = tk.Label(self.window, text="ARP", font=("Raleway", 12))
-        #self.ARP_label.grid(column=4, row=11)
+
+        # Edit Button
+        #self.edit_button = tk.Button(self.window, text = "Edit Parameters", width = 15, height = 1, 
+                                    #font = "Raleway", fg = "white", bg = "#20bebe", 
+                                    #command = lambda: self.edit_param())
 
 
-            
     def logout(self):
         self.window.destroy()
         wel.welcome_page(tk.Tk(), self.login_DB, self.DB) # Have to re-instantiate a new TK() window to pass to welcome_page because the function doesn't make one itself
         
+## use width and height to set standard dize of labels like do buttons 
+
+## self.param_DB["User"]["Mode"]["Param Abbreviation"] = value
+
     def change_param(self):
         if self.default_mode.get() == "AOO":
             self.lrl_label.destroy()
@@ -136,7 +141,7 @@ class home_page:
             self.vpw_label.destroy()
             self.VRP_label.destroy()
             self.ARP_label.destroy()
-            self.lrl_label = tk.Label(self.window, text="Lower Rate Limit", font=("Raleway", 12))
+            self.lrl_label = tk.Label(self.window, text="Lower Rate Limit: " + "\033[1mThis is coloured\033[0m" + str(self.param_DB["default"]["AOO"]["lrl"]) + "\033[0m", font=("Raleway", 12))
             self.lrl_label.grid(column=4, row=4)
             self.url_label = tk.Label(self.window, text="Upper Rate Limit", font=("Raleway", 12))
             self.url_label.grid(column=4, row=5)
@@ -201,6 +206,11 @@ class home_page:
             self.apw_label.grid(column=4, row=7)
             self.VRP_label = tk.Label(self.window, text="VRP", font=("Raleway", 12))
             self.VRP_label.grid(column=4, row=8)
+
+    #def edit_param(self):
+        # Do we want to hide the home window when changing parameters? Will default back to it anwyays 
+        #parameter_page()
+
 
 
             
