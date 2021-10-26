@@ -1,18 +1,8 @@
-## Will need to add this to imported in the welcome page so that can send to this page after login 
-    # And get rid of the parameters page from that 
-
 import tkinter as tk
 from PIL import Image, ImageTk
-import json 
-from windows.parameters import parameter_page 
+import windows.parameters as win
 import windows.welcome as wel
-
-import os
-os.system("color")
-
-c = {
-    "Bold": "\u001b[1m"
-}
+import windows.output as out
 
 class home_page:
     def __init__(self, root, user, login_database, parameter_database): # May need to alter these - need username to display it on homepage 
@@ -92,12 +82,13 @@ class home_page:
         self.default_mode = tk.StringVar(self.window)
         self.default_mode.set(self.mode_options[0])
 
+        # Creating drop down menu 
         self.opt = tk.OptionMenu(self.window, self.default_mode, *self.mode_options)
         tk.Label(self.window, text = "Choose Mode:", font = ("Raleway", 14)).grid(columnspan = 2, column = 0, row = 5)
         self.opt.config(width = 10, font = ("Raleway", 14))
         self.opt.grid(columnspan = 2, column = 0, row = 6)
 
-        # Button to change parameters
+        # Button to update parameter values
         self.mode_button = tk.Button(self.window, text = "View Parameters", width = 15, height = 1, 
                                      font = "Raleway", fg = "white", bg = "#20bebe", 
                                      command = lambda: self.change_param())
@@ -118,20 +109,30 @@ class home_page:
         self.ARP_label = tk.Label(self.window, text="ARP", font=("Raleway", 12))
 
         # Edit Button
-        #self.edit_button = tk.Button(self.window, text = "Edit Parameters", width = 15, height = 1, 
-                                    #font = "Raleway", fg = "white", bg = "#20bebe", 
-                                    #command = lambda: self.edit_param())
+        self.edit_button = tk.Button(self.window, text = "Edit Parameters", width = 15, height = 1, 
+                                    font = "Raleway", fg = "white", bg = "#20bebe", 
+                                    command = lambda: self.edit_param())
+        self.edit_button.grid(column = 7, row = 7)
+
+        # Run Button
+        self.run_button = tk.Button(self.window, text = "Run", width = 15, height = 1, 
+                                    font = "Raleway", fg = "white", bg = "#20bebe", 
+                                    command = lambda: self.run_model())
+        self.run_button.grid(column = 7, row = 6)
 
 
     def logout(self):
         self.window.destroy()
-        wel.welcome_page(tk.Tk(), self.login_DB, self.DB) # Have to re-instantiate a new TK() window to pass to welcome_page because the function doesn't make one itself
+        wel.welcome_page(tk.Tk(), self.login_DB, self.param_DB) # Have to re-instantiate a new TK() window to pass to welcome_page because the function doesn't make one itself
         
-## use width and height to set standard dize of labels like do buttons 
-
-## self.param_DB["User"]["Mode"]["Param Abbreviation"] = value
+## use width and height to set standard size of labels like do buttons 
 
     def change_param(self):
+        if self.user in self.param_DB.keys() and self.default_mode.get() in self.param_DB[self.user].keys():
+            dict_user = self.user
+        else:
+            dict_user = "default"
+        
         if self.default_mode.get() == "AOO":
             self.lrl_label.destroy()
             self.url_label.destroy()
@@ -141,13 +142,13 @@ class home_page:
             self.vpw_label.destroy()
             self.VRP_label.destroy()
             self.ARP_label.destroy()
-            self.lrl_label = tk.Label(self.window, text="Lower Rate Limit: " + str(self.param_DB["default"]["AOO"]["lrl"]), font=("Raleway", 12))
+            self.lrl_label = tk.Label(self.window, text=f'Lower Rate Limit: {self.param_DB[dict_user]["AOO"]["lrl"]}', font=("Raleway", 12))
             self.lrl_label.grid(column=4, row=4)
-            self.url_label = tk.Label(self.window, text="Upper Rate Limit", font=("Raleway", 12))
+            self.url_label = tk.Label(self.window, text=f'Upper Rate Limit: {self.param_DB[dict_user]["AOO"]["url"]}', font=("Raleway", 12))
             self.url_label.grid(column=4, row=5)
-            self.aa_label = tk.Label(self.window, text="Atrial Amplitude", font=("Raleway", 12))
+            self.aa_label = tk.Label(self.window, text=f'Atrial Amplitude: {self.param_DB[dict_user]["AOO"]["aa"]}', font=("Raleway", 12))
             self.aa_label.grid(column=4, row=6)
-            self.apw_label = tk.Label(self.window, text="Atrial Pulse Width", font=("Raleway", 12))
+            self.apw_label = tk.Label(self.window, text=f'Atrial Pulse Width: {self.param_DB[dict_user]["AOO"]["apw"]}', font=("Raleway", 12))
             self.apw_label.grid(column=4, row=7)
             
         elif self.default_mode.get() == "VOO":
@@ -159,14 +160,14 @@ class home_page:
             self.vpw_label.destroy()
             self.VRP_label.destroy()
             self.ARP_label.destroy()
-            self.lrl_label = tk.Label(self.window, text="Lower Rate Limit", font=("Raleway", 12))
+            self.lrl_label = tk.Label(self.window, text=f'Lower Rate Limit: {self.param_DB[dict_user]["VOO"]["lrl"]}', font=("Raleway", 12))
             self.lrl_label.grid(column=4, row=4)
-            self.url_label = tk.Label(self.window, text="Upper Rate Limit", font=("Raleway", 12))
+            self.url_label = tk.Label(self.window, text=f'Upper Rate Limit: {self.param_DB[dict_user]["VOO"]["url"]}', font=("Raleway", 12))
             self.url_label.grid(column=4, row=5)
-            self.va_label = tk.Label(self.window, text="Ventricular Amplitude", font=("Raleway", 12))
+            self.va_label = tk.Label(self.window, text=f'Ventricular Amplitude: {self.param_DB[dict_user]["VOO"]["va"]}', font=("Raleway", 12))
             self.va_label.grid(column=4, row=6)
-            self.apw_label = tk.Label(self.window, text="Ventricular Pulse Width", font=("Raleway", 12))
-            self.apw_label.grid(column=4, row=7)
+            self.vpw_label = tk.Label(self.window, text=f'Ventricular Pulse Width: {self.param_DB[dict_user]["VOO"]["vpw"]}', font=("Raleway", 12))
+            self.vpw_label.grid(column=4, row=7)
             
         elif self.default_mode.get() == "AAI":
             self.lrl_label.destroy()
@@ -177,15 +178,15 @@ class home_page:
             self.vpw_label.destroy()
             self.VRP_label.destroy()
             self.ARP_label.destroy()
-            self.lrl_label = tk.Label(self.window, text="Lower Rate Limit", font=("Raleway", 12))
+            self.lrl_label = tk.Label(self.window, text=f'Lower Rate Limit: {self.param_DB[dict_user]["AAI"]["lrl"]}', font=("Raleway", 12))
             self.lrl_label.grid(column=4, row=4)
-            self.url_label = tk.Label(self.window, text="Upper Rate Limit", font=("Raleway", 12))
+            self.url_label = tk.Label(self.window, text=f'Upper Rate Limit: {self.param_DB[dict_user]["AAI"]["url"]}', font=("Raleway", 12))
             self.url_label.grid(column=4, row=5)
-            self.aa_label = tk.Label(self.window, text="Atrial Amplitude", font=("Raleway", 12))
+            self.aa_label = tk.Label(self.window, text=f'Atrial Amplitude: {self.param_DB[dict_user]["AAI"]["aa"]}', font=("Raleway", 12))
             self.aa_label.grid(column=4, row=6)
-            self.apw_label = tk.Label(self.window, text="Atrial Pulse Width", font=("Raleway", 12))
+            self.apw_label = tk.Label(self.window, text=f'Atrial Pulse Width: {self.param_DB[dict_user]["AAI"]["apw"]}', font=("Raleway", 12))
             self.apw_label.grid(column=4, row=7)
-            self.ARP_label = tk.Label(self.window, text="ARP", font=("Raleway", 12))
+            self.ARP_label = tk.Label(self.window, text=f'ARP: {self.param_DB[dict_user]["AAI"]["ARP"]}', font=("Raleway", 12))
             self.ARP_label.grid(column=4, row=8)
         else: 
             self.lrl_label.destroy()
@@ -196,20 +197,30 @@ class home_page:
             self.vpw_label.destroy()
             self.VRP_label.destroy()
             self.ARP_label.destroy()
-            self.lrl_label = tk.Label(self.window, text="Lower Rate Limit", font=("Raleway", 12))
+            self.lrl_label = tk.Label(self.window, text=f'Lower Rate Limit: {self.param_DB[dict_user]["VVI"]["lrl"]}', font=("Raleway", 12))
             self.lrl_label.grid(column=4, row=4)
-            self.url_label = tk.Label(self.window, text="Upper Rate Limit", font=("Raleway", 12))
+            self.url_label = tk.Label(self.window, text=f'Upper Rate Limit: {self.param_DB[dict_user]["VVI"]["url"]}', font=("Raleway", 12))
             self.url_label.grid(column=4, row=5)
-            self.va_label = tk.Label(self.window, text="Ventricular Amplitude", font=("Raleway", 12))
+            self.va_label = tk.Label(self.window, text=f'Ventricular Amplitude: {self.param_DB[dict_user]["VVI"]["va"]}', font=("Raleway", 12))
             self.va_label.grid(column=4, row=6)
-            self.apw_label = tk.Label(self.window, text="Ventricular Pulse Width", font=("Raleway", 12))
-            self.apw_label.grid(column=4, row=7)
-            self.VRP_label = tk.Label(self.window, text="VRP", font=("Raleway", 12))
+            self.vpw_label = tk.Label(self.window, text=f'Ventricular Pulse Width: {self.param_DB[dict_user]["VVI"]["vpw"]}', font=("Raleway", 12))
+            self.vpw_label.grid(column=4, row=7)
+            self.VRP_label = tk.Label(self.window, text=f'VRP: {self.param_DB[dict_user]["VVI"]["VRP"]}', font=("Raleway", 12))
             self.VRP_label.grid(column=4, row=8)
 
-    #def edit_param(self):
-        # Do we want to hide the home window when changing parameters? Will default back to it anwyays 
-        #parameter_page()
+    def edit_param(self):
+        if self.default_mode.get() == "AOO":
+            win.AOO(self.window, self.user, self.param_DB)
+        elif self.default_mode.get() == "VOO":
+            win.VOO(self.window, self.user, self.param_DB)
+        elif self.default_mode.get() == "AAI":
+            win.AAI(self.window, self.user, self.param_DB)
+        else:
+            win.VVI(self.window, self.user, self.param_DB)
+
+    def run_model(self):
+        out.output_page(self.window)
+
 
 
 
