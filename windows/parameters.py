@@ -254,7 +254,7 @@ class AOO:
         self.window = tk.Toplevel(self.root)
         # self.root.destroy()
 
-        #self.window = tk.Tk()
+        # self.window = tk.Tk()
         self.window.title("Parameters")
         self.canvas = tk.Canvas(self.window, width=1000, height=500)
         self.canvas.grid(columnspan=8, rowspan=6)
@@ -283,10 +283,10 @@ class AOO:
         self.apw_label.grid(column=4, row=2)
 
         # Intialize "invalid" label
-        self.invalid_label_lrl = tk.Label(self.window, text="Invalid", font=("Raleway", 12))
-        self.invalid_label_url = tk.Label(self.window, text="Invalid", font=("Raleway", 12))
-        self.invalid_label_aa = tk.Label(self.window, text="Invalid", font=("Raleway", 12))
-        self.invalid_label_apw = tk.Label(self.window, text="Invalid", font=("Raleway", 12))
+        self.invalid_label_lrl = tk.Label(self.window, text="Invalid", font=("Raleway", 12), width=6, height=1)
+        self.invalid_label_url = tk.Label(self.window, text="Invalid", font=("Raleway", 12), width=6, height=1)
+        self.invalid_label_aa = tk.Label(self.window, text="Invalid", font=("Raleway", 12), width=6, height=1)
+        self.invalid_label_apw = tk.Label(self.window, text="Invalid", font=("Raleway", 12), width=6, height=1)
         self.blank_label = tk.Label(self.window, text="All fields must be filled in", font=("Raleway", 12))
 
         # Initialize Save Button
@@ -294,11 +294,16 @@ class AOO:
         self.save_btn = tk.Button(self.window, textvariable=save_btn_text, command=self.check_validity,
                                   font="Raleway", bg="#20bebe", fg="white", height=1, width=60)
         save_btn_text.set("Save")
-        self.save_btn.grid(columnspan=4, column=1, row=6)
-
-
+        self.save_btn.place(relx=0.5, rely=0.9, anchor="center")
 
     def check_lrl(self, lrl_input):
+        # Check if correct datatype was entered
+        try:
+            lrl_input = int(lrl_input)
+        except:
+            self.invalid_label_lrl.grid(columnspan=2, column=self.limits["lrl"]["column"], row=self.limits["lrl"]["row"])
+            return False
+
         # Check which range the lrl input falls in
         if 30 <= lrl_input <= 50 and lrl_input % 5 == 0:
             return True
@@ -307,32 +312,53 @@ class AOO:
         elif 90 <= lrl_input <= 175 and lrl_input % 5 == 0:
             return True
         elif lrl_input < 30 or lrl_input > 175:
-            self.invalid_label_lrl.grid(column=self.limits["lrl"]["column"], row=self.limits["lrl"]["row"])
+            self.invalid_label_lrl.grid(columnspan=2, column=self.limits["lrl"]["column"], row=self.limits["lrl"]["row"])
             return False
         else:
-            self.invalid_label_lrl.grid(column=self.limits["lrl"]["column"], row=self.limits["lrl"]["row"])
+            self.invalid_label_lrl.grid(columnspan=2, column=self.limits["lrl"]["column"], row=self.limits["lrl"]["row"])
             return False
 
     def check_url(self, url_input):
+        # Check if correct datatype was entered
+        try:
+            url_input = int(url_input)
+        except:
+            self.invalid_label_url.grid(columnspan=2, column=self.limits["url"]["column"], row=self.limits["url"]["row"])
+            return False
+
         # Check which range the lrl input falls in
         if 50 <= url_input <= 175 and url_input % 5 == 0:
             return True
         else:
-            self.invalid_label_url.grid(column=self.limits["url"]["column"], row=self.limits["url"]["row"])
+            self.invalid_label_url.grid(columnspan=2, column=self.limits["url"]["column"], row=self.limits["url"]["row"])
             return False
 
     def check_atrial_amplitude(self, amplitude_input):
+        # Check if correct datatype was entered
+        try:
+            amplitude_input = float(amplitude_input)
+        except:
+            self.invalid_label_aa.grid(columnspan=2, column=self.limits["aa"]["column"], row=self.limits["aa"]["row"])
+            return False
+
         if 0.0 <= amplitude_input <= 5.0 and round(amplitude_input, 1) == amplitude_input:
             return True
         else:
-            self.invalid_label_aa.grid(column=self.limits["aa"]["column"], row=self.limits["aa"]["row"])
+            self.invalid_label_aa.grid(columnspan=2, column=self.limits["aa"]["column"], row=self.limits["aa"]["row"])
             return False
 
     def check_apw(self, pw_input):
+        # Check if correct datatype was entered
+        try:
+            pw_input = int(pw_input)
+        except:
+            self.invalid_label_apw.grid(columnspan=2, column=self.limits["apw"]["column"], row=self.limits["apw"]["row"])
+            return False
+
         if pw_input == 1 or pw_input == 2:
             return True
         else:
-            self.invalid_label_apw.grid(column=self.limits["apw"]["column"], row=self.limits["apw"]["row"])
+            self.invalid_label_apw.grid(columnspan=2, column=self.limits["apw"]["column"], row=self.limits["apw"]["row"])
             return False
 
     def check_validity(self):
@@ -353,19 +379,12 @@ class AOO:
         # Checking if any entries are empty
         for param in input_params.keys():
             if input_params[param] == "":
-                self.blank_label = tk.Label(self.window, text = "All fields must be filled in", font = ("Raleway",12), width = 18, height = 1)
-                self.blank_label.grid(columnspan = 1, column = 3, row = 4)
+                self.blank_label.place(relx=0.5, rely=0.75, anchor="center")
                 return
 
-
-        # Copy and paste Line 298 in other __init__, Copy and paste All fields myst be filled in
-        # try:
-        valid_params = [self.check_lrl(int(self.lrl.get())), self.check_url(int(self.url.get())),
-                        self.check_atrial_amplitude(float(self.aa.get())),
-                        self.check_apw(int(self.apw.get()))]
-        # except:
-
-
+        valid_params = [self.check_lrl(self.lrl.get()), self.check_url(self.url.get()),
+                        self.check_atrial_amplitude(self.aa.get()),
+                        self.check_apw(self.apw.get())]
 
         # Checking lrl separately due to increment differences
 
@@ -453,11 +472,11 @@ class AAI:
         self.ARP_label.grid(column=4, row=2)
 
         # Intialize "invalid" label
-        self.invalid_label_lrl = tk.Label(self.window, text="Invalid", font=("Raleway", 12))
-        self.invalid_label_url = tk.Label(self.window, text="Invalid", font=("Raleway", 12))
-        self.invalid_label_aa = tk.Label(self.window, text="Invalid", font=("Raleway", 12))
-        self.invalid_label_apw = tk.Label(self.window, text="Invalid", font=("Raleway", 12))
-        self.invalid_label_ARP = tk.Label(self.window, text="Invalid", font=("Raleway", 12))
+        self.invalid_label_lrl = tk.Label(self.window, text="Invalid", font=("Raleway", 12), width=6, height=1)
+        self.invalid_label_url = tk.Label(self.window, text="Invalid", font=("Raleway", 12), width=6, height=1)
+        self.invalid_label_aa = tk.Label(self.window, text="Invalid", font=("Raleway", 12), width=6, height=1)
+        self.invalid_label_apw = tk.Label(self.window, text="Invalid", font=("Raleway", 12), width=6, height=1)
+        self.invalid_label_ARP = tk.Label(self.window, text="Invalid", font=("Raleway", 12), width=6, height=1)
         self.blank_label = tk.Label(self.window, text="All fields must be filled in", font=("Raleway", 12))
 
         # Initialize Save Button
@@ -465,9 +484,16 @@ class AAI:
         self.save_btn = tk.Button(self.window, textvariable=save_btn_text, command=self.check_validity,
                                   font="Raleway", bg="#20bebe", fg="white", height=1, width=60)
         save_btn_text.set("Save")
-        self.save_btn.grid(columnspan=4, column=1, row=6)
+        self.save_btn.place(relx=0.5, rely=0.9, anchor="center")
 
     def check_lrl(self, lrl_input):
+        # Check if correct datatype was entered
+        try:
+            lrl_input = int(lrl_input)
+        except:
+            self.invalid_label_lrl.grid(columnspan=2, column=self.limits["lrl"]["column"], row=self.limits["lrl"]["row"])
+            return False
+
         # Check which range the lrl input falls in
         if 30 <= lrl_input <= 50 and lrl_input % 5 == 0:
             return True
@@ -476,39 +502,67 @@ class AAI:
         elif 90 <= lrl_input <= 175 and lrl_input % 5 == 0:
             return True
         elif lrl_input < 30 or lrl_input > 175:
-            self.invalid_label_lrl.grid(column=self.limits["lrl"]["column"], row=self.limits["lrl"]["row"])
+            self.invalid_label_lrl.grid(columnspan=2, column=self.limits["lrl"]["column"], row=self.limits["lrl"]["row"])
             return False
         else:
-            self.invalid_label_lrl.grid(column=self.limits["lrl"]["column"], row=self.limits["lrl"]["row"])
+            self.invalid_label_lrl.grid(columnspan=2, column=self.limits["lrl"]["column"], row=self.limits["lrl"]["row"])
             return False
 
     def check_url(self, url_input):
+        # Check if correct datatype was entered
+        try:
+            url_input = int(url_input)
+        except:
+            self.invalid_label_url.grid(columnspan=2, column=self.limits["url"]["column"], row=self.limits["url"]["row"])
+            return False
+
         # Check which range the lrl input falls in
         if 50 <= url_input <= 175 and url_input % 5 == 0:
             return True
         else:
-            self.invalid_label_url.grid(column=self.limits["url"]["column"], row=self.limits["url"]["row"])
+            self.invalid_label_url.grid(columnspan=2, column=self.limits["url"]["column"], row=self.limits["url"]["row"])
             return False
 
     def check_atrial_amplitude(self, amplitude_input):
+        # Check if correct datatype was entered
+        try:
+            amplitude_input = float(amplitude_input)
+        except:
+            self.invalid_label_aa.grid(columnspan=2, column=self.limits["aa"]["column"], row=self.limits["aa"]["row"])
+            return False
+
         if 0.0 <= amplitude_input <= 5.0 and round(amplitude_input, 1) == amplitude_input:
             return True
         else:
-            self.invalid_label_aa.grid(column=self.limits["aa"]["column"], row=self.limits["aa"]["row"])
+            self.invalid_label_aa.grid(columnspan=2, column=self.limits["aa"]["column"], row=self.limits["aa"]["row"])
             return False
 
     def check_apw(self, pw_input):
+        # Check if correct datatype was entered
+        try:
+            pw_input = int(pw_input)
+        except:
+            self.invalid_label_apw.grid(columnspan=2, column=self.limits["apw"]["column"], row=self.limits["apw"]["row"])
+            return False
+
         if pw_input == 1 or pw_input == 2:
             return True
         else:
-            self.invalid_label_apw.grid(column=self.limits["apw"]["column"], row=self.limits["apw"]["row"])
+            self.invalid_label_apw.grid(columnspan=2, column=self.limits["apw"]["column"], row=self.limits["apw"]["row"])
             return False
 
     def check_atrial_refractory_period(self, RP_input):
+        # Check if correct datatype was entered
+        try:
+            RP_input = int(RP_input)
+        except:
+            self.invalid_label_ARP.grid(columnspan=2, column=self.limits["ARP"]["column"], row=self.limits["ARP"]["row"])
+            return False
+
         if 150 <= RP_input <= 500 and RP_input % 10 == 0:
             return True
         else:
-            self.invalid_label_ARP.grid(column=self.limits["ARP"]["column"], row=self.limits["ARP"]["row"])
+            self.invalid_label_ARP.grid(columnspan=2, column=self.limits["ARP"]["column"], row=self.limits["ARP"]["row"])
             return False
 
     def check_validity(self):
@@ -531,13 +585,12 @@ class AAI:
         # Checking if any entries are empty
         for param in input_params.keys():
             if input_params[param] == "":
-                self.blank_label = tk.Label(self.window, text = "All fields must be filled in", font = ("Raleway",12), width = 18, height = 1)
-                self.blank_label.grid(columnspan = 1, column = 3, row = 4)
+                self.blank_label.place(relx=0.5, rely=0.75, anchor="center")
                 return
 
-        valid_params = [self.check_lrl(int(self.lrl.get())), self.check_url(int(self.url.get())),
-                        self.check_atrial_amplitude(float(self.aa.get())),
-                        self.check_apw(int(self.apw.get())), self.check_atrial_refractory_period(int(self.ARP.get()))]
+        valid_params = [self.check_lrl(self.lrl.get()), self.check_url(self.url.get()),
+                        self.check_atrial_amplitude(self.aa.get()),
+                        self.check_apw(self.apw.get()), self.check_atrial_refractory_period(self.ARP.get())]
 
         # Checking lrl separately due to increment differences
 
@@ -606,7 +659,6 @@ class VOO:
         self.vpw = tk.Entry(self.window)
         self.vpw.grid(column=5, row=2)
 
-
         # Initialize Labels
         self.lrl_label = tk.Label(self.window, text="Lower Rate Limit", font=("Raleway", 12))
         self.lrl_label.grid(column=0, row=1)
@@ -617,23 +669,30 @@ class VOO:
         self.vpw_label = tk.Label(self.window, text="Ventricular Pulse Width", font=("Raleway", 12))
         self.vpw_label.grid(column=4, row=2)
 
-
         # Intialize "invalid" label
-        self.invalid_label_lrl = tk.Label(self.window, text="Invalid", font=("Raleway", 12))
-        self.invalid_label_url = tk.Label(self.window, text="Invalid", font=("Raleway", 12))
-        self.invalid_label_va = tk.Label(self.window, text="Invalid", font=("Raleway", 12))
-        self.invalid_label_vpw = tk.Label(self.window, text="Invalid", font=("Raleway", 12))
-        self.blank_label = tk.Label(self.window, text="All fields must be filled in", font=("Raleway", 12))
-
+        self.invalid_label_lrl = tk.Label(self.window, text="  Invalid", font=("Raleway", 10), width=6, height=1)
+        self.invalid_label_url = tk.Label(self.window, text="  Invalid", font=("Raleway", 10), width=6, height=1)
+        self.invalid_label_va = tk.Label(self.window, text="  Invalid", font=("Raleway", 10), width=6, height=1)
+        self.invalid_label_vpw = tk.Label(self.window, text="  Invalid", font=("Raleway", 10), width=6, height=1)
+        self.blank_label = tk.Label(self.window, text="All fields must be filled in", font=("Raleway", 12), width=19,
+                                    height=1)
 
         # Initialize Save Button
         save_btn_text = tk.StringVar()
         self.save_btn = tk.Button(self.window, textvariable=save_btn_text, command=self.check_validity,
                                   font="Raleway", bg="#20bebe", fg="white", height=1, width=60)
         save_btn_text.set("Save")
-        self.save_btn.grid(columnspan=4, column=1, row=6)
+        self.save_btn.place(relx=0.5, rely=0.9, anchor="center")
 
     def check_lrl(self, lrl_input):
+        # Check if correct datatype was entered
+        try:
+            lrl_input = int(lrl_input)
+        except:
+            self.invalid_label_lrl.grid(columnspan=2, column=self.limits["lrl"]["column"],
+                                        row=self.limits["lrl"]["row"])
+            return False
+
         # Check which range the lrl input falls in
         if 30 <= lrl_input <= 50 and lrl_input % 5 == 0:
             return True
@@ -642,32 +701,59 @@ class VOO:
         elif 90 <= lrl_input <= 175 and lrl_input % 5 == 0:
             return True
         elif lrl_input < 30 or lrl_input > 175:
-            self.invalid_label_lrl.grid(column=self.limits["lrl"]["column"], row=self.limits["lrl"]["row"])
+            self.invalid_label_lrl.grid(columnspan=2, column=self.limits["lrl"]["column"],
+                                        row=self.limits["lrl"]["row"])
             return False
         else:
-            self.invalid_label_lrl.grid(column=self.limits["lrl"]["column"], row=self.limits["lrl"]["row"])
+            self.invalid_label_lrl.grid(columnspan=2, column=self.limits["lrl"]["column"],
+                                        row=self.limits["lrl"]["row"])
             return False
 
     def check_url(self, url_input):
+        # Check if correct datatype was entered
+        try:
+            url_input = int(url_input)
+        except:
+            self.invalid_label_url.grid(columnspan=2, column=self.limits["url"]["column"],
+                                        row=self.limits["url"]["row"])
+            return False
+
         # Check which range the lrl input falls in
         if 50 <= url_input <= 175 and url_input % 5 == 0:
             return True
         else:
-            self.invalid_label_url.grid(column=self.limits["url"]["column"], row=self.limits["url"]["row"])
+            self.invalid_label_url.grid(columnspan=2, column=self.limits["url"]["column"],
+                                        row=self.limits["url"]["row"])
             return False
 
     def check_ventricle_amplitude(self, amplitude_input):
+        # Check if correct datatype was entered
+        try:
+            amplitude_input = float(amplitude_input)
+        except:
+            self.invalid_label_va.grid(columnspan=2, column=self.limits["va"]["column"], row=self.limits["va"]["row"])
+            return False
+
         if 0.0 <= amplitude_input <= 5.0 and round(amplitude_input, 1) == amplitude_input:
             return True
         else:
-            self.invalid_label_va.grid(column=self.limits["va"]["column"], row=self.limits["va"]["row"])
+            self.invalid_label_va.grid(columnspan=2, column=self.limits["va"]["column"], row=self.limits["va"]["row"])
             return False
 
     def check_vpw(self, pw_input):
+        # Check if correct datatype was entered
+        try:
+            pw_input = int(pw_input)
+        except:
+            self.invalid_label_vpw.grid(columnspan=2, column=self.limits["vpw"]["column"],
+                                        row=self.limits["vpw"]["row"])
+            return False
+
         if pw_input == 1 or pw_input == 2:
             return True
         else:
-            self.invalid_label_vpw.grid(column=self.limits["vpw"]["column"], row=self.limits["vpw"]["row"])
+            self.invalid_label_vpw.grid(columnspan=2, column=self.limits["vpw"]["column"],
+                                        row=self.limits["vpw"]["row"])
             return False
 
     def check_validity(self):
@@ -688,12 +774,11 @@ class VOO:
         # Checking if any entries are empty
         for param in input_params.keys():
             if input_params[param] == "":
-                self.blank_label = tk.Label(self.window, text = "All fields must be filled in", font = ("Raleway",12), width = 18, height = 1)
-                self.blank_label.grid(columnspan = 1, column = 3, row = 4)
+                self.blank_label.place(relx=0.5, rely=0.75, anchor="center")
                 return
 
-        valid_params = [self.check_lrl(int(self.lrl.get())), self.check_url(int(self.url.get())),
-                        self.check_ventricle_amplitude(float(self.va.get())), self.check_vpw(int(self.vpw.get()))]
+        valid_params = [self.check_lrl(self.lrl.get()), self.check_url(self.url.get()),
+                        self.check_ventricle_amplitude(self.va.get()), self.check_vpw(self.vpw.get())]
 
         # Checking lrl separately due to increment differences
 
@@ -708,6 +793,7 @@ class VOO:
         with open("database/parameters.json", "w") as destination:
             json.dump(self.DB, destination)
         self.window.destroy()
+
 
 # ----------------------------------------------VVI-----------------------------------------------
 class VVI:
@@ -750,9 +836,9 @@ class VVI:
         # self.window = tk.Tk()
         self.window.title("Parameters")
         self.canvas = tk.Canvas(self.window, width=1000, height=500)
-        self.canvas.grid(columnspan=8, rowspan=6)
+        self.canvas.grid(columnspan=9, rowspan=6)
 
-        self.title_label = tk.Label(self.window, text="Parameters", font=("Raleway", 18))
+        self.title_label = tk.Label(self.window, text="Parameters", font=("Raleway", 18), width=20, height=1)
         self.title_label.grid(column=0, row=0)
 
         # Initialize all Entry fields
@@ -767,37 +853,43 @@ class VVI:
         self.VRP = tk.Entry(self.window)
         self.VRP.grid(column=5, row=2)
 
-
         # Initialize Labels
-        self.lrl_label = tk.Label(self.window, text="Lower Rate Limit", font=("Raleway", 12))
+        self.lrl_label = tk.Label(self.window, text="Lower Rate Limit", font=("Raleway", 12), width=20, height=1)
         self.lrl_label.grid(column=0, row=1)
-        self.url_label = tk.Label(self.window, text="Upper Rate Limit", font=("Raleway", 12))
+        self.url_label = tk.Label(self.window, text="Upper Rate Limit", font=("Raleway", 12), width=20, height=1)
         self.url_label.grid(column=0, row=2)
-        self.va_label = tk.Label(self.window, text="Ventricular Amplitude", font=("Raleway", 12))
+        self.va_label = tk.Label(self.window, text="Ventricular Amplitude", font=("Raleway", 12), width=20, height=1)
         self.va_label.grid(column=0, row=3)
-        self.vpw_label = tk.Label(self.window, text="Ventricular Pulse Width", font=("Raleway", 12))
+        self.vpw_label = tk.Label(self.window, text="Ventricular Pulse Width", font=("Raleway", 12), width=20, height=1)
         self.vpw_label.grid(column=4, row=1)
-        self.VRP_label = tk.Label(self.window, text="VRP", font=("Raleway", 12))
+        self.VRP_label = tk.Label(self.window, text="VRP", font=("Raleway", 12), width=20, height=1)
         self.VRP_label.grid(column=4, row=2)
 
-
         # Intialize "invalid" label
-        self.invalid_label_lrl = tk.Label(self.window, text="Invalid", font=("Raleway", 12))
-        self.invalid_label_url = tk.Label(self.window, text="Invalid", font=("Raleway", 12))
-        self.invalid_label_va = tk.Label(self.window, text="Invalid", font=("Raleway", 12))
-        self.invalid_label_vpw = tk.Label(self.window, text="Invalid", font=("Raleway", 12))
-        self.invalid_label_VRP = tk.Label(self.window, text="Invalid", font=("Raleway", 12))
-        self.blank_label = tk.Label(self.window, text="All fields must be filled in", font=("Raleway", 12))
-
+        self.invalid_label_lrl = tk.Label(self.window, text="  Invalid", font=("Raleway", 10), width=6, height=1)
+        self.invalid_label_url = tk.Label(self.window, text="  Invalid", font=("Raleway", 10), width=6, height=1)
+        self.invalid_label_va = tk.Label(self.window, text="  Invalid", font=("Raleway", 10), width=6, height=1)
+        self.invalid_label_vpw = tk.Label(self.window, text="  Invalid", font=("Raleway", 10), width=6, height=1)
+        self.invalid_label_VRP = tk.Label(self.window, text="  Invalid", font=("Raleway", 10), width=6, height=1)
+        self.blank_label = tk.Label(self.window, text="All fields must be filled in", font=("Raleway", 12), width=19,
+                                    height=1)
 
         # Initialize Save Button
         save_btn_text = tk.StringVar()
         self.save_btn = tk.Button(self.window, textvariable=save_btn_text, command=self.check_validity,
                                   font="Raleway", bg="#20bebe", fg="white", height=1, width=60)
         save_btn_text.set("Save")
-        self.save_btn.grid(columnspan=4, column=1, row=6)
+        self.save_btn.place(relx=0.5, rely=0.9, anchor="center")
 
     def check_lrl(self, lrl_input):
+        # Check if correct datatype was entered
+        try:
+            lrl_input = int(lrl_input)
+        except:
+            self.invalid_label_lrl.grid(columnspan=2, column=self.limits["lrl"]["column"],
+                                        row=self.limits["lrl"]["row"])
+            return False
+
         # Check which range the lrl input falls in
         if 30 <= lrl_input <= 50 and lrl_input % 5 == 0:
             return True
@@ -806,39 +898,76 @@ class VVI:
         elif 90 <= lrl_input <= 175 and lrl_input % 5 == 0:
             return True
         elif lrl_input < 30 or lrl_input > 175:
-            self.invalid_label_lrl.grid(column=self.limits["lrl"]["column"], row=self.limits["lrl"]["row"])
+            self.invalid_label_lrl.grid(columnspan=2, column=self.limits["lrl"]["column"],
+                                        row=self.limits["lrl"]["row"])
             return False
         else:
-            self.invalid_label_lrl.grid(column=self.limits["lrl"]["column"], row=self.limits["lrl"]["row"])
+            self.invalid_label_lrl.grid(columnspan=2, column=self.limits["lrl"]["column"],
+                                        row=self.limits["lrl"]["row"])
             return False
 
     def check_url(self, url_input):
+        # Check if correct datatype was entered
+        try:
+            url_input = int(url_input)
+        except:
+            self.invalid_label_url.grid(columnspan=2, column=self.limits["url"]["column"],
+                                        row=self.limits["url"]["row"])
+            return False
+
         # Check which range the lrl input falls in
         if 50 <= url_input <= 175 and url_input % 5 == 0:
             return True
         else:
-            self.invalid_label_url.grid(column=self.limits["url"]["column"], row=self.limits["url"]["row"])
+            self.invalid_label_url.grid(columnspan=2, column=self.limits["url"]["column"],
+                                        row=self.limits["url"]["row"])
             return False
 
     def check_ventricle_amplitude(self, amplitude_input):
+        # Check if correct datatype was entered
+        try:
+            amplitude_input = float(amplitude_input)
+        except:
+            self.invalid_label_va.grid(columnspan=2, column=self.limits["va"]["column"], row=self.limits["va"]["row"])
+            return False
+
         if 0.0 <= amplitude_input <= 5.0 and round(amplitude_input, 1) == amplitude_input:
             return True
         else:
-            self.invalid_label_va.grid(column=self.limits["va"]["column"], row=self.limits["va"]["row"])
+            self.invalid_label_va.grid(columnspan=2, column=self.limits["va"]["column"], row=self.limits["va"]["row"])
             return False
 
     def check_vpw(self, pw_input):
+        # Check if correct datatype was entered
+        try:
+            pw_input = int(pw_input)
+        except:
+            self.invalid_label_vpw.grid(columnspan=2, column=self.limits["vpw"]["column"],
+                                        row=self.limits["vpw"]["row"])
+            return False
+
         if pw_input == 1 or pw_input == 2:
             return True
         else:
-            self.invalid_label_vpw.grid(column=self.limits["vpw"]["column"], row=self.limits["vpw"]["row"])
+            self.invalid_label_vpw.grid(columnspan=2, column=self.limits["vpw"]["column"],
+                                        row=self.limits["vpw"]["row"])
             return False
 
     def check_ventricle_refractory_period(self, RP_input):
+        # Check if correct datatype was entered
+        try:
+            RP_input = int(RP_input)
+
+        except:
+            self.invalid_label_VRP.grid(columnspan=2, column=self.limits["VRP"]["column"],
+                                        row=self.limits["VRP"]["row"])
+            return False
+
         if 150 <= RP_input <= 500 and RP_input % 10 == 0:
             return True
         else:
-            self.invalid_label_VRP.grid(column=self.limits["VRP"]["column"], row=self.limits["VRP"]["row"])
+            self.invalid_label_VRP.grid(columnspan=2, column=self.limits["VRP"]["column"],
+                                        row=self.limits["VRP"]["row"])
             return False
 
     def check_validity(self):
@@ -849,7 +978,6 @@ class VVI:
         self.invalid_label_vpw.grid_remove()
         self.invalid_label_VRP.grid_remove()
         self.blank_label.grid_remove()
-
 
         input_params = {
             "lrl": self.lrl.get(),
@@ -862,13 +990,12 @@ class VVI:
         # Checking if any entries are empty
         for param in input_params.keys():
             if input_params[param] == "":
-                self.blank_label = tk.Label(self.window, text = "All fields must be filled in", font = ("Raleway",12), width = 18, height = 1)
-                self.blank_label.grid(columnspan = 1, column = 3, row = 4)
+                self.blank_label.place(relx=0.5, rely=0.75, anchor="center")
                 return
 
-        valid_params = [self.check_lrl(int(self.lrl.get())), self.check_url(int(self.url.get())),
-                        self.check_ventricle_amplitude(float(self.va.get())), self.check_vpw(int(self.vpw.get())),
-                        self.check_ventricle_refractory_period(int(self.VRP.get()))]
+        valid_params = [self.check_lrl(self.lrl.get()), self.check_url(self.url.get()),
+                        self.check_ventricle_amplitude(self.va.get()), self.check_vpw(self.vpw.get()),
+                        self.check_ventricle_refractory_period(self.VRP.get())]
 
         # Checking lrl separately due to increment differences
 
