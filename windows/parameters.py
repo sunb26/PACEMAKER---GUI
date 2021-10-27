@@ -308,6 +308,7 @@ class AOO:
             self.invalid_label_lrl.grid(column=self.limits["lrl"]["column"], row=self.limits["lrl"]["row"])
             return False
         else:
+            self.invalid_label_lrl.grid(column=self.limits["lrl"]["column"], row=self.limits["lrl"]["row"])
             return False
 
     def check_url(self, url_input):
@@ -474,6 +475,7 @@ class AAI:
             self.invalid_label_lrl.grid(column=self.limits["lrl"]["column"], row=self.limits["lrl"]["row"])
             return False
         else:
+            self.invalid_label_lrl.grid(column=self.limits["lrl"]["column"], row=self.limits["lrl"]["row"])
             return False
 
     def check_url(self, url_input):
@@ -637,6 +639,7 @@ class VOO:
             self.invalid_label_lrl.grid(column=self.limits["lrl"]["column"], row=self.limits["lrl"]["row"])
             return False
         else:
+            self.invalid_label_lrl.grid(column=self.limits["lrl"]["column"], row=self.limits["lrl"]["row"])
             return False
 
     def check_url(self, url_input):
@@ -798,6 +801,7 @@ class VVI:
             self.invalid_label_lrl.grid(column=self.limits["lrl"]["column"], row=self.limits["lrl"]["row"])
             return False
         else:
+            self.invalid_label_lrl.grid(column=self.limits["lrl"]["column"], row=self.limits["lrl"]["row"])
             return False
 
     def check_url(self, url_input):
