@@ -302,6 +302,8 @@ class AOO:
         # Check which range the lrl input falls in
         if 30 <= lrl_input <= 50 and lrl_input % 5 == 0:
             return True
+        elif 50 <= lrl_input <= 90:
+            return True
         elif 90 <= lrl_input <= 175 and lrl_input % 5 == 0:
             return True
         elif lrl_input < 30 or lrl_input > 175:
@@ -469,6 +471,8 @@ class AAI:
         # Check which range the lrl input falls in
         if 30 <= lrl_input <= 50 and lrl_input % 5 == 0:
             return True
+        elif 50 <= lrl_input <= 90:
+            return True
         elif 90 <= lrl_input <= 175 and lrl_input % 5 == 0:
             return True
         elif lrl_input < 30 or lrl_input > 175:
@@ -633,6 +637,8 @@ class VOO:
         # Check which range the lrl input falls in
         if 30 <= lrl_input <= 50 and lrl_input % 5 == 0:
             return True
+        elif 50 <= lrl_input <= 90:
+            return True
         elif 90 <= lrl_input <= 175 and lrl_input % 5 == 0:
             return True
         elif lrl_input < 30 or lrl_input > 175:
@@ -794,6 +800,8 @@ class VVI:
     def check_lrl(self, lrl_input):
         # Check which range the lrl input falls in
         if 30 <= lrl_input <= 50 and lrl_input % 5 == 0:
+            return True
+        elif 50 <= lrl_input <= 90:
             return True
         elif 90 <= lrl_input <= 175 and lrl_input % 5 == 0:
             return True
