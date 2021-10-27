@@ -367,7 +367,7 @@ class AOO:
         self.invalid_label_url.grid_remove()
         self.invalid_label_aa.grid_remove()
         self.invalid_label_apw.grid_remove()
-        self.blank_label.grid_remove()
+        self.blank_label.place_forget()
 
         input_params = {
             "lrl": self.lrl.get(),
@@ -572,7 +572,7 @@ class AAI:
         self.invalid_label_aa.grid_remove()
         self.invalid_label_apw.grid_remove()
         self.invalid_label_ARP.grid_remove()
-        self.blank_label.grid_remove()
+        self.blank_label.place_forget()
 
         input_params = {
             "lrl": self.lrl.get(),
@@ -762,7 +762,7 @@ class VOO:
         self.invalid_label_url.grid_remove()
         self.invalid_label_va.grid_remove()
         self.invalid_label_vpw.grid_remove()
-        self.blank_label.grid_remove()
+        self.blank_label.place_forget()
 
         input_params = {
             "lrl": self.lrl.get(),
@@ -977,7 +977,7 @@ class VVI:
         self.invalid_label_va.grid_remove()
         self.invalid_label_vpw.grid_remove()
         self.invalid_label_VRP.grid_remove()
-        self.blank_label.grid_remove()
+        self.blank_label.place_forget()
 
         input_params = {
             "lrl": self.lrl.get(),
