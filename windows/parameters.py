@@ -308,7 +308,7 @@ class AOO:
             self.invalid_label_lrl.grid(column=self.limits["lrl"]["column"], row=self.limits["lrl"]["row"])
             return False
         else:
-            return True
+            return False
 
     def check_url(self, url_input):
         # Check which range the lrl input falls in
@@ -474,7 +474,7 @@ class AAI:
             self.invalid_label_lrl.grid(column=self.limits["lrl"]["column"], row=self.limits["lrl"]["row"])
             return False
         else:
-            return True
+            return False
 
     def check_url(self, url_input):
         # Check which range the lrl input falls in
@@ -637,7 +637,7 @@ class VOO:
             self.invalid_label_lrl.grid(column=self.limits["lrl"]["column"], row=self.limits["lrl"]["row"])
             return False
         else:
-            return True
+            return False
 
     def check_url(self, url_input):
         # Check which range the lrl input falls in
@@ -798,7 +798,7 @@ class VVI:
             self.invalid_label_lrl.grid(column=self.limits["lrl"]["column"], row=self.limits["lrl"]["row"])
             return False
         else:
-            return True
+            return False
 
     def check_url(self, url_input):
         # Check which range the lrl input falls in
