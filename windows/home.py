@@ -5,7 +5,7 @@ import windows.welcome as wel
 import windows.output as out
 
 class home_page:
-    def __init__(self, root, user, login_database, parameter_database): # May need to alter these - need username to display it on homepage 
+    def __init__(self, root, user, login_database, parameter_database): 
         # Intialize current user
         self.user = user
 
@@ -128,7 +128,8 @@ class home_page:
     # logout function called when logout button pushed, destroying home page and creating new welcome page
     def logout(self):
         self.window.destroy()
-        wel.welcome_page(tk.Tk(), self.login_DB, self.param_DB) # Have to re-instantiate a new TK() window to pass to welcome_page because the function doesn't make one itself
+        # Have to re-instantiate a new Tk() window to pass to welcome_page because the function doesn't make one itself
+        wel.welcome_page(tk.Tk(), self.login_DB, self.param_DB) 
     
     # change_param function called when want to see parameters // change which parameter are viewing // editing 
     def change_param(self):
@@ -230,11 +231,3 @@ class home_page:
     # run_model function launches the output window while keeping homepage window open in background 
     def run_model(self):
         out.output_page(self.window)
-
-
-
-
-            
-
-
-
