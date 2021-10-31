@@ -804,7 +804,7 @@ class VVI:
         # Intialize database
         self.DB = parameter_database
 
-        # Intialize parameter limits
+        # Intialize invalid parameter labels' placements on grid
         self.limits = {
             "lrl": {
                 "column": 2,
