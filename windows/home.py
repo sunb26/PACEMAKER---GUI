@@ -146,9 +146,8 @@ class home_page:
         self.placeholder_label11.grid(column = 4, row = 9)
         self.placeholder_label12.grid(column = 5, row = 9)
         self.placeholder_label13.grid(column = 4, row = 10)
-        self.placeholder_label13.grid(column = 5, row = 10)
+        self.placeholder_label14.grid(column = 5, row = 10)
 
-        
         # Edit Button
         self.edit_button = tk.Button(self.window, text = "Edit Parameters", width = 15, height = 1, 
                                     font = "Raleway", fg = "white", bg = "#20bebe", 
@@ -619,35 +618,76 @@ class home_page:
             # self.VRP_label.grid(column=4, row=6)
             # self.msr_label = tk.Label(self.window, text=f'Maximum Sensitivity Rate: {self.param_DB[dict_user]["VVIR"]["msr"]}', font=("Raleway", 12), width = 20, height = 1)
             # self.msr_label.grid(column=5, row=6)
-            # self.vsen_label = tk.Label(self.window, text=f'Ventricular Sensitivity: {self.param_DB[dict_user]["VVI"]["vsen"]}', font=("Raleway", 12), width = 20, height = 1)
-            # self.vsen_label.grid(column=5, row=6)
-            # self.PVARP_label = tk.Label(self.window, text=f'PVARP: {self.param_DB[dict_user]["VVI"]["PVARP"]}', font=("Raleway", 12), width = 20, height = 1)
-            # self.PVARP_label.grid(column=4, row=7)
-            # self.hys_label = tk.Label(self.window, text=f'Hysteresis: {self.param_DB[dict_user]["VVI"]["hys"]}', font=("Raleway", 12), width = 20, height = 1)
+            # self.vsen_label = tk.Label(self.window, text=f'Ventricular Sensitivity: {self.param_DB[dict_user]["VVIR"]["vsen"]}', font=("Raleway", 12), width = 20, height = 1)
+            # self.vsen_label.grid(column=4, row=7)
+            # self.hys_label = tk.Label(self.window, text=f'Hysteresis: {self.param_DB[dict_user]["VVIR"]["hys"]}', font=("Raleway", 12), width = 20, height = 1)
             # self.hys_label.grid(column=5, row=7)
-            # self.rs_label = tk.Label(self.window, text=f'Rate Smoothing: {self.param_DB[dict_user]["VVI"]["rs"]}', font=("Raleway", 12), width = 20, height = 1)
+            # self.rs_label = tk.Label(self.window, text=f'Rate Smoothing: {self.param_DB[dict_user]["VVIR"]["rs"]}', font=("Raleway", 12), width = 20, height = 1)
             # self.rs_label.grid(column=4, row=8)
             # self.at_label = tk.Label(self.window, text=f'Activity Threshold: {self.param_DB[dict_user]["VVIR"]["at"]}', font=("Raleway", 12), width = 20, height = 1)
-            # self.at_label.grid(column=4, row=9)
+            # self.at_label.grid(column=5, row=8)
             # self.rct_label = tk.Label(self.window, text=f'Reaction Time: {self.param_DB[dict_user]["VVIR"]["rct"]}', font=("Raleway", 12), width = 20, height = 1)
-            # self.rct_label.grid(column=5, row=9)
+            # self.rct_label.grid(column=4, row=9)
             # self.rf_label = tk.Label(self.window, text=f'Response Factor: {self.param_DB[dict_user]["VVIR"]["rf"]}', font=("Raleway", 12), width = 20, height = 1)
-            # self.rf_label.grid(column=4, row=10)
+            # self.rf_label.grid(column=5, row=9)
             # self.rvt_label = tk.Label(self.window, text=f'Recovery Time: {self.param_DB[dict_user]["VVIR"]["rvt"]}', font=("Raleway", 12), width = 20, height = 1)
-            # self.rvt_label.grid(column=5, row=10)
+            # self.rvt_label.grid(column=4, row=10)
             self.placeholder_label1 = tk.Label(self.window, text="", font=("Raleway", 12), width = 20, height = 1)
             self.placeholder_label1.grid(column = 5, row = 10)
 
-            
-            
+        elif self.default_mode.get() == "DOOR":
+            self.lrl_label.destroy()
+            self.url_label.destroy()
+            self.aa_label.destroy()
+            self.apw_label.destroy()
+            self.va_label.destroy()
+            self.vpw_label.destroy()
+            self.VRP_label.destroy()
+            self.ARP_label.destroy()
+            self.msr_label.destroy()
+            self.favd_label.destroy()
+            self.asen_label.destroy()
+            self.vsen_label.destroy()
+            self.PVARP_label.destroy()
+            self.hys_label.destroy()
+            self.rs_label.destroy()
+            self.at_label.destroy()
+            self.rct_label.destroy()
+            self.rf_label.destroy()
+            self.rvt_label.destroy()
 
+##### Commented out until have a DOOR dictionary in database 
 
-## Add in 6 more modes here 
+            # self.lrl_label = tk.Label(self.window, text=f'Lower Rate Limit: {self.param_DB[dict_user]["DOOR"]["lrl"]}', font=("Raleway", 12), width = 20, height = 1)
+            # self.lrl_label.grid(column=4, row=4)
+            # self.url_label = tk.Label(self.window, text=f'Upper Rate Limit: {self.param_DB[dict_user]["DOOR"]["url"]}', font=("Raleway", 12), width = 20, height = 1)
+            # self.url_label.grid(column=5, row=4)
+            # self.aa_label = tk.Label(self.window, text=f'Atrial Amplitude: {self.param_DB[dict_user]["DOOR"]["aa"]}', font=("Raleway", 12), width = 20, height = 1)
+            # self.aa_label.grid(column=4, row=5)
+            # self.va_label = tk.Label(self.window, text=f'Ventricular Amplitude: {self.param_DB[dict_user]["DOOR"]["va"]}', font=("Raleway", 12), width = 20, height = 1)
+            # self.va_label.grid(column=5, row=5)
+            # self.apw_label = tk.Label(self.window, text=f'Atrial Pulse Width: {self.param_DB[dict_user]["DOOR"]["apw"]}', font=("Raleway", 12), width = 20, height = 1)
+            # self.apw_label.grid(column=4, row=6)
+            # self.vpw_label = tk.Label(self.window, text=f'Ventricular Pulse Width: {self.param_DB[dict_user]["DOOR"]["vpw"]}', font=("Raleway", 12), width = 20, height = 1)
+            # self.vpw_label.grid(column=5, row=6)
+            # self.favd_label = tk.Label(self.window, text=f'Fixed AV Delay: {self.param_DB[dict_user]["DOOR"]["favd"]}', font=("Raleway", 12), width = 20, height = 1)
+            # self.favd_label.grid(column=4, row=7)
+            # self.msr_label = tk.Label(self.window, text=f'Maximum Sensitivity Rate: {self.param_DB[dict_user]["DOOR"]["msr"]}', font=("Raleway", 12), width = 20, height = 1)
+            # self.msr_label.grid(column=5, row=7)
+            # self.at_label = tk.Label(self.window, text=f'Activity Threshold: {self.param_DB[dict_user][DOOR"]["at"]}', font=("Raleway", 12), width = 20, height = 1)
+            # self.at_label.grid(column=4, row=8)
+            # self.rct_label = tk.Label(self.window, text=f'Reaction Time: {self.param_DB[dict_user]["DOOR"]["rct"]}', font=("Raleway", 12), width = 20, height = 1)
+            # self.rct_label.grid(column=5, row=8)
+            # self.rf_label = tk.Label(self.window, text=f'Response Factor: {self.param_DB[dict_user]["DOOR"]["rf"]}', font=("Raleway", 12), width = 20, height = 1)
+            # self.rf_label.grid(column=4, row=9)
+            # self.rvt_label = tk.Label(self.window, text=f'Recovery Time: {self.param_DB[dict_user]["DOOR"]["rvt"]}', font=("Raleway", 12), width = 20, height = 1)
+            # self.rvt_label.grid(column=5, row=9)
+            self.placeholder_label1 = tk.Label(self.window, text="", font=("Raleway", 12), width = 20, height = 1)
+            self.placeholder_label1.grid(column = 4, row = 10)
+            self.placeholder_label2 = tk.Label(self.window, text="", font=("Raleway", 12), width = 20, height = 1)
+            self.placeholder_label2.grid(column = 5, row = 10)
 
     # edit_param function calls the corresponding class in parameters.py file to edit its parameters 
-
-#### Will need to add 6 more mode possibilities in here
-
     def edit_param(self):
         if self.default_mode.get() == "AOO":
             win.AOO(self.window, self.user, self.param_DB)
@@ -657,11 +697,20 @@ class home_page:
             win.AAI(self.window, self.user, self.param_DB)
         elif self.default_mode.get() == "VVI":
             win.VVI(self.window, self.user, self.param_DB)
+        elif self.default_mode.get() == "DOO":
+            win.DOO(self.window, self.user, self.param_DB)
+        elif self.default_mode.get() == "AOOR":
+            win.AOOR(self.window, self.user, self.param_DB)
+        elif self.default_mode.get() == "VOOR":
+            win.VOOR(self.window, self.user, self.param_DB)
+        elif self.default_mode.get() == "AAIR":
+            win.AAIR(self.window, self.user, self.param_DB)
+        elif self.default_mode.get() == "VVIR":
+            win.VVIR(self.window, self.user, self.param_DB)
+        elif self.default_mode.get() == "DOOR":
+            win.DOOR(self.window, self.user, self.param_DB)
 
     # run_model function launches the output window while keeping homepage window open in background 
-
-##### Will need to make this specific to each mode (I believe)
-    ## Also look into if need to have user choose between atrial / ventricular / both
-
+    # This will display both the ventricular and atrial graphs on this same output page pop-up 
     def run_model(self):
         out.output_page(self.window)
