@@ -24,7 +24,7 @@ class output_page:
         self.output_label.grid(column = 2, row = 4)
 
         button1 = tk.Button(self, text="Back to Home", command = lambda: controller.show_frame)
-        self.button1.grid(column = )
+        #self.button1.grid(column = )
 
     def animate(i):
         f = open('data.txt','r').read()
