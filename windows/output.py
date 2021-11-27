@@ -23,10 +23,25 @@ class output_page:
         self.output_label = tk.Label(self.window, text = "Insert Output Here", font = ("Raleway, 14"))
         self.output_label.grid(column = 2, row = 4)
 
-        button1 = tk.Button(self, text="Back to Home", command = lambda: controller.show_frame)
+        self.button1 = tk.Button(self.window, text = "Show Graph", bg="#20bebe", font = "Raleway",
+                                       command = lambda: self.show_ani(), fg = "white", height = 1, width = 12)
+        self.button1.grid(column = 2, row = 2)
+        #self.button1 = tk.Button(self, text="Back to Home", command = lambda: self.)
         #self.button1.grid(column = )
 
-    def animate(i):
+        # self.figure = plt.Figure(figsize=(6,5), dpi = 100)
+        # self.ax = self.figure.add_subplot(111)
+
+    def show_ani(self):
+        # figure = plt.Figure(figsize=(6,5), dpi = 100)
+        # ax = figure.add_subplot(111)
+
+        figure, ax = plt.subplots()
+        
+        ani = animation.FuncAnimation(figure, self.animate, fargs = (ax), interval = 1000)
+        plt.show()
+
+    def animate(self, i, ax):
         f = open('data.txt','r').read()
         lines = f.split('\n') # This assuming data text file has each xy pair separated by a new line
         xs = []
@@ -50,5 +65,3 @@ class output_page:
         plt.ylabel('mV')
         plt.title('Voltage With Respect to Time')
 
-figure = plt.Figure(figsize=(6,5), dpi = 100)
-ax = figure.add_subplot(111)

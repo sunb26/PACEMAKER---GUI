@@ -3931,6 +3931,7 @@ class DOOR:
             "apw": self.apw.get(),
             "va": self.va.get(),
             "vpw": self.vpw.get(),
+            "msr": self.msr.get(),
             "favd": self.favd.get(),
             "at": self.at.get(),
             "rct": self.rct.get(),
