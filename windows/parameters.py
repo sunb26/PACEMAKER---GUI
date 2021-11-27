@@ -677,7 +677,7 @@ class AOO:
             return False
 
         # Compare lrl and url
-        if url_input <= self.lrl.get():
+        if url_input <= int(self.lrl.get()):
             self.invalid_label_url.grid(columnspan=2, column=self.limits["url"]["column"],
                                         row=self.limits["url"]["row"])
             return False
