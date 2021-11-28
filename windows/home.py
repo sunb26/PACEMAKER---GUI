@@ -3,6 +3,8 @@ from PIL import Image, ImageTk
 import windows.parameters as win
 import windows.welcome as wel
 import windows.output as out
+import windows.utils.serial_com as serial
+import json
 
 class home_page:
     def __init__(self, root, user, login_database, parameter_database): 
@@ -159,6 +161,19 @@ class home_page:
                                     font = "Raleway", fg = "white", bg = "#20bebe", 
                                     command = lambda: self.run_model())
         self.run_button.grid(column = 8, row = 6)
+
+        self.param_index = {
+            "AOO": 1,
+            "VOO": 2,
+            "AAI": 3,
+            "VVI": 4, 
+            "DOO": 5,
+            "AOOR": 6,
+            "VOOR": 7,
+            "AAIR": 8,
+            "VVIR": 9, 
+            "DOOR": 10
+        }
 
     # logout function called when logout button pushed, destroying home page and creating new welcome page
     def logout(self):
@@ -689,4 +704,15 @@ class home_page:
     # run_model function launches the output window while keeping homepage window open in background 
     # This will display both the ventricular and atrial graphs on this same output page pop-up 
     def run_model(self):
-        out.output_page(self.window)
+        with open("database/parameters.json") as database2:
+            parameter_database = json.load(database2)
+
+        if self.user in parameter_database.keys() and self.default_mode.get() in parameter_database[self.user].keys():
+            dict_user = self.user
+        else:
+            dict_user = "default"
+
+        param_dict = parameter_database[dict_user][self.default_mode.get()]
+        param_dict["mode"] = self.param_index[self.default_mode.get()]
+        packet = serial.serial_packet(param_dict).transmit_params(5)
+        out.output_page(self.window, self.user, self.default_mode.get())
