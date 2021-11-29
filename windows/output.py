@@ -70,6 +70,10 @@ class output_page:
     # once this is called, start receiving info from matlab to plot (by calling the animate_graphs function) 
     def show_graphs(self):   
         while True:
+            self.stop_button.grid_remove()
+            self.stop_button = tk.Button(self.window, text="Stop Updating Graphs", bg="#20bebe", font="Raleway",
+                                         command=lambda: self.stop(), fg="white", height=1, width=26)
+            self.stop_button.grid(column=0, row=2)
             # If stop button hit, break 
             if self.stop_var == False:
                 # Send a packet back to MATLAB via serial communication
