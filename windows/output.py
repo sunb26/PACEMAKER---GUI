@@ -78,8 +78,8 @@ class output_page:
             ani1 = animation.FuncAnimation(self.figure1, self.animate_graphs, interval = 1) ## Maybe want frames = 100 or something in here, not sure what it does
             plt.show()
             #self.window.title("Working...")
-        else:
-            #self.window.title("Stopped!")
+        # else:
+        #     #self.window.title("Stopped!")
 
         self.window.after(1, self.show_graphs)
 
