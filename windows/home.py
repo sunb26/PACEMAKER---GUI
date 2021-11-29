@@ -714,5 +714,5 @@ class home_page:
 
         param_dict = parameter_database[dict_user][self.default_mode.get()]
         param_dict["mode"] = self.param_index[self.default_mode.get()]
-        packet = serial.serial_packet(param_dict).transmit_params(5)
+        #packet = serial.serial_packet(param_dict).transmit_params(5)
         out.output_page(self.window, self.user, self.default_mode.get())

@@ -1,13 +1,13 @@
 import tkinter as tk
-import matplotlib.pyplot as plt 
+import matplotlib.pyplot as plt
 import matplotlib.animation as animation
 
-#from matplotlib.backends.backend_tkagg import (FigureCanvasTkAgg, NavigationToolbar2Tk)
+# from matplotlib.backends.backend_tkagg import (FigureCanvasTkAgg, NavigationToolbar2Tk)
 
-from matplotlib.figure import Figure 
-from matplotlib.pyplot import figure 
+from matplotlib.figure import Figure
+from matplotlib.pyplot import figure
 
-#import numpy as np
+# import numpy as np
 
 import windows.utils.serial_com as serial
 import json
@@ -23,6 +23,9 @@ import json
 ## create while true loop that has if conditional inside it that says if button is pressed then call ben's serial 
 ## comm. function to send packet (and thus stop receiving input packet) then in while loop, take the list of 2 double 
 ## values and append 1st one to atrial list (which is being plotted) then append other to ventricle list 
+
+stop_var = False
+
 
 class output_page:
     def __init__(self, root, user, mode):
@@ -43,39 +46,42 @@ class output_page:
         self.figure1.set_figwidth(12)
         self.figure1.set_figheight(6)
 
-        self.graph_button = tk.Button(self.window, text = "Show Atrium + Ventricle Graphs", bg="#20bebe", font = "Raleway",
-                                       command = lambda: self.show_graphs(), fg = "white", height = 1, width = 26)
-        self.graph_button.grid(column = 0, row = 1)
+        self.graph_button = tk.Button(self.window, text="Show Atrium + Ventricle Graphs", bg="#20bebe", font="Raleway",
+                                      command=lambda: self.start(), fg="white", height=1, width=26)
+        self.graph_button.grid(column=0, row=1)
 
-        self.stop_button = tk.Button(self.window, text = "Stop Updating Graphs", bg = "#20bebe", font = "Raleway", 
-                                      command = lambda: self.stop(), fg = "white", height = 1, width = 26)
-        self.stop_button.grid(column = 0, row = 2)
+        self.stop_button = tk.Button(self.window, text="Stop Updating Graphs", bg="#20bebe", font="Raleway",
+                                     command=lambda: self.stop(), fg="white", height=1, width=26)
+        self.stop_button.grid(column=0, row=2)
 
-        self.stop_var = True
+        # self.stop_var = True
 
         self.param_index = {
             "AOO": 1,
             "VOO": 2,
             "AAI": 3,
-            "VVI": 4, 
+            "VVI": 4,
             "DOO": 5,
             "AOOR": 6,
             "VOOR": 7,
             "AAIR": 8,
-            "VVIR": 9, 
+            "VVIR": 9,
             "DOOR": 10
         }
+        self.window.after(1, self.show_graphs)
 
-        
-    # once this is called, start receiving info from matlab to plot (by calling the animate_graphs function) 
-    def show_graphs(self):   
-        while self.stop_button:
-            self.stop_button = tk.Button(self.window, text="Stop Updating Graphs", bg="#20bebe", font="Raleway",
-                                         command=lambda: self.stop(), fg="white", height=1, width=26)
-        # If stop button hit, break
+    # once this is called, start receiving info from matlab to plot (by calling the animate_graphs function)
+    def show_graphs(self):
+
+        if stop_var:
+            # If stop button hit, break
             ani1 = animation.FuncAnimation(self.figure1, self.animate_graphs, interval = 1) ## Maybe want frames = 100 or something in here, not sure what it does
             plt.show()
-    
+            #self.window.title("Working...")
+        else:
+            #self.window.title("Stopped!")
+
+        self.window.after(1, self.show_graphs)
 
     def animate_graphs(self, i):
         with open("database/parameters.json") as database2:
@@ -87,8 +93,6 @@ class output_page:
         else:
             dict_user = "default"
 
-        
-
         # Do serial comm stuff to get packet in the form [Atrial y-component, Ventricle y-component]
         param_dict = parameter_database[dict_user][self.mode]
         param_dict["mode"] = self.param_index[self.mode]
@@ -97,7 +101,7 @@ class output_page:
         self.ventricle.append(packet[1])
 
         self.ax1[0].clear()
-        self.ax1[0].plot(self.atrium[-40:]) # This makes graph show last 40 points
+        self.ax1[0].plot(self.atrium[-40:])  # This makes graph show last 40 points
         # If not working maybe neext to pre-fill atrium and ventricle graphs with 40 zeros in __init__
 
         self.ax1[0].set_title("Atrium: Voltage vs Time")
@@ -111,15 +115,20 @@ class output_page:
         self.ax1[1].set_ylabel("Voltage (mV)")
         self.ax1[1].set_xlabel("Time (ms)")
 
-    
+    def start(self):
+        global stop_var
+        stop_var = True
+
     def stop(self):
-        self.stop_var = False
+        global stop_var
+        stop_var = False
 
 
 
 
 
-## Copy of pre-serial comm. output_page class 
+
+## Copy of pre-serial comm. output_page class
 
 # class output_page:
 #     def __init__(self, root):
@@ -144,8 +153,6 @@ class output_page:
 #         self.stop_button = tk.Button(self.window, text = "Stop Updating Graphs", bg = "#20bebe", font = "Raleway", 
 #                                       fg = "white", height = 1, width = 26)
 #         self.stop_button.grid(column = 2, row = 2)
-
-        
 
 
 #     def show_graphs(self):        
