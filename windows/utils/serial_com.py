@@ -87,13 +87,14 @@ class serial_packet:
                 return params
 
             elif params[1] == 4:
-                receive = pacemaker.read(size=127)
-                print(len(receive), "---------------------------------------------------------------------")
-                params = struct.unpack("=dHffddddddffHBBddddBdd", receive)
-                print("(", params[20], ",", params[21], ")\n")
-                atrium_amp = params[20]
-                ven_amp = params[21]
-                return [atrium_amp, ven_amp]
+                while True:
+                    receive = pacemaker.read(size=127)
+                    #print(len(receive), "---------------------------------------------------------------------")
+                    params = struct.unpack("=dHffddddddffHBBddddBdd", receive)
+                    #print("(", params[20], ",", params[21], ")\n")
+                    atrium_amp = params[20]
+                    ven_amp = params[21]
+                    return [atrium_amp, ven_amp]
 
     # def receive_egram(self):
     #     params = b''
