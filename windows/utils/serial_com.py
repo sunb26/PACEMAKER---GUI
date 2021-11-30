@@ -11,6 +11,26 @@ FRDM_HWID = "1366:1015"  # JLink
 NUCLEO_HWID = "0483:374B"  # ST-Link
 
 
+def findPorts():
+    frdmFound = False
+    nucleoFound = False
+    nucleoPort = ""
+    frdmPort = ""
+    while (True):
+        for port in comports():
+            if FRDM_HWID in port.hwid:
+                frdmFound = True
+                frdmPort = port.device
+            elif NUCLEO_HWID in port.hwid:
+                nucleoFound = True
+                nucleoPort = port.device
+        if (frdmFound and nucleoFound):
+            return [nucleoPort, frdmPort]
+
+        else:
+            return False
+
+
 class serial_packet:
 
     def __init__(self, user_params):
@@ -19,24 +39,9 @@ class serial_packet:
         self.param_list = ["lrl", "url", "aa", "va", "apw", "vpw", "ARP", "VRP", "PVARP", "msr", "favd", "asen", 
                             "vsen", "hys", "rs", "at", "rct", "rvt", "rf", "mode"]
 
-    def __findPorts(self):
-        frdmFound = False
-        nucleoFound = False
-        nucleoPort = ""
-        frdmPort = ""
-        while (True):
-            for port in comports():
-                if FRDM_HWID in port.hwid:
-                    frdmFound = True
-                    frdmPort = port.device
-                elif NUCLEO_HWID in port.hwid:
-                    nucleoFound = True
-                    nucleoPort = port.device
-            if (frdmFound and nucleoFound):
-                return [nucleoPort, frdmPort]
 
     def transmit_params(self, fn_code):
-        ports = self.__findPorts()
+        ports = findPorts()
 
         for parameter in self.param_list:
             if parameter not in self.user_params.keys():

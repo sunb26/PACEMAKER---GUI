@@ -91,6 +91,11 @@ class output_page:
         for l in range(50):
             param_dict = parameter_database[dict_user][self.mode]
             param_dict["mode"] = self.param_index[self.mode]
+
+            if not serial.findPorts():
+                print("Device not found")
+                break
+
             packet = serial.serial_packet(param_dict).transmit_params(4)
             self.atrium.append(packet[0])
             self.ventricle.append(packet[1])
