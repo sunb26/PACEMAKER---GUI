@@ -164,14 +164,14 @@ import json
 #
 #         # Initialize Save Button
 #         save_btn_text = tk.StringVar()
-#         self.save_btn = tk.Button(self.window, textvariable=save_btn_text, command=self.check_validity,
+#         self.save_btn = tk.Button(self.window, textvariable=save_btn_text, command=self.__check_validity,
 #                                   font="Raleway", bg="#20bebe", fg="white", height=1, width=60)
 #         save_btn_text.set("Save")
 #         self.save_btn.grid(columnspan=4, column=1, row=6)
 #
 #
 #
-#     def check_lrl(self, lrl_input):
+#     def __check_lrl(self, lrl_input):
 #         # Check if correct datatype was entered
 #         try:
 #             lrl_input = int(lrl_input)
@@ -196,7 +196,7 @@ import json
 #                                         row=self.limits["lrl"]["row"])
 #             return False
 #
-#     def check_url(self, url_input):
+#     def __check_url(self, url_input):
 #         # Check if correct datatype was entered
 #         try:
 #             url_input = int(url_input)
@@ -213,7 +213,7 @@ import json
 #                                         row=self.limits["url"]["row"])
 #             return False
 #
-#     def check_atrial_amplitude(self, amplitude_input):
+#     def __check_atrial_amplitude(self, amplitude_input):
 #         # Check if correct datatype was entered
 #         try:
 #             amplitude_input = float(amplitude_input)
@@ -227,7 +227,7 @@ import json
 #             self.invalid_label_aa.grid(columnspan=2, column=self.limits["aa"]["column"], row=self.limits["aa"]["row"])
 #             return False
 #
-#     def check_apw(self, pw_input):
+#     def __check_apw(self, pw_input):
 #         # Check if correct datatype was entered
 #         try:
 #             pw_input = int(pw_input)
@@ -243,7 +243,7 @@ import json
 #                                         row=self.limits["apw"]["row"])
 #             return False
 #
-#     def check_atrial_refractory_period(self, RP_input):
+#     def __check_atrial_refractory_period(self, RP_input):
 #         # Check if correct datatype was entered
 #         try:
 #             RP_input = int(RP_input)
@@ -259,7 +259,7 @@ import json
 #                                         row=self.limits["ARP"]["row"])
 #             return False
 #
-#     def check_ventricle_amplitude(self, amplitude_input):
+#     def __check_ventricle_amplitude(self, amplitude_input):
 #         # Check if correct datatype was entered
 #         try:
 #             amplitude_input = float(amplitude_input)
@@ -273,7 +273,7 @@ import json
 #             self.invalid_label_va.grid(columnspan=2, column=self.limits["va"]["column"], row=self.limits["va"]["row"])
 #             return False
 #
-#     def check_vpw(self, pw_input):
+#     def __check_vpw(self, pw_input):
 #         # Check if correct datatype was entered
 #         try:
 #             pw_input = int(pw_input)
@@ -289,7 +289,7 @@ import json
 #                                         row=self.limits["vpw"]["row"])
 #             return False
 #
-#     def check_ventricle_refractory_period(self, RP_input):
+#     def __check_ventricle_refractory_period(self, RP_input):
 #         # Check if correct datatype was entered
 #         try:
 #             RP_input = int(RP_input)
@@ -306,7 +306,7 @@ import json
 #                                         row=self.limits["VRP"]["row"])
 #             return False
 #
-#     def check_max_sensor_rate(self):
+#     def __check_max_sensor_rate(self):
 #         # Check if correct datatype was entered
 #         try:
 #             msr_input = int(self.msr.get())
@@ -323,7 +323,7 @@ import json
 #                                         row=self.limits["msr"]["row"])
 #             return False
 #
-#     def check_favd(self):
+#     def __check_favd(self):
 #         # Check if correct datatype was entered
 #         try:
 #             favd_input = int(self.favd.get())
@@ -340,7 +340,7 @@ import json
 #                                         row=self.limits["favd"]["row"])
 #             return False
 #
-#     def check_asen(self):
+#     def __check_asen(self):
 #         # Check if correct datatype was entered
 #         try:
 #             sens_input = float(self.asen.get())
@@ -354,7 +354,7 @@ import json
 #             self.invalid_label_asen.grid(columnspan=2, column=self.limits["asen"]["column"], row=self.limits["asen"]["row"])
 #             return False
 #
-#     def check_vsen(self):
+#     def __check_vsen(self):
 #         # Check if correct datatype was entered
 #         try:
 #             sens_input = float(self.vsen.get())
@@ -368,7 +368,7 @@ import json
 #             self.invalid_label_vsen.grid(columnspan=2, column=self.limits["vsen"]["column"], row=self.limits["vsen"]["row"])
 #             return False
 #
-#     def check_PVARP(self):
+#     def __check_PVARP(self):
 #         # Check if correct datatype was entered
 #         try:
 #             RP_input = int(self.PVARP.get())
@@ -384,7 +384,7 @@ import json
 #                                         row=self.limits["PVARP"]["row"])
 #             return False
 #
-#     def check_hys(self):
+#     def __check_hys(self):
 #         # Check if correct datatype was entered
 #         try:
 #             hys_input = int(self.hys.get())
@@ -413,7 +413,7 @@ import json
 #                                         row=self.limits["hys"]["row"])
 #             return False
 #
-#     def check_rs(self):
+#     def __check_rs(self):
 #
 #         try:
 #             rs_input = int(self.rs.get())
@@ -431,7 +431,7 @@ import json
 #                                         row=self.limits["rs"]["row"])
 #             return False
 #
-#     def check_at(self):
+#     def __check_at(self):
 #         try:
 #             at_input = int(self.at.get())
 #         except:
@@ -446,7 +446,7 @@ import json
 #                                         row=self.limits["at"]["row"])
 #             return False
 #
-#     def check_rct(self):
+#     def __check_rct(self):
 #         try:
 #             rct_input = int(self.rct.get())
 #         except:
@@ -461,7 +461,7 @@ import json
 #                                         row=self.limits["rct"]["row"])
 #             return False
 #
-#     def check_rf(self):
+#     def __check_rf(self):
 #
 #         try:
 #             rf_input = int(self.rf.get())
@@ -477,7 +477,7 @@ import json
 #                                         row=self.limits["rf"]["row"])
 #             return False
 #
-#     def check_rvt(self):
+#     def __check_rvt(self):
 #
 #         try:
 #             rvt_input = int(self.rvt.get())
@@ -493,7 +493,7 @@ import json
 #                                         row=self.limits["rvt"]["row"])
 #             return False
 #
-#     def check_validity(self):
+#     def __check_validity(self):
 #         # Remove previous invalid labels
 #         self.invalid_label_lrl.grid_remove()
 #         self.invalid_label_url.grid_remove()
@@ -543,19 +543,19 @@ import json
 #                 self.blank_label.place(relx=0.5, rely=0.75, anchor="center")
 #                 return
 #
-#         valid_params = [self.check_lrl(self.lrl.get()), self.check_url(self.url.get()),
-#                         self.check_atrial_amplitude(self.aa.get()),
-#                         self.check_ventricle_amplitude(self.va.get()),
-#                         self.check_apw(self.apw.get()), self.check_vpw(self.vpw.get()),
-#                         self.check_atrial_refractory_period(self.ARP.get()),
-#                         self.check_ventricle_refractory_period(self.VRP.get())]
+#         valid_params = [self.__check_lrl(self.lrl.get()), self.__check_url(self.url.get()),
+#                         self.__check_atrial_amplitude(self.aa.get()),
+#                         self.__check_ventricle_amplitude(self.va.get()),
+#                         self.__check_apw(self.apw.get()), self.__check_vpw(self.vpw.get()),
+#                         self.__check_atrial_refractory_period(self.ARP.get()),
+#                         self.__check_ventricle_refractory_period(self.VRP.get())]
 #
 #         # Checking lrl separately due to increment differences
 #
 #         if False not in valid_params:
-#             self.save_parameters(input_params)
+#             self.__save_parameters(input_params)
 #
-#      def save_parameters(self, inputs):
+#      def __save_parameters(self, inputs):
 #         if self.user not in self.DB.keys():
 #             self.DB[self.user] = {}
 #         self.DB[self.user]["AOO"] = inputs
@@ -634,12 +634,12 @@ class AOO:
 
         # Initialize Save Button
         save_btn_text = tk.StringVar()
-        self.save_btn = tk.Button(self.window, textvariable=save_btn_text, command=self.check_validity,
+        self.save_btn = tk.Button(self.window, textvariable=save_btn_text, command=self.__check_validity,
                                   font="Raleway", bg="#20bebe", fg="white", height=1, width=60)
         save_btn_text.set("Save")
         self.save_btn.place(relx=0.5, rely=0.9, anchor="center")
 
-    def check_lrl(self, lrl_input):
+    def __check_lrl(self, lrl_input):
         # Check if correct datatype was entered
         try:
             lrl_input = int(lrl_input)
@@ -668,7 +668,7 @@ class AOO:
             self.invalid_label_lrl.grid(columnspan=2, column=self.limits["lrl"]["column"], row=self.limits["lrl"]["row"])
             return False
 
-    def check_url(self, url_input):
+    def __check_url(self, url_input):
         # Check if correct datatype was entered
         try:
             url_input = int(url_input)
@@ -689,7 +689,7 @@ class AOO:
             self.invalid_label_url.grid(columnspan=2, column=self.limits["url"]["column"], row=self.limits["url"]["row"])
             return False
 
-    def check_atrial_amplitude(self, amplitude_input):
+    def __check_atrial_amplitude(self, amplitude_input):
         # Check if correct datatype was entered
         try:
             amplitude_input = float(amplitude_input)
@@ -703,7 +703,7 @@ class AOO:
             self.invalid_label_aa.grid(columnspan=2, column=self.limits["aa"]["column"], row=self.limits["aa"]["row"])
             return False
 
-    def check_apw(self, pw_input):
+    def __check_apw(self, pw_input):
         # Check if correct datatype was entered
         try:
             pw_input = int(pw_input)
@@ -717,7 +717,7 @@ class AOO:
             self.invalid_label_apw.grid(columnspan=2, column=self.limits["apw"]["column"], row=self.limits["apw"]["row"])
             return False
 
-    def check_validity(self):
+    def __check_validity(self):
         # Remove previous invalid labels
         self.invalid_label_lrl.grid_remove()
         self.invalid_label_url.grid_remove()
@@ -738,16 +738,16 @@ class AOO:
                 self.blank_label.place(relx=0.5, rely=0.75, anchor="center")
                 return
 
-        valid_params = [self.check_lrl(self.lrl.get()), self.check_url(self.url.get()),
-                        self.check_atrial_amplitude(self.aa.get()),
-                        self.check_apw(self.apw.get())]
+        valid_params = [self.__check_lrl(self.lrl.get()), self.__check_url(self.url.get()),
+                        self.__check_atrial_amplitude(self.aa.get()),
+                        self.__check_apw(self.apw.get())]
 
         # Checking lrl separately due to increment differences
 
         if False not in valid_params:
-            self.save_parameters(input_params)
+            self.__save_parameters(input_params)
 
-    def save_parameters(self, inputs):
+    def __save_parameters(self, inputs):
         if self.user not in self.DB.keys():
             self.DB[self.user] = {}
         self.DB[self.user]["AOO"] = inputs
@@ -873,12 +873,12 @@ class AAI:
 
         # Initialize Save Button
         save_btn_text = tk.StringVar()
-        self.save_btn = tk.Button(self.window, textvariable=save_btn_text, command=self.check_validity,
+        self.save_btn = tk.Button(self.window, textvariable=save_btn_text, command=self.__check_validity,
                                   font="Raleway", bg="#20bebe", fg="white", height=1, width=60)
         save_btn_text.set("Save")
         self.save_btn.place(relx=0.5, rely=0.9, anchor="center")
 
-    def check_lrl(self, lrl_input):
+    def __check_lrl(self, lrl_input):
         # Check if correct datatype was entered
         try:
             lrl_input = int(lrl_input)
@@ -910,7 +910,7 @@ class AAI:
                                         row=self.limits["lrl"]["row"])
             return False
 
-    def check_url(self, url_input):
+    def __check_url(self, url_input):
         # Check if correct datatype was entered
         try:
             url_input = int(url_input)
@@ -933,7 +933,7 @@ class AAI:
                                         row=self.limits["url"]["row"])
             return False
 
-    def check_atrial_amplitude(self, amplitude_input):
+    def __check_atrial_amplitude(self, amplitude_input):
         # Check if correct datatype was entered
         try:
             amplitude_input = float(amplitude_input)
@@ -947,7 +947,7 @@ class AAI:
             self.invalid_label_aa.grid(columnspan=2, column=self.limits["aa"]["column"], row=self.limits["aa"]["row"])
             return False
 
-    def check_apw(self, pw_input):
+    def __check_apw(self, pw_input):
         # Check if correct datatype was entered
         try:
             pw_input = int(pw_input)
@@ -961,7 +961,7 @@ class AAI:
             self.invalid_label_apw.grid(columnspan=2, column=self.limits["apw"]["column"], row=self.limits["apw"]["row"])
             return False
 
-    def check_atrial_refractory_period(self, RP_input):
+    def __check_atrial_refractory_period(self, RP_input):
         # Check if correct datatype was entered
         try:
             RP_input = int(RP_input)
@@ -975,7 +975,7 @@ class AAI:
             self.invalid_label_ARP.grid(columnspan=2, column=self.limits["ARP"]["column"], row=self.limits["ARP"]["row"])
             return False
 
-    def check_PVARP(self):
+    def __check_PVARP(self):
         # Check if correct datatype was entered
         try:
             RP_input = int(self.PVARP.get())
@@ -991,7 +991,7 @@ class AAI:
                                         row=self.limits["PVARP"]["row"])
             return False
 
-    def check_hys(self):
+    def __check_hys(self):
         # Check if correct datatype was entered
         try:
             hys_input = int(self.hys.get())
@@ -1020,7 +1020,7 @@ class AAI:
                                         row=self.limits["hys"]["row"])
             return False
 
-    def check_rs(self):
+    def __check_rs(self):
 
         try:
             rs_input = int(self.rs.get())
@@ -1038,7 +1038,7 @@ class AAI:
                                         row=self.limits["rs"]["row"])
             return False
 
-    def check_asen(self):
+    def __check_asen(self):
         # Check if correct datatype was entered
         try:
             sens_input = float(self.asen.get())
@@ -1052,7 +1052,7 @@ class AAI:
             self.invalid_label_asen.grid(columnspan=2, column=self.limits["asen"]["column"], row=self.limits["asen"]["row"])
             return False
 
-    def check_validity(self):
+    def __check_validity(self):
         # Remove previous invalid labels
         self.invalid_label_lrl.grid_remove()
         self.invalid_label_url.grid_remove()
@@ -1083,16 +1083,16 @@ class AAI:
                 self.blank_label.place(relx=0.5, rely=0.75, anchor="center")
                 return
 
-        valid_params = [self.check_lrl(self.lrl.get()), self.check_url(self.url.get()), self.check_atrial_amplitude(self.aa.get()),
-                        self.check_apw(self.apw.get()), self.check_atrial_refractory_period(self.ARP.get()), self.check_PVARP(),
-                        self.check_hys(), self.check_rs(), self.check_asen()]
+        valid_params = [self.__check_lrl(self.lrl.get()), self.__check_url(self.url.get()), self.__check_atrial_amplitude(self.aa.get()),
+                        self.__check_apw(self.apw.get()), self.__check_atrial_refractory_period(self.ARP.get()), self.__check_PVARP(),
+                        self.__check_hys(), self.__check_rs(), self.__check_asen()]
 
         # Checking lrl separately due to increment differences
 
         if False not in valid_params:
-            self.save_parameters(input_params)
+            self.__save_parameters(input_params)
 
-    def save_parameters(self, inputs):
+    def __save_parameters(self, inputs):
         if self.user not in self.DB.keys():
             self.DB[self.user] = {}
         self.DB[self.user]["AAI"] = inputs
@@ -1173,12 +1173,12 @@ class VOO:
 
         # Initialize Save Button
         save_btn_text = tk.StringVar()
-        self.save_btn = tk.Button(self.window, textvariable=save_btn_text, command=self.check_validity,
+        self.save_btn = tk.Button(self.window, textvariable=save_btn_text, command=self.__check_validity,
                                   font="Raleway", bg="#20bebe", fg="white", height=1, width=60)
         save_btn_text.set("Save")
         self.save_btn.place(relx=0.5, rely=0.9, anchor="center")
 
-    def check_lrl(self, lrl_input):
+    def __check_lrl(self, lrl_input):
         # Check if correct datatype was entered
         try:
             lrl_input = int(lrl_input)
@@ -1210,7 +1210,7 @@ class VOO:
                                         row=self.limits["lrl"]["row"])
             return False
 
-    def check_url(self, url_input):
+    def __check_url(self, url_input):
         # Check if correct datatype was entered
         try:
             url_input = int(url_input)
@@ -1233,7 +1233,7 @@ class VOO:
                                         row=self.limits["url"]["row"])
             return False
 
-    def check_ventricle_amplitude(self, amplitude_input):
+    def __check_ventricle_amplitude(self, amplitude_input):
         # Check if correct datatype was entered
         try:
             amplitude_input = float(amplitude_input)
@@ -1247,7 +1247,7 @@ class VOO:
             self.invalid_label_va.grid(columnspan=2, column=self.limits["va"]["column"], row=self.limits["va"]["row"])
             return False
 
-    def check_vpw(self, pw_input):
+    def __check_vpw(self, pw_input):
         # Check if correct datatype was entered
         try:
             pw_input = int(pw_input)
@@ -1263,7 +1263,7 @@ class VOO:
                                         row=self.limits["vpw"]["row"])
             return False
 
-    def check_validity(self):
+    def __check_validity(self):
         # Remove previous invalid labels
         self.invalid_label_lrl.grid_remove()
         self.invalid_label_url.grid_remove()
@@ -1284,15 +1284,15 @@ class VOO:
                 self.blank_label.place(relx=0.5, rely=0.75, anchor="center")
                 return
 
-        valid_params = [self.check_lrl(self.lrl.get()), self.check_url(self.url.get()),
-                        self.check_ventricle_amplitude(self.va.get()), self.check_vpw(self.vpw.get())]
+        valid_params = [self.__check_lrl(self.lrl.get()), self.__check_url(self.url.get()),
+                        self.__check_ventricle_amplitude(self.va.get()), self.__check_vpw(self.vpw.get())]
 
         # Checking lrl separately due to increment differences
 
         if False not in valid_params:
-            self.save_parameters(input_params)
+            self.__save_parameters(input_params)
 
-    def save_parameters(self, inputs):
+    def __save_parameters(self, inputs):
         if self.user not in self.DB.keys():
             self.DB[self.user] = {}
         self.DB[self.user]["VOO"] = inputs
@@ -1409,12 +1409,12 @@ class VVI:
 
         # Initialize Save Button
         save_btn_text = tk.StringVar()
-        self.save_btn = tk.Button(self.window, textvariable=save_btn_text, command=self.check_validity,
+        self.save_btn = tk.Button(self.window, textvariable=save_btn_text, command=self.__check_validity,
                                   font="Raleway", bg="#20bebe", fg="white", height=1, width=60)
         save_btn_text.set("Save")
         self.save_btn.place(relx=0.5, rely=0.9, anchor="center")
 
-    def check_lrl(self, lrl_input):
+    def __check_lrl(self, lrl_input):
         # Check if correct datatype was entered
         try:
             lrl_input = int(lrl_input)
@@ -1446,7 +1446,7 @@ class VVI:
                                         row=self.limits["lrl"]["row"])
             return False
 
-    def check_url(self, url_input):
+    def __check_url(self, url_input):
         # Check if correct datatype was entered
         try:
             url_input = int(url_input)
@@ -1469,7 +1469,7 @@ class VVI:
                                         row=self.limits["url"]["row"])
             return False
 
-    def check_ventricle_amplitude(self, amplitude_input):
+    def __check_ventricle_amplitude(self, amplitude_input):
         # Check if correct datatype was entered
         try:
             amplitude_input = float(amplitude_input)
@@ -1483,7 +1483,7 @@ class VVI:
             self.invalid_label_va.grid(columnspan=2, column=self.limits["va"]["column"], row=self.limits["va"]["row"])
             return False
 
-    def check_vpw(self, pw_input):
+    def __check_vpw(self, pw_input):
         # Check if correct datatype was entered
         try:
             pw_input = int(pw_input)
@@ -1499,7 +1499,7 @@ class VVI:
                                         row=self.limits["vpw"]["row"])
             return False
 
-    def check_ventricle_refractory_period(self, RP_input):
+    def __check_ventricle_refractory_period(self, RP_input):
         # Check if correct datatype was entered
         try:
             RP_input = int(RP_input)
@@ -1516,7 +1516,7 @@ class VVI:
                                         row=self.limits["VRP"]["row"])
             return False
 
-    def check_vsen(self):
+    def __check_vsen(self):
     # Check if correct datatype was entered
             try:
                 sens_input = float(self.vsen.get())
@@ -1530,7 +1530,7 @@ class VVI:
                 self.invalid_label_vsen.grid(columnspan=2, column=self.limits["vsen"]["column"], row=self.limits["vsen"]["row"])
                 return False
 
-    def check_hys(self):
+    def __check_hys(self):
         # Check if correct datatype was entered
         try:
             hys_input = int(self.hys.get())
@@ -1559,7 +1559,7 @@ class VVI:
                                         row=self.limits["hys"]["row"])
             return False
 
-    def check_rs(self):
+    def __check_rs(self):
 
         try:
             rs_input = int(self.rs.get())
@@ -1577,7 +1577,7 @@ class VVI:
                                         row=self.limits["rs"]["row"])
             return False
 
-    def check_validity(self):
+    def __check_validity(self):
         # Remove previous invalid labels
         self.invalid_label_lrl.grid_remove()
         self.invalid_label_url.grid_remove()
@@ -1606,16 +1606,16 @@ class VVI:
                 self.blank_label.place(relx=0.5, rely=0.75, anchor="center")
                 return
 
-        valid_params = [self.check_lrl(self.lrl.get()), self.check_url(self.url.get()),
-                        self.check_ventricle_amplitude(self.va.get()), self.check_vpw(self.vpw.get()),
-                        self.check_ventricle_refractory_period(self.VRP.get()), self.check_rs(), self.check_hys(), self.check_vsen()]
+        valid_params = [self.__check_lrl(self.lrl.get()), self.__check_url(self.url.get()),
+                        self.__check_ventricle_amplitude(self.va.get()), self.__check_vpw(self.vpw.get()),
+                        self.__check_ventricle_refractory_period(self.VRP.get()), self.__check_rs(), self.__check_hys(), self.__check_vsen()]
 
         # Checking lrl separately due to increment differences
 
         if False not in valid_params:
-            self.save_parameters(input_params)
+            self.__save_parameters(input_params)
 
-    def save_parameters(self, inputs):
+    def __save_parameters(self, inputs):
         if self.user not in self.DB.keys():
             self.DB[self.user] = {}
         self.DB[self.user]["VVI"] = inputs
@@ -1723,14 +1723,14 @@ class DOO:
 
         # Initialize Save Button
         save_btn_text = tk.StringVar()
-        self.save_btn = tk.Button(self.window, textvariable=save_btn_text, command=self.check_validity,
+        self.save_btn = tk.Button(self.window, textvariable=save_btn_text, command=self.__check_validity,
                                   font="Raleway", bg="#20bebe", fg="white", height=1, width=60)
         save_btn_text.set("Save")
         self.save_btn.place(relx=0.5, rely=0.9, anchor="center")
 
 
 
-    def check_lrl(self, lrl_input):
+    def __check_lrl(self, lrl_input):
         # Check if correct datatype was entered
         try:
             lrl_input = int(lrl_input)
@@ -1762,7 +1762,7 @@ class DOO:
                                         row=self.limits["lrl"]["row"])
             return False
 
-    def check_url(self, url_input):
+    def __check_url(self, url_input):
         # Check if correct datatype was entered
         try:
             url_input = int(url_input)
@@ -1785,7 +1785,7 @@ class DOO:
                                         row=self.limits["url"]["row"])
             return False
 
-    def check_atrial_amplitude(self, amplitude_input):
+    def __check_atrial_amplitude(self, amplitude_input):
         # Check if correct datatype was entered
         try:
             amplitude_input = float(amplitude_input)
@@ -1799,7 +1799,7 @@ class DOO:
             self.invalid_label_aa.grid(columnspan=2, column=self.limits["aa"]["column"], row=self.limits["aa"]["row"])
             return False
 
-    def check_apw(self, pw_input):
+    def __check_apw(self, pw_input):
         # Check if correct datatype was entered
         try:
             pw_input = int(pw_input)
@@ -1815,7 +1815,7 @@ class DOO:
                                         row=self.limits["apw"]["row"])
             return False
 
-    def check_atrial_refractory_period(self, RP_input):
+    def __check_atrial_refractory_period(self, RP_input):
         # Check if correct datatype was entered
         try:
             RP_input = int(RP_input)
@@ -1831,7 +1831,7 @@ class DOO:
                                         row=self.limits["ARP"]["row"])
             return False
 
-    def check_ventricle_amplitude(self, amplitude_input):
+    def __check_ventricle_amplitude(self, amplitude_input):
         # Check if correct datatype was entered
         try:
             amplitude_input = float(amplitude_input)
@@ -1845,7 +1845,7 @@ class DOO:
             self.invalid_label_va.grid(columnspan=2, column=self.limits["va"]["column"], row=self.limits["va"]["row"])
             return False
 
-    def check_vpw(self, pw_input):
+    def __check_vpw(self, pw_input):
         # Check if correct datatype was entered
         try:
             pw_input = int(pw_input)
@@ -1861,7 +1861,7 @@ class DOO:
                                         row=self.limits["vpw"]["row"])
             return False
 
-    def check_ventricle_refractory_period(self, RP_input):
+    def __check_ventricle_refractory_period(self, RP_input):
         # Check if correct datatype was entered
         try:
             RP_input = int(RP_input)
@@ -1878,7 +1878,7 @@ class DOO:
                                         row=self.limits["VRP"]["row"])
             return False
 
-    def check_favd(self):
+    def __check_favd(self):
         # Check if correct datatype was entered
         try:
             favd_input = int(self.favd.get())
@@ -1896,7 +1896,7 @@ class DOO:
             return False
 
 
-    def check_validity(self):
+    def __check_validity(self):
         # Remove previous invalid labels
         self.invalid_label_lrl.grid_remove()
         self.invalid_label_url.grid_remove()
@@ -1923,17 +1923,17 @@ class DOO:
                 self.blank_label.place(relx=0.5, rely=0.75, anchor="center")
                 return
 
-        valid_params = [self.check_lrl(self.lrl.get()), self.check_url(self.url.get()),
-                        self.check_atrial_amplitude(self.aa.get()),
-                        self.check_ventricle_amplitude(self.va.get()),
-                        self.check_apw(self.apw.get()), self.check_vpw(self.vpw.get()), self.check_favd()]
+        valid_params = [self.__check_lrl(self.lrl.get()), self.__check_url(self.url.get()),
+                        self.__check_atrial_amplitude(self.aa.get()),
+                        self.__check_ventricle_amplitude(self.va.get()),
+                        self.__check_apw(self.apw.get()), self.__check_vpw(self.vpw.get()), self.__check_favd()]
 
         # Checking lrl separately due to increment differences
 
         if False not in valid_params:
-            self.save_parameters(input_params)
+            self.__save_parameters(input_params)
 
-    def save_parameters(self, inputs):
+    def __save_parameters(self, inputs):
         if self.user not in self.DB.keys():
             self.DB[self.user] = {}
         self.DB[self.user]["DOO"] = inputs
@@ -2055,14 +2055,14 @@ class AOOR:
 
         # Initialize Save Button
         save_btn_text = tk.StringVar()
-        self.save_btn = tk.Button(self.window, textvariable=save_btn_text, command=self.check_validity,
+        self.save_btn = tk.Button(self.window, textvariable=save_btn_text, command=self.__check_validity,
                                   font="Raleway", bg="#20bebe", fg="white", height=1, width=60)
         save_btn_text.set("Save")
         self.save_btn.place(relx=0.5, rely=0.9, anchor="center")
 
 
 
-    def check_lrl(self, lrl_input):
+    def __check_lrl(self, lrl_input):
         # Check if correct datatype was entered
         try:
             lrl_input = int(lrl_input)
@@ -2094,7 +2094,7 @@ class AOOR:
                                         row=self.limits["lrl"]["row"])
             return False
 
-    def check_url(self, url_input):
+    def __check_url(self, url_input):
         # Check if correct datatype was entered
         try:
             url_input = int(url_input)
@@ -2117,7 +2117,7 @@ class AOOR:
                                         row=self.limits["url"]["row"])
             return False
 
-    def check_atrial_amplitude(self, amplitude_input):
+    def __check_atrial_amplitude(self, amplitude_input):
         # Check if correct datatype was entered
         try:
             amplitude_input = float(amplitude_input)
@@ -2131,7 +2131,7 @@ class AOOR:
             self.invalid_label_aa.grid(columnspan=2, column=self.limits["aa"]["column"], row=self.limits["aa"]["row"])
             return False
 
-    def check_apw(self, pw_input):
+    def __check_apw(self, pw_input):
         # Check if correct datatype was entered
         try:
             pw_input = int(pw_input)
@@ -2147,7 +2147,7 @@ class AOOR:
                                         row=self.limits["apw"]["row"])
             return False
 
-    def check_max_sensor_rate(self):
+    def __check_max_sensor_rate(self):
         # Check if correct datatype was entered
         try:
             msr_input = int(self.msr.get())
@@ -2164,7 +2164,7 @@ class AOOR:
                                         row=self.limits["msr"]["row"])
             return False
 
-    def check_at(self):
+    def __check_at(self):
         try:
             at_input = int(self.at.get())
         except:
@@ -2179,7 +2179,7 @@ class AOOR:
                                         row=self.limits["at"]["row"])
             return False
 
-    def check_rct(self):
+    def __check_rct(self):
         try:
             rct_input = int(self.rct.get())
         except:
@@ -2194,7 +2194,7 @@ class AOOR:
                                         row=self.limits["rct"]["row"])
             return False
 
-    def check_rf(self):
+    def __check_rf(self):
 
         try:
             rf_input = int(self.rf.get())
@@ -2210,7 +2210,7 @@ class AOOR:
                                         row=self.limits["rf"]["row"])
             return False
 
-    def check_rvt(self):
+    def __check_rvt(self):
 
         try:
             rvt_input = int(self.rvt.get())
@@ -2226,7 +2226,7 @@ class AOOR:
                                         row=self.limits["rvt"]["row"])
             return False
 
-    def check_validity(self):
+    def __check_validity(self):
         # Remove previous invalid labels
         self.invalid_label_lrl.grid_remove()
         self.invalid_label_url.grid_remove()
@@ -2256,17 +2256,17 @@ class AOOR:
                 self.blank_label.place(relx=0.5, rely=0.75, anchor="center")
                 return
 
-        valid_params = [self.check_lrl(self.lrl.get()), self.check_url(self.url.get()),
-                        self.check_atrial_amplitude(self.aa.get()),
-                        self.check_apw(self.apw.get()), self.check_max_sensor_rate(), self.check_at(), self.check_rct(), self.check_rf(),
-                        self.check_rvt()]
+        valid_params = [self.__check_lrl(self.lrl.get()), self.__check_url(self.url.get()),
+                        self.__check_atrial_amplitude(self.aa.get()),
+                        self.__check_apw(self.apw.get()), self.__check_max_sensor_rate(), self.__check_at(), self.__check_rct(), self.__check_rf(),
+                        self.__check_rvt()]
 
         # Checking lrl separately due to increment differences
 
         if False not in valid_params:
-            self.save_parameters(input_params)
+            self.__save_parameters(input_params)
 
-    def save_parameters(self, inputs):
+    def __save_parameters(self, inputs):
         if self.user not in self.DB.keys():
             self.DB[self.user] = {}
         self.DB[self.user]["AOOR"] = inputs
@@ -2433,14 +2433,14 @@ class AAIR:
 
         # Initialize Save Button
         save_btn_text = tk.StringVar()
-        self.save_btn = tk.Button(self.window, textvariable=save_btn_text, command=self.check_validity,
+        self.save_btn = tk.Button(self.window, textvariable=save_btn_text, command=self.__check_validity,
                                   font="Raleway", bg="#20bebe", fg="white", height=1, width=60)
         save_btn_text.set("Save")
         self.save_btn.place(relx=0.5, rely=0.90, anchor="center")
 
 
 
-    def check_lrl(self, lrl_input):
+    def __check_lrl(self, lrl_input):
         # Check if correct datatype was entered
         try:
             lrl_input = int(lrl_input)
@@ -2472,7 +2472,7 @@ class AAIR:
                                         row=self.limits["lrl"]["row"])
             return False
 
-    def check_url(self, url_input):
+    def __check_url(self, url_input):
         # Check if correct datatype was entered
         try:
             url_input = int(url_input)
@@ -2495,7 +2495,7 @@ class AAIR:
                                         row=self.limits["url"]["row"])
             return False
 
-    def check_atrial_amplitude(self, amplitude_input):
+    def __check_atrial_amplitude(self, amplitude_input):
         # Check if correct datatype was entered
         try:
             amplitude_input = float(amplitude_input)
@@ -2509,7 +2509,7 @@ class AAIR:
             self.invalid_label_aa.grid(columnspan=2, column=self.limits["aa"]["column"], row=self.limits["aa"]["row"])
             return False
 
-    def check_apw(self, pw_input):
+    def __check_apw(self, pw_input):
         # Check if correct datatype was entered
         try:
             pw_input = int(pw_input)
@@ -2525,7 +2525,7 @@ class AAIR:
                                         row=self.limits["apw"]["row"])
             return False
 
-    def check_atrial_refractory_period(self, RP_input):
+    def __check_atrial_refractory_period(self, RP_input):
         # Check if correct datatype was entered
         try:
             RP_input = int(RP_input)
@@ -2541,7 +2541,7 @@ class AAIR:
                                         row=self.limits["ARP"]["row"])
             return False
 
-    def check_max_sensor_rate(self):
+    def __check_max_sensor_rate(self):
         # Check if correct datatype was entered
         try:
             msr_input = int(self.msr.get())
@@ -2558,7 +2558,7 @@ class AAIR:
                                         row=self.limits["msr"]["row"])
             return False
 
-    def check_asen(self):
+    def __check_asen(self):
         # Check if correct datatype was entered
         try:
             sens_input = float(self.asen.get())
@@ -2572,7 +2572,7 @@ class AAIR:
             self.invalid_label_asen.grid(columnspan=2, column=self.limits["asen"]["column"], row=self.limits["asen"]["row"])
             return False
 
-    def check_PVARP(self):
+    def __check_PVARP(self):
         # Check if correct datatype was entered
         try:
             RP_input = int(self.PVARP.get())
@@ -2588,7 +2588,7 @@ class AAIR:
                                         row=self.limits["PVARP"]["row"])
             return False
 
-    def check_hys(self):
+    def __check_hys(self):
         # Check if correct datatype was entered
         try:
             hys_input = int(self.hys.get())
@@ -2617,7 +2617,7 @@ class AAIR:
                                         row=self.limits["hys"]["row"])
             return False
 
-    def check_rs(self):
+    def __check_rs(self):
 
         try:
             rs_input = int(self.rs.get())
@@ -2635,7 +2635,7 @@ class AAIR:
                                         row=self.limits["rs"]["row"])
             return False
 
-    def check_at(self):
+    def __check_at(self):
         try:
             at_input = int(self.at.get())
         except:
@@ -2650,7 +2650,7 @@ class AAIR:
                                         row=self.limits["at"]["row"])
             return False
 
-    def check_rct(self):
+    def __check_rct(self):
         try:
             rct_input = int(self.rct.get())
         except:
@@ -2665,7 +2665,7 @@ class AAIR:
                                         row=self.limits["rct"]["row"])
             return False
 
-    def check_rf(self):
+    def __check_rf(self):
 
         try:
             rf_input = int(self.rf.get())
@@ -2681,7 +2681,7 @@ class AAIR:
                                         row=self.limits["rf"]["row"])
             return False
 
-    def check_rvt(self):
+    def __check_rvt(self):
 
         try:
             rvt_input = int(self.rvt.get())
@@ -2697,7 +2697,7 @@ class AAIR:
                                         row=self.limits["rvt"]["row"])
             return False
 
-    def check_validity(self):
+    def __check_validity(self):
         # Remove previous invalid labels
         self.invalid_label_lrl.grid_remove()
         self.invalid_label_url.grid_remove()
@@ -2737,19 +2737,19 @@ class AAIR:
                 self.blank_label.place(relx=0.5, rely=0.75, anchor="center")
                 return
 
-        valid_params = [self.check_lrl(self.lrl.get()), self.check_url(self.url.get()),
-                        self.check_atrial_amplitude(self.aa.get()),
-                        self.check_apw(self.apw.get()),
-                        self.check_atrial_refractory_period(self.ARP.get()), self.check_max_sensor_rate(), self.check_asen(),
-                        self.check_PVARP(), self.check_hys(), self.check_rs(), self.check_at(), self.check_rct(), self.check_rf(),
-                        self.check_rvt()]
+        valid_params = [self.__check_lrl(self.lrl.get()), self.__check_url(self.url.get()),
+                        self.__check_atrial_amplitude(self.aa.get()),
+                        self.__check_apw(self.apw.get()),
+                        self.__check_atrial_refractory_period(self.ARP.get()), self.__check_max_sensor_rate(), self.__check_asen(),
+                        self.__check_PVARP(), self.__check_hys(), self.__check_rs(), self.__check_at(), self.__check_rct(), self.__check_rf(),
+                        self.__check_rvt()]
 
         # Checking lrl separately due to increment differences
 
         if False not in valid_params:
-            self.save_parameters(input_params)
+            self.__save_parameters(input_params)
 
-    def save_parameters(self, inputs):
+    def __save_parameters(self, inputs):
         if self.user not in self.DB.keys():
             self.DB[self.user] = {}
         self.DB[self.user]["AAIR"] = inputs
@@ -2872,14 +2872,14 @@ class VOOR:
 
         # Initialize Save Button
         save_btn_text = tk.StringVar()
-        self.save_btn = tk.Button(self.window, textvariable=save_btn_text, command=self.check_validity,
+        self.save_btn = tk.Button(self.window, textvariable=save_btn_text, command=self.__check_validity,
                                   font="Raleway", bg="#20bebe", fg="white", height=1, width=60)
         save_btn_text.set("Save")
         self.save_btn.place(relx=0.5, rely=0.90, anchor="center")
 
 
 
-    def check_lrl(self, lrl_input):
+    def __check_lrl(self, lrl_input):
         # Check if correct datatype was entered
         try:
             lrl_input = int(lrl_input)
@@ -2911,7 +2911,7 @@ class VOOR:
                                         row=self.limits["lrl"]["row"])
             return False
 
-    def check_url(self, url_input):
+    def __check_url(self, url_input):
         # Check if correct datatype was entered
         try:
             url_input = int(url_input)
@@ -2934,7 +2934,7 @@ class VOOR:
                                         row=self.limits["url"]["row"])
             return False
 
-    def check_ventricle_amplitude(self, amplitude_input):
+    def __check_ventricle_amplitude(self, amplitude_input):
         # Check if correct datatype was entered
         try:
             amplitude_input = float(amplitude_input)
@@ -2948,7 +2948,7 @@ class VOOR:
             self.invalid_label_va.grid(columnspan=2, column=self.limits["va"]["column"], row=self.limits["va"]["row"])
             return False
 
-    def check_vpw(self, pw_input):
+    def __check_vpw(self, pw_input):
         # Check if correct datatype was entered
         try:
             pw_input = int(pw_input)
@@ -2964,7 +2964,7 @@ class VOOR:
                                         row=self.limits["vpw"]["row"])
             return False
 
-    def check_max_sensor_rate(self):
+    def __check_max_sensor_rate(self):
         # Check if correct datatype was entered
         try:
             msr_input = int(self.msr.get())
@@ -2981,7 +2981,7 @@ class VOOR:
                                         row=self.limits["msr"]["row"])
             return False
 
-    def check_at(self):
+    def __check_at(self):
         try:
             at_input = int(self.at.get())
         except:
@@ -2996,7 +2996,7 @@ class VOOR:
                                         row=self.limits["at"]["row"])
             return False
 
-    def check_rct(self):
+    def __check_rct(self):
         try:
             rct_input = int(self.rct.get())
         except:
@@ -3011,7 +3011,7 @@ class VOOR:
                                         row=self.limits["rct"]["row"])
             return False
 
-    def check_rf(self):
+    def __check_rf(self):
 
         try:
             rf_input = int(self.rf.get())
@@ -3027,7 +3027,7 @@ class VOOR:
                                         row=self.limits["rf"]["row"])
             return False
 
-    def check_rvt(self):
+    def __check_rvt(self):
 
         try:
             rvt_input = int(self.rvt.get())
@@ -3043,7 +3043,7 @@ class VOOR:
                                         row=self.limits["rvt"]["row"])
             return False
 
-    def check_validity(self):
+    def __check_validity(self):
         # Remove previous invalid labels
         self.invalid_label_lrl.grid_remove()
         self.invalid_label_url.grid_remove()
@@ -3073,18 +3073,18 @@ class VOOR:
                 self.blank_label.place(relx=0.5, rely=0.75, anchor="center")
                 return
 
-        valid_params = [self.check_lrl(self.lrl.get()), self.check_url(self.url.get()),
-                        self.check_ventricle_amplitude(self.va.get()),
-                        self.check_vpw(self.vpw.get()),
-                        self.check_max_sensor_rate(),
-                        self.check_at(), self.check_rct(), self.check_rf(), self.check_rvt()]
+        valid_params = [self.__check_lrl(self.lrl.get()), self.__check_url(self.url.get()),
+                        self.__check_ventricle_amplitude(self.va.get()),
+                        self.__check_vpw(self.vpw.get()),
+                        self.__check_max_sensor_rate(),
+                        self.__check_at(), self.__check_rct(), self.__check_rf(), self.__check_rvt()]
 
         # Checking lrl separately due to increment differences
 
         if False not in valid_params:
-            self.save_parameters(input_params)
+            self.__save_parameters(input_params)
 
-    def save_parameters(self, inputs):
+    def __save_parameters(self, inputs):
         if self.user not in self.DB.keys():
             self.DB[self.user] = {}
         self.DB[self.user]["VOOR"] = inputs
@@ -3243,14 +3243,14 @@ class VVIR:
 
         # Initialize Save Button
         save_btn_text = tk.StringVar()
-        self.save_btn = tk.Button(self.window, textvariable=save_btn_text, command=self.check_validity,
+        self.save_btn = tk.Button(self.window, textvariable=save_btn_text, command=self.__check_validity,
                                   font="Raleway", bg="#20bebe", fg="white", height=1, width=60)
         save_btn_text.set("Save")
         self.save_btn.place(relx=0.5, rely=0.90, anchor="center")
 
 
 
-    def check_lrl(self, lrl_input):
+    def __check_lrl(self, lrl_input):
         # Check if correct datatype was entered
         try:
             lrl_input = int(lrl_input)
@@ -3282,7 +3282,7 @@ class VVIR:
                                         row=self.limits["lrl"]["row"])
             return False
 
-    def check_url(self, url_input):
+    def __check_url(self, url_input):
         # Check if correct datatype was entered
         try:
             url_input = int(url_input)
@@ -3305,7 +3305,7 @@ class VVIR:
                                         row=self.limits["url"]["row"])
             return False
 
-    def check_ventricle_amplitude(self, amplitude_input):
+    def __check_ventricle_amplitude(self, amplitude_input):
         # Check if correct datatype was entered
         try:
             amplitude_input = float(amplitude_input)
@@ -3319,7 +3319,7 @@ class VVIR:
             self.invalid_label_va.grid(columnspan=2, column=self.limits["va"]["column"], row=self.limits["va"]["row"])
             return False
 
-    def check_vpw(self, pw_input):
+    def __check_vpw(self, pw_input):
         # Check if correct datatype was entered
         try:
             pw_input = int(pw_input)
@@ -3335,7 +3335,7 @@ class VVIR:
                                         row=self.limits["vpw"]["row"])
             return False
 
-    def check_ventricle_refractory_period(self, RP_input):
+    def __check_ventricle_refractory_period(self, RP_input):
         # Check if correct datatype was entered
         try:
             RP_input = int(RP_input)
@@ -3352,7 +3352,7 @@ class VVIR:
                                         row=self.limits["VRP"]["row"])
             return False
 
-    def check_max_sensor_rate(self):
+    def __check_max_sensor_rate(self):
         # Check if correct datatype was entered
         try:
             msr_input = int(self.msr.get())
@@ -3369,7 +3369,7 @@ class VVIR:
                                         row=self.limits["msr"]["row"])
             return False
 
-    def check_vsen(self):
+    def __check_vsen(self):
         # Check if correct datatype was entered
         try:
             sens_input = float(self.vsen.get())
@@ -3383,7 +3383,7 @@ class VVIR:
             self.invalid_label_vsen.grid(columnspan=2, column=self.limits["vsen"]["column"], row=self.limits["vsen"]["row"])
             return False
 
-    def check_hys(self):
+    def __check_hys(self):
         # Check if correct datatype was entered
         try:
             hys_input = int(self.hys.get())
@@ -3412,7 +3412,7 @@ class VVIR:
                                         row=self.limits["hys"]["row"])
             return False
 
-    def check_rs(self):
+    def __check_rs(self):
 
         try:
             rs_input = int(self.rs.get())
@@ -3430,7 +3430,7 @@ class VVIR:
                                         row=self.limits["rs"]["row"])
             return False
 
-    def check_at(self):
+    def __check_at(self):
         try:
             at_input = int(self.at.get())
         except:
@@ -3445,7 +3445,7 @@ class VVIR:
                                         row=self.limits["at"]["row"])
             return False
 
-    def check_rct(self):
+    def __check_rct(self):
         try:
             rct_input = int(self.rct.get())
         except:
@@ -3460,7 +3460,7 @@ class VVIR:
                                         row=self.limits["rct"]["row"])
             return False
 
-    def check_rf(self):
+    def __check_rf(self):
 
         try:
             rf_input = int(self.rf.get())
@@ -3476,7 +3476,7 @@ class VVIR:
                                         row=self.limits["rf"]["row"])
             return False
 
-    def check_rvt(self):
+    def __check_rvt(self):
 
         try:
             rvt_input = int(self.rvt.get())
@@ -3492,7 +3492,7 @@ class VVIR:
                                         row=self.limits["rvt"]["row"])
             return False
 
-    def check_validity(self):
+    def __check_validity(self):
         # Remove previous invalid labels
         self.invalid_label_lrl.grid_remove()
         self.invalid_label_url.grid_remove()
@@ -3530,18 +3530,18 @@ class VVIR:
                 self.blank_label.place(relx=0.5, rely=0.75, anchor="center")
                 return
 
-        valid_params = [self.check_lrl(self.lrl.get()), self.check_url(self.url.get()),
-                        self.check_ventricle_amplitude(self.va.get()),
-                        self.check_vpw(self.vpw.get()),
-                        self.check_ventricle_refractory_period(self.VRP.get()), self.check_max_sensor_rate(), self.check_vsen(), self.check_hys(),
-                        self.check_rs(), self.check_at(), self.check_rct(), self.check_rf(), self.check_rvt()]
+        valid_params = [self.__check_lrl(self.lrl.get()), self.__check_url(self.url.get()),
+                        self.__check_ventricle_amplitude(self.va.get()),
+                        self.__check_vpw(self.vpw.get()),
+                        self.__check_ventricle_refractory_period(self.VRP.get()), self.__check_max_sensor_rate(), self.__check_vsen(), self.__check_hys(),
+                        self.__check_rs(), self.__check_at(), self.__check_rct(), self.__check_rf(), self.__check_rvt()]
 
         # Checking lrl separately due to increment differences
 
         if False not in valid_params:
-            self.save_parameters(input_params)
+            self.__save_parameters(input_params)
 
-    def save_parameters(self, inputs):
+    def __save_parameters(self, inputs):
         if self.user not in self.DB.keys():
             self.DB[self.user] = {}
         self.DB[self.user]["VVIR"] = inputs
@@ -3691,14 +3691,14 @@ class DOOR:
 
         # Initialize Save Button
         save_btn_text = tk.StringVar()
-        self.save_btn = tk.Button(self.window, textvariable=save_btn_text, command=self.check_validity,
+        self.save_btn = tk.Button(self.window, textvariable=save_btn_text, command=self.__check_validity,
                                   font="Raleway", bg="#20bebe", fg="white", height=1, width=60)
         save_btn_text.set("Save")
         self.save_btn.place(relx=0.5, rely=0.90, anchor="center")
 
 
 
-    def check_lrl(self, lrl_input):
+    def __check_lrl(self, lrl_input):
         # Check if correct datatype was entered
         try:
             lrl_input = int(lrl_input)
@@ -3730,7 +3730,7 @@ class DOOR:
                                         row=self.limits["lrl"]["row"])
             return False
 
-    def check_url(self, url_input):
+    def __check_url(self, url_input):
         # Check if correct datatype was entered
         try:
             url_input = int(url_input)
@@ -3753,7 +3753,7 @@ class DOOR:
                                         row=self.limits["url"]["row"])
             return False
 
-    def check_atrial_amplitude(self, amplitude_input):
+    def __check_atrial_amplitude(self, amplitude_input):
         # Check if correct datatype was entered
         try:
             amplitude_input = float(amplitude_input)
@@ -3767,7 +3767,7 @@ class DOOR:
             self.invalid_label_aa.grid(columnspan=2, column=self.limits["aa"]["column"], row=self.limits["aa"]["row"])
             return False
 
-    def check_apw(self, pw_input):
+    def __check_apw(self, pw_input):
         # Check if correct datatype was entered
         try:
             pw_input = int(pw_input)
@@ -3783,7 +3783,7 @@ class DOOR:
                                         row=self.limits["apw"]["row"])
             return False
 
-    def check_ventricle_amplitude(self, amplitude_input):
+    def __check_ventricle_amplitude(self, amplitude_input):
         # Check if correct datatype was entered
         try:
             amplitude_input = float(amplitude_input)
@@ -3797,7 +3797,7 @@ class DOOR:
             self.invalid_label_va.grid(columnspan=2, column=self.limits["va"]["column"], row=self.limits["va"]["row"])
             return False
 
-    def check_vpw(self, pw_input):
+    def __check_vpw(self, pw_input):
         # Check if correct datatype was entered
         try:
             pw_input = int(pw_input)
@@ -3813,7 +3813,7 @@ class DOOR:
                                         row=self.limits["vpw"]["row"])
             return False
 
-    def check_max_sensor_rate(self):
+    def __check_max_sensor_rate(self):
         # Check if correct datatype was entered
         try:
             msr_input = int(self.msr.get())
@@ -3830,7 +3830,7 @@ class DOOR:
                                         row=self.limits["msr"]["row"])
             return False
 
-    def check_favd(self):
+    def __check_favd(self):
         # Check if correct datatype was entered
         try:
             favd_input = int(self.favd.get())
@@ -3847,7 +3847,7 @@ class DOOR:
                                         row=self.limits["favd"]["row"])
             return False
 
-    def check_at(self):
+    def __check_at(self):
         try:
             at_input = int(self.at.get())
         except:
@@ -3862,7 +3862,7 @@ class DOOR:
                                         row=self.limits["at"]["row"])
             return False
 
-    def check_rct(self):
+    def __check_rct(self):
         try:
             rct_input = int(self.rct.get())
         except:
@@ -3877,7 +3877,7 @@ class DOOR:
                                         row=self.limits["rct"]["row"])
             return False
 
-    def check_rf(self):
+    def __check_rf(self):
 
         try:
             rf_input = int(self.rf.get())
@@ -3893,7 +3893,7 @@ class DOOR:
                                         row=self.limits["rf"]["row"])
             return False
 
-    def check_rvt(self):
+    def __check_rvt(self):
 
         try:
             rvt_input = int(self.rvt.get())
@@ -3909,7 +3909,7 @@ class DOOR:
                                         row=self.limits["rvt"]["row"])
             return False
 
-    def check_validity(self):
+    def __check_validity(self):
         # Remove previous invalid labels
         self.invalid_label_lrl.grid_remove()
         self.invalid_label_url.grid_remove()
@@ -3945,19 +3945,19 @@ class DOOR:
                 self.blank_label.place(relx=0.5, rely=0.75, anchor="center")
                 return
 
-        valid_params = [self.check_lrl(self.lrl.get()), self.check_url(self.url.get()),
-                        self.check_atrial_amplitude(self.aa.get()),
-                        self.check_ventricle_amplitude(self.va.get()),
-                        self.check_apw(self.apw.get()), self.check_vpw(self.vpw.get()),
-                        self.check_at(), self.check_rct(), self.check_rf(), self.check_rvt(), self.check_favd(), self.check_max_sensor_rate()
+        valid_params = [self.__check_lrl(self.lrl.get()), self.__check_url(self.url.get()),
+                        self.__check_atrial_amplitude(self.aa.get()),
+                        self.__check_ventricle_amplitude(self.va.get()),
+                        self.__check_apw(self.apw.get()), self.__check_vpw(self.vpw.get()),
+                        self.__check_at(), self.__check_rct(), self.__check_rf(), self.__check_rvt(), self.__check_favd(), self.__check_max_sensor_rate()
                         ]
 
         # Checking lrl separately due to increment differences
 
         if False not in valid_params:
-            self.save_parameters(input_params)
+            self.__save_parameters(input_params)
 
-    def save_parameters(self, inputs):
+    def __save_parameters(self, inputs):
         if self.user not in self.DB.keys():
             self.DB[self.user] = {}
         self.DB[self.user]["DOOR"] = inputs
