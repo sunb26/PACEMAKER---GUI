@@ -27,21 +27,12 @@ class home_page:
         self.canvas = tk.Canvas(self.window, width = 1200, height = 600)
         self.canvas.grid(columnspan = 9, rowspan = 12)
 
-        # Device name label 
-        self.device_label = tk.Label(self.window, text = "Device Name: __________", font = ("Raleway", 14), width = 22, height = 1)
-        self.device_label.grid(columnspan = 2, column = 0, row = 0, sticky = "W")
-
-        # Device name 
-            # In final version, use some function to get the device name and display it beside the semicolon of "Device Name"
-
         # Connection label
         self.connection_label = tk.Label(self.window, text = "Connection Status:", font = ("Raleway", 14), width = 15, height = 1)
-        self.connection_label.grid(columnspan = 2, column = 0, row = 1, sticky = "W")
+        self.connection_label.grid(columnspan = 2, column = 0, row = 0, sticky = "W")
 
-        # Connection identifier
-            # In final version, use if statement to determine if the device is connected or not, then if so 
-            # display the green rectangle, and if not display the red rectangle 
-        self.canvas.create_rectangle(180, 75, 210, 105, outline="#000000", fill="#00ee01")
+        # Connection identifier (Modified later when test for connection)
+        self.canvas.create_rectangle(180, 15, 210, 45, outline="#000000", fill="#00ee01")
 
         # Logo image 
         self.logo = Image.open('utils/logo.png')
@@ -49,7 +40,7 @@ class home_page:
         self.logo = ImageTk.PhotoImage(self.logo)
         self.logo_label = tk.Label(image=self.logo)
         self.logo_label.image = self.logo
-        self.logo_label.grid(rowspan = 2, column = 4, row = 0)
+        self.logo_label.grid(rowspan = 2, columnspan = 2, column = 4, row = 0)
 
         # Username label
         self.username_label = tk.Label(self.window, text = "User: " + user, font = ("Raleway", 14))
@@ -162,6 +153,7 @@ class home_page:
                                     command = lambda: self.run_model())
         self.run_button.grid(column = 8, row = 6)
 
+        # Dictionary correlating modes to integer values 
         self.param_index = {
             "AOO": 1,
             "VOO": 2,
@@ -175,7 +167,7 @@ class home_page:
             "DOOR": 10
         }
 
-    # logout function called when logout button pushed, destroying home page and creating new welcome page
+    # logout function called when Logout button pushed, destroying home page and creating new welcome page
     def logout(self):
         self.window.destroy()
         # Have to re-instantiate a new Tk() window to pass to welcome_page because the function doesn't make one itself
@@ -702,7 +694,6 @@ class home_page:
             win.DOOR(self.window, self.user, self.param_DB)
 
     # run_model function launches the output window while keeping homepage window open in background 
-    # This will display both the ventricular and atrial graphs on this same output page pop-up 
     def run_model(self):
         with open("database/parameters.json") as database2:
             parameter_database = json.load(database2)
@@ -716,11 +707,10 @@ class home_page:
         param_dict["mode"] = self.param_index[self.default_mode.get()]
 
         if not serial.findPorts():
-            self.canvas.create_rectangle(180, 75, 210, 105, outline="#000000", fill="#FF0000")
+            self.canvas.create_rectangle(180, 15, 210, 45, outline="#000000", fill="#FF0000")
             return 0
         else:
-            self.canvas.create_rectangle(180, 75, 210, 105, outline="#000000", fill="#00ee01")
-            
+            self.canvas.create_rectangle(180, 15, 210, 45, outline="#000000", fill="#00ee01")
 
         packet = list(serial.serial_packet(param_dict).transmit_params(3))
         out.output_page(self.window, self.user, self.default_mode.get(), parameter_database, packet)

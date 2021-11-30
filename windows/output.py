@@ -3,41 +3,46 @@ import matplotlib.pyplot as plt
 import matplotlib.animation as animation
 import windows.utils.serial_com as serial
 
-
-#     Need a STOP button for user to put to stop updating the graphs! (But stay on the output page I guess)
-
+# Defining global variable stop_var to start as False
 stop_var = False
-
 
 class output_page:
     def __init__(self, root, user, mode, param_DB, echo_param):
+        # Initialize parameters to be used in class 
         self.root = root
         self.user = user
         self.mode = mode
         self.param_DB = param_DB
         self.echo_param = echo_param
 
+        # Creating new output window 
         self.window = tk.Toplevel(self.root)
         self.window.title("Output")
 
+        # Setting canvas size for output window
         self.canvas = tk.Canvas(self.window, width=400, height=300)
         self.canvas.grid(columnspan=1, rowspan=6)
 
+        # Initializing empty lists to hold data to be plotted on graphs 
         self.atrium = []
         self.ventricle = []
 
+        # Initializing figure as a subplot to show both atrial and ventricle graphs at once 
         self.figure1, self.ax1 = plt.subplots(1, 2)
         self.figure1.set_figwidth(12)
         self.figure1.set_figheight(6)
 
+        # Button used to show the graphs and call start() function
         self.graph_button = tk.Button(self.window, text="Show Atrium + Ventricle Graphs", bg="#20bebe", font="Raleway",
                                       command=lambda: self.start(), fg="white", height=1, width=26)
         self.graph_button.grid(column=0, row=1)
 
+        # Button used to stop the graphs from plotting by calling stop() function 
         self.stop_button = tk.Button(self.window, text="Stop Updating Graphs", bg="#20bebe", font="Raleway",
                                      command=lambda: self.stop(), fg="white", height=1, width=26)
         self.stop_button.grid(column=0, row=2)
 
+        # Dictionary correlating modes to integer values 
         self.param_index = {
             "AOO": 1,
             "VOO": 2,
@@ -51,13 +56,14 @@ class output_page:
             "DOOR": 10
         }
 
+        # Order of parameters used to print the values on output page when echoed back from hardware 
         params_order = ["lrl", "url", "aa", "va", "apw", "vpw", "ARP", "VRP", "msr", "favd", "asen", "vsen", "PVARP", 
                             "hys", "rs", "at", "rct", "rf", "rvt", "mode"]
-
         param_string1 = ""
         param_string2 = ""
         counter = 0
 
+        # Creating strings to show as labels on output page with all echoed parameter information 
         for name, param in zip(params_order, echo_param):
             if counter < 10:
                 param_string1 += f"{name}: "
@@ -67,6 +73,7 @@ class output_page:
                 param_string2 += f"{name}: "
                 param_string2 += f"{param}, "
 
+        # Placing the labels with echoed parameter information on the output page 
         self.echo_label1 = tk.Label(self.window, text = param_string1, font = ("Raleway", 12))
         self.echo_label1.grid(column = 0, row = 3)
         self.echo_label2 = tk.Label(self.window, text = param_string2, font = ("Raleway", 12))
@@ -75,16 +82,15 @@ class output_page:
         self.neg_label.grid(column = 0, row = 5)
 
 
-    # once this is called, start receiving info from matlab to plot (by calling the animate_graphs function)
+    # Once show_graphs() is called, start receiving info from matlab to plot (by calling the animate_graphs function)
     def show_graphs(self):
-
         if stop_var:
             print("start! _-______---__-")
             ani1 = animation.FuncAnimation(self.figure1, self.animate_graphs, fargs = [self.param_DB], interval = 100) ## Maybe want frames = 100 or something in here, not sure what it does
             plt.show()   
         
 
-
+    # animate_graphs() function called repeatedly in the FuncAnimation call in show_graphs function 
     def animate_graphs(self, i, parameter_database):
 
         # Conditional accounting for if user doesn't have inputted values so use default to send to MATLAB
@@ -93,7 +99,7 @@ class output_page:
         else:
             dict_user = "default"
 
-        # If stop_var == True then skeep plotting in the graph, if False then don't plot (and keep iterating)
+        # If stop_var == True then keep plotting in the graph, if False then don't plot (and keep iterating)
         if stop_var == True:
             self.ax1[0].clear() # Clearing the previous version of the graph, followed by plotting the entire graph again
             self.ax1[0].plot(self.atrium[-150:])  # This makes graph show last 150 points
@@ -114,6 +120,7 @@ class output_page:
             param_dict = parameter_database[dict_user][self.mode]
             param_dict["mode"] = self.param_index[self.mode]
 
+            # Ensuring the hardware device is still connected 
             if not serial.findPorts():
                 print("Device not found")
                 break
