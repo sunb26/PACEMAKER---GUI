@@ -37,8 +37,6 @@ class output_page:
                                      command=lambda: self.stop(), fg="white", height=1, width=26)
         self.stop_button.grid(column=0, row=2)
 
-        # self.stop_var = True
-
         self.param_index = {
             "AOO": 1,
             "VOO": 2,
@@ -56,43 +54,41 @@ class output_page:
     # once this is called, start receiving info from matlab to plot (by calling the animate_graphs function)
     def show_graphs(self):
 
+        # 
         if stop_var:
             print("start! _-______---__-")
             ani1 = animation.FuncAnimation(self.figure1, self.animate_graphs, fargs = [self.param_DB], interval = 100) ## Maybe want frames = 100 or something in here, not sure what it does
             plt.show()
 
-            self.window.title("Working...")
-        else:
-            self.window.title("Stopped!")
-
         self.window.after(1, self.show_graphs)
 
 
     def animate_graphs(self, i, parameter_database):
-        # Accounting for if user doesn't have inputted values so use default to send to MATLAB
+
+        # Conditional accounting for if user doesn't have inputted values so use default to send to MATLAB
         if self.user in parameter_database.keys() and self.mode in parameter_database[self.user].keys():
             dict_user = self.user
         else:
             dict_user = "default"
 
-        ## So add in here to make the graph stop plotting when hit stop button by stopping the .clear() and .plot() stuff
+        # If stop_var == True then skeep plotting in the graph, if False then don't plot (and keep iterating)
+        if stop_var == True:
+            self.ax1[0].clear() # Clearing the previous version of the graph, followed by plotting the entire graph again
+            self.ax1[0].plot(self.atrium[-150:])  # This makes graph show last 150 points
 
-        self.ax1[0].clear()
-        self.ax1[0].plot(self.atrium[-150:])  # This makes graph show last 200 points
+            self.ax1[0].set_title("Atrium: Voltage vs Time")
+            self.ax1[0].set_ylabel("Voltage (mV)")
+            self.ax1[0].set_xlabel("Time (ms)")
 
-        self.ax1[0].set_title("Atrium: Voltage vs Time")
-        self.ax1[0].set_ylabel("Voltage (mV)")
-        self.ax1[0].set_xlabel("Time (ms)")
+            self.ax1[1].clear()
+            self.ax1[1].plot(self.ventricle[-150:])
 
-        self.ax1[1].clear()
-        self.ax1[1].plot(self.ventricle[-150:])
+            self.ax1[1].set_title("Ventricle: Voltage vs Time")
+            self.ax1[1].set_ylabel("Voltage (mV)")
+            self.ax1[1].set_xlabel("Time (ms)")
 
-        self.ax1[1].set_title("Ventricle: Voltage vs Time")
-        self.ax1[1].set_ylabel("Voltage (mV)")
-        self.ax1[1].set_xlabel("Time (ms)")
-
-        # Do serial comm stuff to get packet in the form [Atrial y-component, Ventricle y-component]
-        for i in range(50):
+        # Do serial communication to get packet in the form [Atrial, Ventricle], then append to pre-made lists
+        for l in range(50):
             param_dict = parameter_database[dict_user][self.mode]
             param_dict["mode"] = self.param_index[self.mode]
             packet = serial.serial_packet(param_dict).transmit_params(4)
