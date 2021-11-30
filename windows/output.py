@@ -10,17 +10,18 @@ stop_var = False
 
 
 class output_page:
-    def __init__(self, root, user, mode, param_DB):
+    def __init__(self, root, user, mode, param_DB, echo_param):
         self.root = root
         self.user = user
         self.mode = mode
         self.param_DB = param_DB
+        self.echo_param = echo_param
 
         self.window = tk.Toplevel(self.root)
         self.window.title("Output")
 
         self.canvas = tk.Canvas(self.window, width=400, height=300)
-        self.canvas.grid(columnspan=1, rowspan=5)
+        self.canvas.grid(columnspan=1, rowspan=6)
 
         self.atrium = []
         self.ventricle = []
@@ -49,18 +50,39 @@ class output_page:
             "VVIR": 9,
             "DOOR": 10
         }
-        self.window.after(1, self.show_graphs)
+
+        params_order = ["lrl", "url", "aa", "va", "apw", "vpw", "ARP", "VRP", "msr", "favd", "asen", "vsen", "PVARP", 
+                            "hys", "rs", "at", "rct", "rf", "rvt", "mode"]
+
+        param_string1 = ""
+        param_string2 = ""
+        counter = 0
+
+        for name, param in zip(params_order, echo_param):
+            if counter < 10:
+                param_string1 += f"{name}: "
+                param_string1 += f"{param}, "
+                counter += 1
+            else:
+                param_string2 += f"{name}: "
+                param_string2 += f"{param}, "
+
+        self.echo_label1 = tk.Label(self.window, text = param_string1, font = ("Raleway", 12))
+        self.echo_label1.grid(column = 0, row = 3)
+        self.echo_label2 = tk.Label(self.window, text = param_string2, font = ("Raleway", 12))
+        self.echo_label2.grid(column = 0, row = 4)
+        self.neg_label = tk.Label(self.window, text = "Note: Disregard all parameters that do not correlate to the current mode", font = ("Raleway", 12))
+        self.neg_label.grid(column = 0, row = 5)
+
 
     # once this is called, start receiving info from matlab to plot (by calling the animate_graphs function)
     def show_graphs(self):
 
-        # 
         if stop_var:
             print("start! _-______---__-")
             ani1 = animation.FuncAnimation(self.figure1, self.animate_graphs, fargs = [self.param_DB], interval = 100) ## Maybe want frames = 100 or something in here, not sure what it does
-            plt.show()
-
-        self.window.after(1, self.show_graphs)
+            plt.show()   
+        
 
 
     def animate_graphs(self, i, parameter_database):
@@ -78,14 +100,14 @@ class output_page:
 
             self.ax1[0].set_title("Atrium: Voltage vs Time")
             self.ax1[0].set_ylabel("Voltage (mV)")
-            self.ax1[0].set_xlabel("Time (ms)")
+            self.ax1[0].set_xlabel("Time")
 
             self.ax1[1].clear()
             self.ax1[1].plot(self.ventricle[-150:])
 
             self.ax1[1].set_title("Ventricle: Voltage vs Time")
             self.ax1[1].set_ylabel("Voltage (mV)")
-            self.ax1[1].set_xlabel("Time (ms)")
+            self.ax1[1].set_xlabel("Time")
 
         # Do serial communication to get packet in the form [Atrial, Ventricle], then append to pre-made lists
         for l in range(50):
@@ -100,10 +122,13 @@ class output_page:
             self.atrium.append(packet[0])
             self.ventricle.append(packet[1])
 
+    # Called when "Show Graphs" button is hit
     def start(self):
         global stop_var
         stop_var = True
+        self.window.after(1, self.show_graphs)
 
+    # Called when "Stop Updating Graphs" button is hit
     def stop(self):
         global stop_var
         stop_var = False

@@ -36,8 +36,8 @@ class serial_packet:
     def __init__(self, user_params):
         self.user_params = user_params
 
-        self.param_list = ["lrl", "url", "aa", "va", "apw", "vpw", "ARP", "VRP", "PVARP", "msr", "favd", "asen", 
-                            "vsen", "hys", "rs", "at", "rct", "rvt", "rf", "mode"]
+        self.param_list = ["lrl", "url", "aa", "va", "apw", "vpw", "ARP", "VRP", "msr", "favd", "asen", "vsen", "PVARP", 
+                            "hys", "rs", "at", "rct", "rf", "rvt", "mode"]
 
 
     def transmit_params(self, fn_code):

@@ -716,8 +716,11 @@ class home_page:
         param_dict["mode"] = self.param_index[self.default_mode.get()]
 
         if not serial.findPorts():
-            print("Device not found")
+            self.canvas.create_rectangle(180, 75, 210, 105, outline="#000000", fill="#FF0000")
             return 0
+        else:
+            self.canvas.create_rectangle(180, 75, 210, 105, outline="#000000", fill="#00ee01")
+            
 
-        packet = serial.serial_packet(param_dict).transmit_params(3)
-        out.output_page(self.window, self.user, self.default_mode.get(), parameter_database)
+        packet = list(serial.serial_packet(param_dict).transmit_params(3))
+        out.output_page(self.window, self.user, self.default_mode.get(), parameter_database, packet)
