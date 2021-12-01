@@ -53,7 +53,7 @@ class home_page:
 
         # Logout button
         self.logout_button = tk.Button(self.window, text = "Logout", bg="#20bebe", font = "Raleway",
-                                       command = lambda: self.logout(), fg = "white", height = 1, width = 8)
+                                       command = lambda: self.__logout(), fg = "white", height = 1, width = 8)
         self.logout_button.grid(column = 8, row = 1)
 
         # Mode dropdown options
@@ -83,7 +83,7 @@ class home_page:
         # Button to update parameter values
         self.mode_button = tk.Button(self.window, text = "View Parameters", width = 15, height = 1, 
                                      font = "Raleway", fg = "white", bg = "#20bebe", 
-                                     command = lambda: self.change_param())
+                                     command = lambda: self.__change_param())
         self.mode_button.grid(row = 7, column = 0)
 
         # Parameters label
@@ -144,13 +144,13 @@ class home_page:
         # Edit Button
         self.edit_button = tk.Button(self.window, text = "Edit Parameters", width = 15, height = 1, 
                                     font = "Raleway", fg = "white", bg = "#20bebe", 
-                                    command = lambda: self.edit_param())
+                                    command = lambda: self.__edit_param())
         self.edit_button.grid(column = 8, row = 7)
 
         # Run Button
         self.run_button = tk.Button(self.window, text = "Run", width = 15, height = 1, 
                                     font = "Raleway", fg = "white", bg = "#20bebe", 
-                                    command = lambda: self.run_model())
+                                    command = lambda: self.__run_model())
         self.run_button.grid(column = 8, row = 6)
 
         # Dictionary correlating modes to integer values 
@@ -168,13 +168,13 @@ class home_page:
         }
 
     # logout function called when Logout button pushed, destroying home page and creating new welcome page
-    def logout(self):
+    def __logout(self):
         self.window.destroy()
         # Have to re-instantiate a new Tk() window to pass to welcome_page because the function doesn't make one itself
         wel.welcome_page(tk.Tk(), self.login_DB, self.param_DB) 
     
     # change_param function called when want to see parameters // change which parameter are viewing // editing 
-    def change_param(self):
+    def __change_param(self):
         if self.user in self.param_DB.keys() and self.default_mode.get() in self.param_DB[self.user].keys():
             dict_user = self.user
         else:
@@ -671,7 +671,7 @@ class home_page:
             self.placeholder_label2.grid(column = 5, row = 10)
 
     # edit_param function calls the corresponding class in parameters.py file to edit its parameters 
-    def edit_param(self):
+    def __edit_param(self):
         if self.default_mode.get() == "AOO":
             win.AOO(self.window, self.user, self.param_DB)
         elif self.default_mode.get() == "VOO":
@@ -694,7 +694,7 @@ class home_page:
             win.DOOR(self.window, self.user, self.param_DB)
 
     # run_model function launches the output window while keeping homepage window open in background 
-    def run_model(self):
+    def __run_model(self):
         with open("database/parameters.json") as database2:
             parameter_database = json.load(database2)
 

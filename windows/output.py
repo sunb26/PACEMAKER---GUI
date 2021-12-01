@@ -28,18 +28,18 @@ class output_page:
         self.ventricle = []
 
         # Initializing figure as a subplot to show both atrial and ventricle graphs at once 
-        self.figure1, self.ax1 = plt.subplots(1, 2)
-        self.figure1.set_figwidth(12)
-        self.figure1.set_figheight(6)
+        # self.figure1, self.ax1 = plt.subplots(1, 2)
+        # self.figure1.set_figwidth(12)
+        # self.figure1.set_figheight(6)
 
         # Button used to show the graphs and call start() function
         self.graph_button = tk.Button(self.window, text="Show Atrium + Ventricle Graphs", bg="#20bebe", font="Raleway",
-                                      command=lambda: self.start(), fg="white", height=1, width=26)
+                                      command=lambda: self.__start(), fg="white", height=1, width=26)
         self.graph_button.grid(column=0, row=1)
 
         # Button used to stop the graphs from plotting by calling stop() function 
         self.stop_button = tk.Button(self.window, text="Stop Updating Graphs", bg="#20bebe", font="Raleway",
-                                     command=lambda: self.stop(), fg="white", height=1, width=26)
+                                     command=lambda: self.__stop(), fg="white", height=1, width=26)
         self.stop_button.grid(column=0, row=2)
 
         # Dictionary correlating modes to integer values 
@@ -57,41 +57,43 @@ class output_page:
         }
 
         # Order of parameters used to print the values on output page when echoed back from hardware 
-        params_order = ["lrl", "url", "aa", "va", "apw", "vpw", "ARP", "VRP", "msr", "favd", "asen", "vsen", "PVARP", 
+        self.params_order = ["lrl", "url", "aa", "va", "apw", "vpw", "ARP", "VRP", "msr", "favd", "asen", "vsen", "PVARP", 
                             "hys", "rs", "at", "rct", "rf", "rvt", "mode"]
-        param_string1 = ""
-        param_string2 = ""
-        counter = 0
+        self.param_string1 = ""
+        self.param_string2 = ""
+        self.counter = 0
 
         # Creating strings to show as labels on output page with all echoed parameter information 
-        for name, param in zip(params_order, echo_param):
-            if counter < 10:
-                param_string1 += f"{name}: "
-                param_string1 += f"{param}, "
-                counter += 1
+        for name, param in zip(self.params_order, self.echo_param):
+            if self.counter < 10:
+                self.param_string1 += f"{name}: "
+                self.param_string1 += f"{param}, "
+                self.counter += 1
             else:
-                param_string2 += f"{name}: "
-                param_string2 += f"{param}, "
+                self.param_string2 += f"{name}: "
+                self.param_string2 += f"{param}, "
 
         # Placing the labels with echoed parameter information on the output page 
-        self.echo_label1 = tk.Label(self.window, text = param_string1, font = ("Raleway", 12))
+        self.echo_label1 = tk.Label(self.window, text = self.param_string1, font = ("Raleway", 12))
         self.echo_label1.grid(column = 0, row = 3)
-        self.echo_label2 = tk.Label(self.window, text = param_string2, font = ("Raleway", 12))
+        self.echo_label2 = tk.Label(self.window, text = self.param_string2, font = ("Raleway", 12))
         self.echo_label2.grid(column = 0, row = 4)
         self.neg_label = tk.Label(self.window, text = "Note: Disregard all parameters that do not correlate to the current mode", font = ("Raleway", 12))
         self.neg_label.grid(column = 0, row = 5)
 
 
     # Once show_graphs() is called, start receiving info from matlab to plot (by calling the animate_graphs function)
-    def show_graphs(self):
+    def __show_graphs(self):
+        self.figure1, self.ax1 = plt.subplots(1, 2)
+        self.figure1.set_figwidth(12)
+        self.figure1.set_figheight(6)
         if stop_var:
-            print("start! _-______---__-")
-            ani1 = animation.FuncAnimation(self.figure1, self.animate_graphs, fargs = [self.param_DB], interval = 100) ## Maybe want frames = 100 or something in here, not sure what it does
+            ani1 = animation.FuncAnimation(self.figure1, self.__animate_graphs, fargs = [self.param_DB], interval = 100)
             plt.show()   
         
 
     # animate_graphs() function called repeatedly in the FuncAnimation call in show_graphs function 
-    def animate_graphs(self, i, parameter_database):
+    def __animate_graphs(self, i, parameter_database):
 
         # Conditional accounting for if user doesn't have inputted values so use default to send to MATLAB
         if self.user in parameter_database.keys() and self.mode in parameter_database[self.user].keys():
@@ -130,13 +132,13 @@ class output_page:
             self.ventricle.append(packet[1])
 
     # Called when "Show Graphs" button is hit
-    def start(self):
+    def __start(self):
         global stop_var
         stop_var = True
-        self.window.after(1, self.show_graphs)
+        self.window.after(1, self.__show_graphs)
 
     # Called when "Stop Updating Graphs" button is hit
-    def stop(self):
+    def __stop(self):
         global stop_var
         stop_var = False
         
