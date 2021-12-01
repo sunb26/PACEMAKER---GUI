@@ -27,11 +27,6 @@ class output_page:
         self.atrium = []
         self.ventricle = []
 
-        # Initializing figure as a subplot to show both atrial and ventricle graphs at once 
-        # self.figure1, self.ax1 = plt.subplots(1, 2)
-        # self.figure1.set_figwidth(12)
-        # self.figure1.set_figheight(6)
-
         # Button used to show the graphs and call start() function
         self.graph_button = tk.Button(self.window, text="Show Atrium + Ventricle Graphs", bg="#20bebe", font="Raleway",
                                       command=lambda: self.__start(), fg="white", height=1, width=26)
@@ -84,6 +79,8 @@ class output_page:
 
     # Once show_graphs() is called, start receiving info from matlab to plot (by calling the animate_graphs function)
     def __show_graphs(self):
+
+        # Initializing figure as a subplot to show both atrial and ventricle graphs at once 
         self.figure1, self.ax1 = plt.subplots(1, 2)
         self.figure1.set_figwidth(12)
         self.figure1.set_figheight(6)

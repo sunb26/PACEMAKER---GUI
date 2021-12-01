@@ -39,7 +39,6 @@ class serial_packet:
         self.param_list = ["lrl", "url", "aa", "va", "apw", "vpw", "ARP", "VRP", "msr", "favd", "asen", "vsen", "PVARP", 
                             "hys", "rs", "at", "rct", "rf", "rvt", "mode"]
 
-
     def transmit_params(self, fn_code):
         ports = findPorts()
 
