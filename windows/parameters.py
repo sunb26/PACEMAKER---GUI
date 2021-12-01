@@ -1671,7 +1671,7 @@ class DOO:
 
         self.window.title("Parameters")
         self.canvas = tk.Canvas(self.window, width=1000, height=700)
-        self.canvas.grid(columnspan=8, rowspan=6)
+        self.canvas.grid(columnspan=8, rowspan=9)
 
         self.title_label = tk.Label(self.window, text="Parameters", font=("Raleway", 18))
         self.title_label.grid(column=0, row=0)
@@ -1708,6 +1708,7 @@ class DOO:
         self.vpw_label.grid(column=4, row=2)
         self.favd_label = tk.Label(self.window, text="Fixed AV Delay", font=("Raleway", 12))
         self.favd_label.grid(column=4, row=3)
+        self.blank_label = tk.Label(self.window, text="All fields must be filled in", font=("Raleway", 12))
 
 
 
@@ -1995,7 +1996,7 @@ class AOOR:
         self.window = tk.Toplevel(self.root)
         self.window.title("Parameters")
         self.canvas = tk.Canvas(self.window, width=1000, height=700)
-        self.canvas.grid(columnspan=8, rowspan=10)
+        self.canvas.grid(columnspan=8, rowspan=13)
 
         self.title_label = tk.Label(self.window, text="Parameters", font=("Raleway", 18))
         self.title_label.grid(column=0, row=0)
@@ -2039,6 +2040,7 @@ class AOOR:
         self.rf_label.grid(column=4, row=3)
         self.rvt_label = tk.Label(self.window, text="Recovery Time", font=("Raleway", 12))
         self.rvt_label.grid(column=4, row=4)
+        self.blank_label = tk.Label(self.window, text="All fields must be filled in", font=("Raleway", 12))
 
 
 
@@ -2348,7 +2350,7 @@ class AAIR:
         self.window = tk.Toplevel(self.root)
         self.window.title("Parameters")
         self.canvas = tk.Canvas(self.window, width=1000, height=700)
-        self.canvas.grid(columnspan=8, rowspan=10)
+        self.canvas.grid(columnspan=8, rowspan=13)
 
         self.title_label = tk.Label(self.window, text="Parameters", font=("Raleway", 18))
         self.title_label.grid(column=0, row=0)
@@ -2412,6 +2414,7 @@ class AAIR:
         self.rf_label.grid(column=4, row=6)
         self.rvt_label = tk.Label(self.window, text="Recovery Time", font=("Raleway", 12))
         self.rvt_label.grid(column=4, row=7)
+        self.blank_label = tk.Label(self.window, text="All fields must be filled in", font=("Raleway", 12))
 
 
 
@@ -2812,7 +2815,7 @@ class VOOR:
 
         self.window.title("Parameters")
         self.canvas = tk.Canvas(self.window, width=1000, height=700)
-        self.canvas.grid(columnspan=8, rowspan=10)
+        self.canvas.grid(columnspan=8, rowspan=13)
 
         self.title_label = tk.Label(self.window, text="Parameters", font=("Raleway", 18))
         self.title_label.grid(column=0, row=0)
@@ -2856,6 +2859,7 @@ class VOOR:
         self.rf_label.grid(column=4, row=4)
         self.rvt_label = tk.Label(self.window, text="Recovery Time", font=("Raleway", 12))
         self.rvt_label.grid(column=0, row=5)
+        self.blank_label = tk.Label(self.window, text="All fields must be filled in", font=("Raleway", 12))
 
 
 
@@ -3163,7 +3167,7 @@ class VVIR:
 
         self.window.title("Parameters")
         self.canvas = tk.Canvas(self.window, width=1000, height=700)
-        self.canvas.grid(columnspan=8, rowspan=10)
+        self.canvas.grid(columnspan=8, rowspan=13)
 
         self.title_label = tk.Label(self.window, text="Parameters", font=("Raleway", 18))
         self.title_label.grid(column=0, row=0)
@@ -3223,6 +3227,7 @@ class VVIR:
         self.rf_label.grid(column=4, row=6)
         self.rvt_label = tk.Label(self.window, text="Recovery Time", font=("Raleway", 12))
         self.rvt_label.grid(column=0, row=7)
+        self.blank_label = tk.Label(self.window, text="All fields must be filled in", font=("Raleway", 12))
 
 
 
@@ -3616,7 +3621,7 @@ class DOOR:
 
         self.window.title("Parameters")
         self.canvas = tk.Canvas(self.window, width=1000, height=700)
-        self.canvas.grid(columnspan=8, rowspan=10)
+        self.canvas.grid(columnspan=8, rowspan=13)
 
         self.title_label = tk.Label(self.window, text="Parameters", font=("Raleway", 18))
         self.title_label.grid(column=0, row=0)
@@ -3672,6 +3677,7 @@ class DOOR:
         self.rf_label.grid(column=0, row=6)
         self.rvt_label = tk.Label(self.window, text="Recovery Time", font=("Raleway", 12))
         self.rvt_label.grid(column=4, row=6)
+        self.blank_label = tk.Label(self.window, text="All fields must be filled in", font=("Raleway", 12))
 
 
 
