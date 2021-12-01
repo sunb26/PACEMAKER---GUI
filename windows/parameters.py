@@ -1906,6 +1906,7 @@ class DOO:
         self.invalid_label_va.grid_remove()
         self.invalid_label_vpw.grid_remove()
         self.invalid_label_favd.grid_remove()
+        self.blank_label.place_forget()
 
 
         input_params = {
@@ -2239,6 +2240,7 @@ class AOOR:
         self.invalid_label_rct.grid_remove()
         self.invalid_label_rf.grid_remove()
         self.invalid_label_rvt.grid_remove()
+        self.blank_label.place_forget()
 
         input_params = {
             "lrl": self.lrl.get(),
@@ -2716,6 +2718,7 @@ class AAIR:
         self.invalid_label_rct.grid_remove()
         self.invalid_label_rf.grid_remove()
         self.invalid_label_rvt.grid_remove()
+        self.blank_label.place_forget()
 
         input_params = {
             "lrl": self.lrl.get(),
@@ -3058,6 +3061,7 @@ class VOOR:
         self.invalid_label_rct.grid_remove()
         self.invalid_label_rf.grid_remove()
         self.invalid_label_rvt.grid_remove()
+        self.blank_label.place_forget()
 
         input_params = {
             "lrl": self.lrl.get(),
@@ -3512,6 +3516,7 @@ class VVIR:
         self.invalid_label_rct.grid_remove()
         self.invalid_label_rf.grid_remove()
         self.invalid_label_rvt.grid_remove()
+        self.blank_label.place_forget()
 
         input_params = {
             "lrl": self.lrl.get(),
@@ -3929,6 +3934,8 @@ class DOOR:
         self.invalid_label_rct.grid_remove()
         self.invalid_label_rf.grid_remove()
         self.invalid_label_rvt.grid_remove()
+        self.blank_label.place_forget()
+
 
         input_params = {
             "lrl": self.lrl.get(),
