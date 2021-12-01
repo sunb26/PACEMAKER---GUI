@@ -1628,7 +1628,7 @@ class AOOR:
                                         row=self.limits["rct"]["row"])
             return False
 
-        if 10 <= rct_input <= 50 and rct_input % 10 == 0:
+        if 10000 <= rct_input <= 50000 and rct_input % 10 == 0:
             return True
         else:
             self.invalid_label_rct.grid(columnspan=2, column=self.limits["rct"]["column"],
@@ -1660,7 +1660,7 @@ class AOOR:
                                         row=self.limits["rvt"]["row"])
             return False
 
-        if 2 <= rvt_input <= 16:
+        if 120000 <= rvt_input <= 960000:
             return True
         else:
             self.invalid_label_rvt.grid(columnspan=2, column=self.limits["rvt"]["column"],
@@ -2101,7 +2101,7 @@ class AAIR:
                                         row=self.limits["rct"]["row"])
             return False
 
-        if 10 <= rct_input <= 50 and rct_input % 10 == 0:
+        if 10000 <= rct_input <= 50000 and rct_input % 10 == 0:
             return True
         else:
             self.invalid_label_rct.grid(columnspan=2, column=self.limits["rct"]["column"],
@@ -2133,7 +2133,7 @@ class AAIR:
                                         row=self.limits["rvt"]["row"])
             return False
 
-        if 2 <= rvt_input <= 16:
+        if 120000 <= rvt_input <= 960000:
             return True
         else:
             self.invalid_label_rvt.grid(columnspan=2, column=self.limits["rvt"]["column"],
@@ -2449,7 +2449,7 @@ class VOOR:
                                         row=self.limits["rct"]["row"])
             return False
 
-        if 10 <= rct_input <= 50 and rct_input % 10 == 0:
+        if 10000 <= rct_input <= 50000 and rct_input % 10 == 0:
             return True
         else:
             self.invalid_label_rct.grid(columnspan=2, column=self.limits["rct"]["column"],
@@ -2481,7 +2481,7 @@ class VOOR:
                                         row=self.limits["rvt"]["row"])
             return False
 
-        if 2 <= rvt_input <= 16:
+        if 120000 <= rvt_input <= 960000:
             return True
         else:
             self.invalid_label_rvt.grid(columnspan=2, column=self.limits["rvt"]["column"],
@@ -2900,7 +2900,7 @@ class VVIR:
                                         row=self.limits["rct"]["row"])
             return False
 
-        if 10 <= rct_input <= 50 and rct_input % 10 == 0:
+        if 10000 <= rct_input <= 50000 and rct_input % 10 == 0:
             return True
         else:
             self.invalid_label_rct.grid(columnspan=2, column=self.limits["rct"]["column"],
@@ -2932,7 +2932,7 @@ class VVIR:
                                         row=self.limits["rvt"]["row"])
             return False
 
-        if 2 <= rvt_input <= 16:
+        if 120000 <= rvt_input <= 960000:
             return True
         else:
             self.invalid_label_rvt.grid(columnspan=2, column=self.limits["rvt"]["column"],
@@ -3319,7 +3319,7 @@ class DOOR:
                                         row=self.limits["rct"]["row"])
             return False
 
-        if 10 <= rct_input <= 50 and rct_input % 10 == 0:
+        if 10000 <= rct_input <= 50000 and rct_input % 10 == 0:
             return True
         else:
             self.invalid_label_rct.grid(columnspan=2, column=self.limits["rct"]["column"],
@@ -3351,7 +3351,7 @@ class DOOR:
                                         row=self.limits["rvt"]["row"])
             return False
 
-        if 2 <= rvt_input <= 16:
+        if 120000 <= rvt_input <= 960000:
             return True
         else:
             self.invalid_label_rvt.grid(columnspan=2, column=self.limits["rvt"]["column"],
